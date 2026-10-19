@@ -42,10 +42,10 @@ h1{font-size:clamp(36px,7vw,68px);font-weight:800;letter-spacing:-.02em;line-hei
 @keyframes fill{from{background:var(--up)}to{background:var(--done)}}
 @keyframes fillr{from{background:var(--up)}to{background:var(--repl)}}
 @media (prefers-reduced-motion:reduce){.cell-a,.cell-r{animation:none}}
-.hero-points{display:flex;gap:26px;flex-wrap:wrap;margin:26px 0 0;padding:0;list-style:none}
+.hero-points{display:flex;flex-direction:column;gap:12px;margin:26px 0 0;padding:0;list-style:none}
 .hero-points li{display:flex;align-items:flex-start;gap:10px;font-size:16px;color:var(--ink)}
 .tick{display:inline-flex;flex:none;width:20px;height:20px;border-radius:4px;background:var(--done);color:#fff;font-size:13px;font-weight:600;align-items:center;justify-content:center}
-section{padding:58px 0 8px}
+section{padding:64px 0 12px}
 h2{font-size:clamp(28px,4.5vw,42px);font-weight:800;letter-spacing:-.02em;margin:0 0 10px}
 .sub{color:var(--slate);max-width:640px;margin:0 0 34px}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -60,13 +60,13 @@ h2{font-size:clamp(28px,4.5vw,42px);font-weight:800;letter-spacing:-.02em;margin
 .item .t{font-weight:600;display:block;margin-bottom:2px}
 .item p{margin:0;color:var(--slate);font-size:15.5px}
 .plans{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:840px}
-.plan{background:var(--sheet);border:1px solid var(--rule);border-radius:18px;padding:30px}
+.plan{background:var(--sheet);border:1px solid var(--rule);border-radius:18px;padding:30px;display:flex;flex-direction:column}
 .tag{display:inline-block;background:var(--done);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:4px;margin-bottom:14px}
 .price{font-size:clamp(34px,5vw,42px);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
 .price small{font-size:16px;font-weight:600;color:var(--slate);letter-spacing:0}
 .plan ul{margin:18px 0 22px;padding:0;list-style:none}
 .plan li{padding:7px 0;border-top:1px solid var(--rule);color:var(--slate);font-size:15.5px}
-.plan .btn{display:block;text-align:center}
+.plan .btn{display:block;text-align:center;margin-top:auto}
 .fine{color:var(--slate);font-size:14px;margin:18px 0 0;max-width:840px}
 .faq{max-width:840px;background:var(--sheet);border:1px solid var(--rule);border-radius:18px;padding:6px 26px}
 details{border-top:1px solid var(--rule);padding:16px 0}
