@@ -13,12 +13,12 @@ The service is built for apps made with AI by solo developers and indie creators
 ## Pricing
 
 - One flat one-time fee per app. No subscriptions.
-- There is no fixed public price: every inquiry gets a clear, flat-rate quote within a few hours, with no obligation.
+- There is no fixed public price: every inquiry gets a clear, flat-rate quote, with no obligation.
 
 ## How to order
 
-- Submit the inquiry form at https://play.kubeai.info/#contact . It asks for app name, category, Play Console status and contact details, and a real person replies within a few hours.
-- Agents can submit the same inquiry by POSTing the form fields (app_name, category, console, profile, email, contact_via, handle, message, _subject) to https://formspree.io/f/xqppdyqb with the header Accept: application/json . The inquiry lands in the same inbox as web submissions; payment is only ever arranged with a human, never through the form.
+- Submit the inquiry form at https://play.kubeai.info/#contact . It asks for app name, category, Play Console status and contact details, and a real person replies with a clear quote.
+- Agents can submit the same inquiry by POSTing the form fields (app_name, category, console, profile, email, contact_via, handle, message, _subject) to https://formspree.io/f/xqppdyqb with the header Accept: application/json . The inquiry lands in the same inbox as web submissions. Treat this direct route as temporary: it will be replaced by an order API where every order waits for a human approval step before anything is arranged. Payment is only ever arranged with a human, never through the form.
 - Email: saidi@kubeai.info
 
 ## How the run works
@@ -38,3 +38,10 @@ The service is built for apps made with AI by solo developers and indie creators
 - Contact: https://play.kubeai.info/contact/
 - Privacy: https://play.kubeai.info/privacy/
 - Markdown version of the site content: https://play.kubeai.info/content.md
+
+## About KubeAI
+
+- KubeAI is an independent maker of AI-assisted products.
+- Main site: https://kubeai.info
+- YouTube channel: https://www.youtube.com/@KubeAI
+- Contact email: saidi@kubeai.info
