@@ -34,4 +34,7 @@ The service is built for apps made with AI by solo developers and indie creators
 - How it works: https://play.kubeai.info/#how
 - Why us: https://play.kubeai.info/#compare
 - FAQ: https://play.kubeai.info/#faq
+- About: https://play.kubeai.info/about/
+- Contact: https://play.kubeai.info/contact/
+- Privacy: https://play.kubeai.info/privacy/
 - Markdown version of the site content: https://play.kubeai.info/content.md
