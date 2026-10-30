@@ -80,7 +80,7 @@ You apply for production access with our support. If Google pushes back, we keep
 
 ## Contact
 
-Tell us a little about your app and a real person will reply within a few hours: https://play.kubeai.info/#contact
+Tell us a little about your app and a real person will get back to you: https://play.kubeai.info/#contact
 
 Every inquiry gets a clear, flat-rate quote. No sales calls, no surprise add-ons. One-time fee per app, no subscriptions.
 
