@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — 12 Play Testers</title>
+<meta name="description" content="Tell us about your app and get a flat-rate quote within a few hours. Email saidi@kubeai.info or send the form.">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://play.kubeai.info/contact/">
+<style>
+.prose h1{font-size:clamp(32px,4.6vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:44px 0 14px}
+.prose h2{font-size:22px;letter-spacing:-.01em;margin:34px 0 8px}
+.prose p{color:var(--slate);margin:0 0 12px}
+.prose a{color:var(--done);text-decoration:underline}
+.prose .fine{font-size:14px}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start;padding-bottom:80px}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:32px}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ContactPage","name":"Contact 12 Play Testers","url":"https://play.kubeai.info/contact/","about":{"@type":"Organization","name":"KubeAI","url":"https://kubeai.info","contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"saidi@kubeai.info"}}}
+</script>
+</head>
+<body>
+<header class="wrap">
+  <div class="top">
+    <a class="brand" href="/"><svg width="26" height="20" viewBox="0 0 26 20" aria-hidden="true"><g fill="#1A7F50"><rect width="5" height="5" rx="1"/><rect x="7" width="5" height="5" rx="1"/><rect x="14" width="5" height="5" rx="1"/><rect x="21" width="5" height="5" rx="1"/><rect y="7" width="5" height="5" rx="1"/><rect x="7" y="7" width="5" height="5" rx="1"/><rect x="14" y="7" width="5" height="5" rx="1"/><rect x="21" y="7" width="5" height="5" rx="1"/><rect y="14" width="5" height="5" rx="1"/><rect x="7" y="14" width="5" height="5" rx="1"/><rect x="14" y="14" width="5" height="5" rx="1"/><rect x="21" y="14" width="5" height="5" rx="1"/></g></svg>12 Play Testers</a>
+    <nav aria-label="Sections">
+      <a href="/#how">How it works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <a class="btn btn-dark btn-sm" href="/#contact">Get in touch</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="contact-grid">
+    <div class="prose">
+      <h1>Contact</h1>
+      <p>Tell us a little about your app and a real person will reply within a few hours with a clear, flat-rate quote. No sales calls, no surprise add-ons.</p>
+      <p>One-time fee per app, no subscriptions.</p>
+      <p>Prefer email? Write to <a href="mailto:saidi@kubeai.info">saidi@kubeai.info</a>.</p>
+      <p class="fine" style="margin-top:18px">Your inquiry goes to saidi@kubeai.info through our form processor. See the <a href="/privacy/">privacy page</a> for what we keep.</p>
+    </div>
+    <div>
+      <form class="form" id="cform" style="margin:0" action="https://formspree.io/f/xqppdyqb" method="post">
+        <div class="field">
+          <label for="cemail">Email</label>
+          <input type="email" id="cemail" name="email" required autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="capp">App name</label>
+          <input type="text" id="capp" name="app_name" autocomplete="off" placeholder="e.g. Pocket Planner">
+        </div>
+        <div class="field">
+          <label for="ccat">Category</label>
+          <select id="ccat" name="category">
+            <option>Productivity</option><option>Games</option><option>Education</option><option>Health and fitness</option><option>Finance</option><option>Social and communication</option><option>Tools and utilities</option><option>Lifestyle</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cmsg">Anything we should know?</label>
+          <textarea id="cmsg" name="message" placeholder="Launch date, questions, worries..."></textarea>
+        </div>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <div class="nav-btns"><span></span><button type="submit" class="btn btn-dark">Send my details</button></div>
+        <p class="err" id="cerr" role="alert" hidden></p>
+      </form>
+      <div class="done-msg" id="cdone" hidden>
+        <h3>Sent. Thanks for reaching out.</h3>
+        <p>A real person will reply within a few hours with a clear quote for your app.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  var f = document.getElementById('cform');
+  if (!f) return;
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var err = document.getElementById('cerr');
+    var done = document.getElementById('cdone');
+    err.hidden = true;
+    var data = new FormData(f);
+    data.append('_subject', '12 Play Testers inquiry (contact page)');
+    fetch(f.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then(function(r){ if (!r.ok) throw 0; f.hidden = true; done.hidden = false; })
+      .catch(function(){ err.textContent = 'That did not go through. Check your connection and press Send again.'; err.hidden = false; });
+  });
+})();
+</script>
+
+<footer>
+  <div class="wrap">12 Play Testers, a KubeAI service &middot; <a href="https://kubeai.info">kubeai.info</a> &middot; <a href="/about/">About</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy</a></div>
+</footer>
+</body>
+</html>
