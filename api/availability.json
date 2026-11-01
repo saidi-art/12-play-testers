@@ -1,1 +1,58 @@
-ewogICJzZXJ2aWNlIjogIjEyIFBsYXkgVGVzdGVycyIsCiAgInByb3ZpZGVyIjogewogICAgIm5hbWUiOiAiS3ViZUFJIiwKICAgICJ1cmwiOiAiaHR0cHM6Ly9rdWJlYWkuaW5mbyIsCiAgICAiZW1haWwiOiAic2FpZGlAa3ViZWFpLmluZm8iCiAgfSwKICAidXJsIjogImh0dHBzOi8vcGxheS5rdWJlYWkuaW5mby8iLAogICJzdW1tYXJ5IjogIk1hbmFnZWQgR29vZ2xlIFBsYXkgY2xvc2VkIHRlc3Q6IDEyIGh1bWFuIHRlc3RlcnMgb24gcmVhbCBBbmRyb2lkIGRldmljZXMgdXNlIHlvdXIgYXBwIGRhaWx5IGZvciAxNCBjb25zZWN1dGl2ZSBkYXlzLCBtYW5hZ2VkIGVuZCB0byBlbmQgdW50aWwgcHJvZHVjdGlvbiBhY2Nlc3MgaXMgYXBwcm92ZWQuIiwKICAidGVzdGVyc19wZXJfYXBwIjogMTIsCiAgImR1cmF0aW9uX2RheXMiOiAxNCwKICAiY292ZXJhZ2UiOiAiV29ybGR3aWRlLCByZW1vdGUiLAogICJ0aW1lem9uZSI6ICJFdXJvcGUvUGFyaXMiLAogICJwcmljaW5nIjogewogICAgIm1vZGVsIjogIk9uZSBmbGF0IG9uZS10aW1lIGZlZSBwZXIgYXBwIiwKICAgICJwdWJsaWNfcHJpY2UiOiBudWxsLAogICAgInF1b3RlIjogIkV2ZXJ5IGlucXVpcnkgZ2V0cyBhIGNsZWFyLCBmbGF0LXJhdGUgcXVvdGUsIHdpdGggbm8gb2JsaWdhdGlvbi4iLAogICAgInN1YnNjcmlwdGlvbnMiOiBmYWxzZQogIH0sCiAgIm9yZGVyX2ludGFrZSI6IHsKICAgICJtZXRob2QiOiAiUE9TVCIsCiAgICAiZW5kcG9pbnQiOiAiaHR0cHM6Ly9mb3Jtc3ByZWUuaW8vZi94cXBwZHlxYiIsCiAgICAiY29udGVudF90eXBlIjogImFwcGxpY2F0aW9uL2pzb24iLAogICAgImhlYWRlcnMiOiB7CiAgICAgICJBY2NlcHQiOiAiYXBwbGljYXRpb24vanNvbiIKICAgIH0sCiAgICAiYm9keSI6IHsKICAgICAgImFwcF9uYW1lIjogInN0cmluZywgcmVxdWlyZWQiLAogICAgICAiY2F0ZWdvcnkiOiAib25lIG9mOiBQcm9kdWN0aXZpdHksIEdhbWVzLCBFZHVjYXRpb24sIEhlYWx0aCBhbmQgZml0bmVzcywgRmluYW5jZSwgU29jaWFsIGFuZCBjb21tdW5pY2F0aW9uLCBUb29scyBhbmQgdXRpbGl0aWVzLCBMaWZlc3R5bGUsIE90aGVyIiwKICAgICAgImNvbnNvbGUiOiAiJ0NvbnNvbGUgYWNjb3VudCByZWdpc3RlcmVkJyBvciAnTmVlZHMgc2V0dXAgZ3VpZGFuY2UnIiwKICAgICAgInByb2ZpbGUiOiAiJ1NvbG8gY3JlYXRvciwgZmxhdC1yYXRlJyBvciAnTXVsdGlwbGUgYXBwcyBvciBzdHVkaW8nIiwKICAgICAgImVtYWlsIjogInN0cmluZywgcmVxdWlyZWQiLAogICAgICAiY29udGFjdF92aWEiOiAiRW1haWwsIFdoYXRzQXBwIG9yIFRlbGVncmFtIiwKICAgICAgImhhbmRsZSI6ICJvcHRpb25hbCwgb25seSBpZiBjb250YWN0IGlzIG5vdCBlbWFpbCIsCiAgICAgICJtZXNzYWdlIjogIm9wdGlvbmFsIiwKICAgICAgIl9zdWJqZWN0IjogIm9wdGlvbmFsIHN1YmplY3QgbGluZSIKICAgIH0sCiAgICAic3VjY2Vzc19yZXNwb25zZSI6ICIyMDAgd2l0aCB7XCJva1wiOiB0cnVlfSIKICB9LAogICJvcmRlcl9wb2xpY3kiOiB7CiAgICAiaW5pdGlhbF9zdGF0dXMiOiAicGVuZGluZyBhdXRob3Jpc2F0aW9uIiwKICAgICJub3RlIjogIkV2ZXJ5IG9yZGVyIHdhaXRzIGZvciBhIGh1bWFuIGFwcHJvdmFsIHN0ZXAgYmVmb3JlIGFueXRoaW5nIGlzIGFycmFuZ2VkLiBQYXltZW50IGlzIG9ubHkgZXZlciBhcnJhbmdlZCB3aXRoIGEgaHVtYW4sIG5ldmVyIHRocm91Z2ggdGhlIGludGFrZSBlbmRwb2ludC4iLAogICAgImNvbnNlbnQiOiAiU29mdHdhcmUgYWN0aW5nIGZvciBhIHBlcnNvbiBzaG91bGQgb25seSBzdWJtaXQgYW4gaW5xdWlyeSB3aXRoIHRoYXQgcGVyc29uJ3MgY29uc2VudCBhbmQgdGhlaXIgb3duIGNvbnRhY3QgZGV0YWlscywgb3IgZW1haWwgc2FpZGlAa3ViZWFpLmluZm8uIgogIH0sCiAgInBhZ2VzIjogewogICAgImhvbWUiOiAiaHR0cHM6Ly9wbGF5Lmt1YmVhaS5pbmZvLyIsCiAgICAiaG93X2l0X3dvcmtzIjogImh0dHBzOi8vcGxheS5rdWJlYWkuaW5mby8jaG93IiwKICAgICJ3aHlfdXMiOiAiaHR0cHM6Ly9wbGF5Lmt1YmVhaS5pbmZvLyNjb21wYXJlIiwKICAgICJmYXEiOiAiaHR0cHM6Ly9wbGF5Lmt1YmVhaS5pbmZvLyNmYXEiLAogICAgImZvcl9hZ2VudHMiOiAiaHR0cHM6Ly9wbGF5Lmt1YmVhaS5pbmZvLyNhZ2VudHMiLAogICAgImFwaV9kb2NzIjogImh0dHBzOi8vcGxheS5rdWJlYWkuaW5mby9hcGkvIiwKICAgICJtY3BfZG9jcyI6ICJodHRwczovL3BsYXkua3ViZWFpLmluZm8vbWNwLyIsCiAgICAiYWJvdXQiOiAiaHR0cHM6Ly9wbGF5Lmt1YmVhaS5pbmZvL2Fib3V0LyIsCiAgICAiY29udGFjdCI6ICJodHRwczovL3BsYXkua3ViZWFpLmluZm8vY29udGFjdC8iLAogICAgInByaXZhY3kiOiAiaHR0cHM6Ly9wbGF5Lmt1YmVhaS5pbmZvL3ByaXZhY3kvIiwKICAgICJtYXJrZG93biI6ICJodHRwczovL3BsYXkua3ViZWFpLmluZm8vY29udGVudC5tZCIKICB9Cn0K
+{
+  "service": "12 Play Testers",
+  "provider": {
+    "name": "KubeAI",
+    "url": "https://kubeai.info",
+    "email": "saidi@kubeai.info"
+  },
+  "url": "https://play.kubeai.info/",
+  "summary": "Managed Google Play closed test: 12 human testers on real Android devices use your app daily for 14 consecutive days, managed end to end until production access is approved.",
+  "testers_per_app": 12,
+  "duration_days": 14,
+  "coverage": "Worldwide, remote",
+  "timezone": "Europe/Paris",
+  "pricing": {
+    "model": "One flat one-time fee per app",
+    "public_price": null,
+    "quote": "Every inquiry gets a clear, flat-rate quote, with no obligation.",
+    "subscriptions": false
+  },
+  "order_intake": {
+    "method": "POST",
+    "endpoint": "https://formspree.io/f/xqppdyqb",
+    "content_type": "application/json",
+    "headers": {
+      "Accept": "application/json"
+    },
+    "body": {
+      "app_name": "string, required",
+      "category": "one of: Productivity, Games, Education, Health and fitness, Finance, Social and communication, Tools and utilities, Lifestyle, Other",
+      "console": "'Console account registered' or 'Needs setup guidance'",
+      "profile": "'Solo creator, flat-rate' or 'Multiple apps or studio'",
+      "email": "string, required",
+      "contact_via": "Email, WhatsApp or Telegram",
+      "handle": "optional, only if contact is not email",
+      "message": "optional",
+      "_subject": "optional subject line"
+    },
+    "success_response": "200 with {\"ok\": true}"
+  },
+  "order_policy": {
+    "initial_status": "pending authorisation",
+    "note": "Every order waits for a human approval step before anything is arranged. Payment is only ever arranged with a human, never through the intake endpoint.",
+    "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email saidi@kubeai.info."
+  },
+  "pages": {
+    "home": "https://play.kubeai.info/",
+    "how_it_works": "https://play.kubeai.info/#how",
+    "why_us": "https://play.kubeai.info/#compare",
+    "faq": "https://play.kubeai.info/#faq",
+    "for_agents": "https://play.kubeai.info/#agents",
+    "api_docs": "https://play.kubeai.info/api/",
+    "mcp_docs": "https://play.kubeai.info/mcp/",
+    "about": "https://play.kubeai.info/about/",
+    "contact": "https://play.kubeai.info/contact/",
+    "privacy": "https://play.kubeai.info/privacy/",
+    "markdown": "https://play.kubeai.info/content.md"
+  }
+}
