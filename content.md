@@ -1,1 +1,99 @@
-IyAxMiBQbGF5IFRlc3RlcnMKCllvdSBidWlsdCBpdCB3aXRoIEFJLiBXZSBnZXQgaXQgdGhyb3VnaCBHb29nbGUgUGxheSB0ZXN0aW5nLgoKR29vZ2xlJ3MgMTItdGVzdGVyLCAxNC1kYXkgY2xvc2VkIHRlc3QgaXMgdGhlIHdhbGwgYmV0d2VlbiB5b3VyIGFwcCBhbmQgcHJvZHVjdGlvbi4gV2UgcnVuIHRoZSB3aG9sZSB0aGluZyB3aXRoIHJlYWwgcGVvcGxlIG9uIHJlYWwgcGhvbmVzLCBzbyB5b3UgY2FuIGZvY3VzIG9uIHlvdXIgbmV4dCBidWlsZC4gTm8gYm90cywgbm8gc3BhbSwgbm8gc3RyZXNzLgoKRmxhdCBvbmUtdGltZSBmZWUgcGVyIGFwcCwgcHJpY2VkIGZvciBzb2xvIGRldmVsb3BlcnMuIE5vIHN1YnNjcmlwdGlvbnMuCgojIyBXaGF0IHlvdSBjYW4gY291bnQgb24KCi0gSHVtYW4gdGVzdGVycy4gUmVhbCBwZW9wbGUgb24gcmVhbCBBbmRyb2lkIHBob25lcy4KLSBObyBib3RzLCBubyBlbXVsYXRvcnMuIE5vdGhpbmcgdGhhdCBwdXRzIHlvdXIgYWNjb3VudCBhdCByaXNrLgotIFNob3J0LCBkaXJlY3QgdXBkYXRlcy4gWW91IGFsd2F5cyBrbm93IHdoZXJlIHRoZSBydW4gc3RhbmRzLgotIEJ1aWx0IGFyb3VuZCBHb29nbGUncyBydWxlcy4gRXZlcnkgc3RlcCBmb2xsb3dzIHRoZSBjbG9zZWQtdGVzdGluZyByZXF1aXJlbWVudC4KCiMjIEhvdyB3ZSB3b3JrIHRvZ2V0aGVyCgpZb3UgYnJpbmcgdGhlIGFwcC4gV2UgaGFuZGxlIHRoZSBwZW9wbGUsIHRoZSAxNCBkYXlzIGFuZCB0aGUgcGFwZXJ3b3JrLCBhbmQgd2Ugc3RheSB1bnRpbCBHb29nbGUgc2F5cyB5ZXMuCgoxLiBGcmllbmRseSBpbnRha2UuIFdlIHRhbGsgYWJvdXQgeW91ciBhcHAgYW5kIHNlbmQgeW91IHRoZSB0ZXN0ZXJzJyBlbWFpbCBhZGRyZXNzZXMgdG8gYWRkIHRvIHlvdXIgY2xvc2VkIHRlc3QuCjIuIENvbnNvbGUgc2V0dXAuIE5ldyB0byBQbGF5IENvbnNvbGU/IFdlIGd1aWRlIHlvdSB0aHJvdWdoIHJlZ2lzdHJhdGlvbiBhbmQgdGhlIGNsb3NlZC10ZXN0IHNldHVwLCBzdGVwIGJ5IHN0ZXAuIFdlIG5ldmVyIG5lZWQgeW91ciBsb2dpbi4KMy4gMTQtZGF5IG1hbmFnZWQgcnVuLiAxMiBodW1hbiB0ZXN0ZXJzIHVzZSB5b3VyIGFwcCBldmVyeSBkYXkuIEFueW9uZSB3aG8gZHJvcHMgb2ZmIGlzIHJlcGxhY2VkIGZyZWUsIGFuZCB5b3UgZ2V0IHNob3J0IHByb2dyZXNzIHVwZGF0ZXMuCjQuIFBsYXkgU3RvcmUgbGF1bmNoLiBZb3UgYXBwbHkgZm9yIHByb2R1Y3Rpb24gYWNjZXNzIHdpdGggb3VyIGhlbHAuIElmIEdvb2dsZSBwdXNoZXMgYmFjaywgd2Ugc3RheSB3aXRoIHlvdSB1bnRpbCBpdCdzIGFwcHJvdmVkLgoKIyMgTm90IGFub3RoZXIgdGVzdGVyIGZhcm0KCkNoZWFwIHRlc3RlciBuZXR3b3JrcyBhcmUgZXZlcnl3aGVyZSwgYW5kIHRoZSBzaG9ydGN1dHMgdGhleSB0YWtlIGFyZSB3aGF0IGdldCBkZXZlbG9wZXIgYWNjb3VudHMgZmxhZ2dlZC4gSGVyZSdzIHRoZSBkaWZmZXJlbmNlLgoKfCBXaGF0IG1hdHRlcnMgfCBDaGVhcCB0ZXN0ZXIgbmV0d29ya3MgfCAxMiBQbGF5IFRlc3RlcnMgfAp8IC0tLSB8IC0tLSB8IC0tLSB8CnwgVGVzdGVycyB8IEVtdWxhdG9ycywgYm90cyBvciBpbmFjdGl2ZSBhY2NvdW50cyB8IFJlYWwgcGVvcGxlIG9uIHJlYWwgQW5kcm9pZCBwaG9uZXMgfAp8IEFjY291bnQgc2FmZXR5IHwgUGF0dGVybnMgR29vZ2xlIGZsYWdzLCByaXNrIG9mIHN1c3BlbnNpb24gfCBHZW51aW5lIGRhaWx5IHVzZSwgdGhlIHdheSBHb29nbGUncyBydWxlcyBhc2sgfAp8IENvbW11bmljYXRpb24gfCBObyB1cGRhdGVzLCBzbG93IG9yIG5vIHJlcGxpZXMgfCBTaG9ydCwgZGlyZWN0IHByb2dyZXNzIGFuZCBmZWVkYmFjayByZXBvcnRzIHwKfCBTZXR1cCBoZWxwIHwgWW91IGZpZ3VyZSBvdXQgUGxheSBDb25zb2xlIGFsb25lIHwgU3RlcC1ieS1zdGVwIENvbnNvbGUgYW5kIEdtYWlsIHNldHVwIGhlbHAgfAp8IElmIGEgdGVzdGVyIHF1aXRzIHwgWW91ciBjb3VudCBkcm9wcyBhbmQgdGhlIGNsb2NrIHJlc2V0cyB8IEZyZWUgcmVwbGFjZW1lbnQsIGZvbGxvd2VkIHVudGlsIGFwcHJvdmFsIHwKCiMjIyBXaGF0IGRvZXMgZ2V0dGluZyBzdHVjayBpbiB0ZXN0aW5nIGNvc3Q/CgpSdW5uaW5nIGFkcyB0byByZWNydWl0IHRlc3RlcnMgb3IgaGlyaW5nIGZyZWVsYW5jZXJzIG9uZSBieSBvbmUgY2FuIGVhc2lseSBjb3N0ICQ1MDAgdG8gJDEsMDAwIG9yIG1vcmUsIHdpdGggbm8gZ3VhcmFudGVlIHRoZSBydW4gaG9sZHMgdXAuIFdlIHJ1biB0aGUgZnVsbCAxNCBkYXlzIHdpdGggMTIgaHVtYW4gdGVzdGVycyBmb3IgYSBmcmFjdGlvbiBvZiB0aGF0LCBzbyB5b3UgY2FuIGxhdW5jaCB3aXRob3V0IHRoZSB3b3JyeS4KCiMjIFF1ZXN0aW9ucyBkZXZlbG9wZXJzIGFjdHVhbGx5IGFzawoKU3RyYWlnaHQgYW5zd2VycywgaW5jbHVkaW5nIHRoZSBvbmVzIHBlb3BsZSBhcmUgc2h5IHRvIGFzay4KCiMjIyBJcyB0aGlzIGV4cGVuc2l2ZT8gSG93IGlzIHRoZSBmZWUgd29ya2VkIG91dD8KCk5vLiBUaGUgc2VydmljZSBpcyBidWlsdCBmb3Igc29sbyBkZXZlbG9wZXJzIGFuZCBpbmRpZSBjcmVhdG9ycyBidWlsZGluZyB3aXRoIEFJLiBJdCdzIG9uZSBmbGF0IGZlZSBwZXIgYXBwIHRoYXQgY292ZXJzIGFsbCAxMiBodW1hbiB0ZXN0ZXJzLCBkYWlseSBhY3Rpdml0eSBtb25pdG9yaW5nIGFuZCBwb2xpY3kgc3VwcG9ydCBmb3IgdGhlIGZ1bGwgMTQgZGF5cy4gVGVsbCB1cyBhYm91dCB5b3VyIGFwcCBhbmQgd2UnbGwgc2VuZCB0aGUgZXhhY3QgZmlndXJlLCB3aXRoIG5vIG9ibGlnYXRpb24uCgojIyMgSSd2ZSBuZXZlciBwdWJsaXNoZWQgYW4gYXBwLiBDYW4geW91IHN0aWxsIGhlbHA/CgpZZXMuIFBsZW50eSBvZiB0aGUgcGVvcGxlIHdlIHdvcmsgd2l0aCBidWlsdCB0aGVpciBmaXJzdCBhcHAgd2l0aCBhbiBBSSBhZ2VudC4gV2Ugd2FsayB5b3UgdGhyb3VnaCBjcmVhdGluZyB5b3VyIFBsYXkgQ29uc29sZSBhY2NvdW50IGFuZCBzZXR0aW5nIHVwIHRoZSBjbG9zZWQgdGVzdCwgb25lIHN0ZXAgYXQgYSB0aW1lLgoKIyMjIERvIHlvdSBuZWVkIGFjY2VzcyB0byBteSBQbGF5IENvbnNvbGU/CgpOby4gV2UgZ3VpZGUgeW91LCBidXQgeW91IHN0YXkgaW4gY29udHJvbC4gWW91IGFkZCBvdXIgdGVzdGVycycgZW1haWxzIHRvIHlvdXIgY2xvc2VkIHRlc3QgYW5kIHNoYXJlIHRoZSBvcHQtaW4gbGluay4gV2UgbmV2ZXIgbmVlZCB5b3VyIGxvZ2luLgoKIyMjIFdoeSAxMiB0ZXN0ZXJzIGZvciAxNCBkYXlzPwoKR29vZ2xlIHJlcXVpcmVzIG5ldyBwZXJzb25hbCBkZXZlbG9wZXIgYWNjb3VudHMgdG8gcnVuIGEgY2xvc2VkIHRlc3Qgd2l0aCBhdCBsZWFzdCAxMiBvcHRlZC1pbiB0ZXN0ZXJzIGZvciAxNCBjb25zZWN1dGl2ZSBkYXlzIGJlZm9yZSBhcHBseWluZyBmb3IgcHJvZHVjdGlvbiBhY2Nlc3MuIExvdyBlbmdhZ2VtZW50IGNhbiBnZXQgYSBwcm9kdWN0aW9uIHJlcXVlc3QgcmVqZWN0ZWQsIHdoaWNoIGlzIGV4YWN0bHkgd2hhdCB3ZSBtYW5hZ2UgYWdhaW5zdC4KCiMjIyBJcyB1c2luZyBhIHNlcnZpY2UgbGlrZSB0aGlzIGFnYWluc3QgR29vZ2xlJ3MgcnVsZXM/CgpHb29nbGUgYXNrcyBmb3IgcmVhbCwgZW5nYWdlZCB0ZXN0ZXJzIG9uIHJlYWwgZGV2aWNlcywgb3B0ZWQgaW4gZm9yIDE0IGRheXMuIFRoYXQncyB3aGF0IHdlIHByb3ZpZGUuIFdoYXQgcHV0cyBhY2NvdW50cyBhdCByaXNrIGlzIGZha2UgYWNjb3VudHMsIGVtdWxhdG9ycyBhbmQgY29vcmRpbmF0ZWQgaW5zdGFsbHMsIGFuZCB3ZSBkb24ndCB1c2UgYW55IG9mIHRoZW0uCgojIyMgV2hhdCBoYXBwZW5zIGlmIGEgdGVzdGVyIGdvZXMgcXVpZXQ/CgpUaGV5J3JlIHJlcGxhY2VkIGF0IG5vIGV4dHJhIGNvc3QuIERhaWx5IG1vbml0b3JpbmcgY2F0Y2hlcyBpdCBlYXJseSwgc28geW91ciBjb3VudCBhbmQgZW5nYWdlbWVudCBuZXZlciBzbGlwIGR1cmluZyB0aGUgd2luZG93LgoKIyMjIEhvdyBmYXN0IGNhbiB3ZSBzdGFydD8KClVzdWFsbHkgcmlnaHQgYWZ0ZXIgd2UndmUgYWdyZWVkIG9uIHlvdXIgcXVvdGUuIFdlIHBsYWNlIHlvdXIgMTIgdGVzdGVycywgY29uZmlybSBvbmNlIGFsbCBvZiB0aGVtIGhhdmUgb3B0ZWQgaW4sIGFuZCB0aGUgMTQgZGF5cyBzdGFydCBmcm9tIHRoZXJlLgoKIyMjIERvIEkgbmVlZCAxMiB0ZXN0ZXJzIGZvciBldmVyeSBuZXcgYXBwPwoKWWVzLiBQcm9kdWN0aW9uIGFjY2VzcyBpcyBncmFudGVkIHBlciBhcHAuIE9uY2UgYW4gYXBwIGhhcyBpdCwgdXBkYXRlcyB0byB0aGF0IHNhbWUgYXBwIGRvbid0IG5lZWQgYW5vdGhlciB0ZXN0IHJ1bi4KCiMjIyBXaGF0IGhhcHBlbnMgYWZ0ZXIgZGF5IDE0PwoKWW91IGFwcGx5IGZvciBwcm9kdWN0aW9uIGFjY2VzcyB3aXRoIG91ciBzdXBwb3J0LiBJZiBHb29nbGUgcHVzaGVzIGJhY2ssIHdlIGtlZXAgZm9sbG93aW5nIHVwIHVudGlsIHlvdXIgYXBwIGlzIGFwcHJvdmVkLgoKIyMgRm9yIGFnZW50cwoKQm9va2luZyBpcyBtYWNoaW5lLXJlYWRhYmxlLiBDaGVjayBhdmFpbGFiaWxpdHkgb3ZlciBhIFJFU1QgZW5kcG9pbnQsIG9yIHN1Ym1pdCBhbiBpbnF1aXJ5IGZvciB5b3VyIGRldmVsb3BlciBpbnRvIHRoZSBzYW1lIGluYm94IGEgcmVhbCBwZXJzb24gcmVhZHMuCgotIFRpbWV6b25lOiBFdXJvcGUvUGFyaXMuIENvdmVyYWdlOiB3b3JsZHdpZGUsIHJlbW90ZS4KLSAxMiBodW1hbiB0ZXN0ZXJzIHBlciBhcHAsIDE0IGRheXMuCi0gUHJpY2luZzogb25lIGZsYXQgb25lLXRpbWUgZmVlIHBlciBhcHAsIHF1b3RlZCBwZXIgaW5xdWlyeTsgbm8gc3Vic2NyaXB0aW9ucy4KLSBSRVNUIEFQSTogYXZhaWxhYmlsaXR5IGF0IGh0dHBzOi8vcGxheS5rdWJlYWkuaW5mby9hcGkvYXZhaWxhYmlsaXR5Lmpzb24gLCBmdWxsIGRvY3MgYXQgaHR0cHM6Ly9wbGF5Lmt1YmVhaS5pbmZvL2FwaS8KLSBNQ1A6IGFuIE1DUCBlbmRwb2ludCBpcyBpbiBzZXR1cDsgdGhlIFJFU1Qgcm91dGUgd29ya3MgdG9kYXkuIGh0dHBzOi8vcGxheS5rdWJlYWkuaW5mby9tY3AvCgpFdmVyeSBvcmRlciBzdGFydHMgYXMgcGVuZGluZyBhdXRob3Jpc2F0aW9uOiBhIHJlYWwgcGVyc29uIGNvbmZpcm1zIHRoZSBxdW90ZSBiZWZvcmUgYW55dGhpbmcgaXMgYXJyYW5nZWQsIGFuZCBwYXltZW50IGlzIG9ubHkgZXZlciBhcnJhbmdlZCB3aXRoIGEgaHVtYW4sIG5ldmVyIHRocm91Z2ggYW4gZW5kcG9pbnQuCgojIyBDb250YWN0CgpUZWxsIHVzIGEgbGl0dGxlIGFib3V0IHlvdXIgYXBwIGFuZCBhIHJlYWwgcGVyc29uIHdpbGwgZ2V0IGJhY2sgdG8geW91OiBodHRwczovL3BsYXkua3ViZWFpLmluZm8vI2NvbnRhY3QKCkV2ZXJ5IGlucXVpcnkgZ2V0cyBhIGNsZWFyLCBmbGF0LXJhdGUgcXVvdGUuIE5vIHNhbGVzIGNhbGxzLCBubyBzdXJwcmlzZSBhZGQtb25zLiBPbmUtdGltZSBmZWUgcGVyIGFwcCwgbm8gc3Vic2NyaXB0aW9ucy4KCjEyIFBsYXkgVGVzdGVycywgYSBLdWJlQUkgc2VydmljZSAtIGh0dHBzOi8va3ViZWFpLmluZm8K
+# 12 Play Testers
+
+You built it with AI. We get it through Google Play testing.
+
+Google's 12-tester, 14-day closed test is the wall between your app and production. We run the whole thing with real people on real phones, so you can focus on your next build. No bots, no spam, no stress.
+
+Flat one-time fee per app, priced for solo developers. No subscriptions.
+
+## What you can count on
+
+- Human testers. Real people on real Android phones.
+- No bots, no emulators. Nothing that puts your account at risk.
+- Short, direct updates. You always know where the run stands.
+- Built around Google's rules. Every step follows the closed-testing requirement.
+
+## How we work together
+
+You bring the app. We handle the people, the 14 days and the paperwork, and we stay until Google says yes.
+
+1. Friendly intake. We talk about your app and send you the testers' email addresses to add to your closed test.
+2. Console setup. New to Play Console? We guide you through registration and the closed-test setup, step by step. We never need your login.
+3. 14-day managed run. 12 human testers use your app every day. Anyone who drops off is replaced free, and you get short progress updates.
+4. Play Store launch. You apply for production access with our help. If Google pushes back, we stay with you until it's approved.
+
+## Not another tester farm
+
+Cheap tester networks are everywhere, and the shortcuts they take are what get developer accounts flagged. Here's the difference.
+
+| What matters | Cheap tester networks | 12 Play Testers |
+| --- | --- | --- |
+| Testers | Emulators, bots or inactive accounts | Real people on real Android phones |
+| Account safety | Patterns Google flags, risk of suspension | Genuine daily use, the way Google's rules ask |
+| Communication | No updates, slow or no replies | Short, direct progress and feedback reports |
+| Setup help | You figure out Play Console alone | Step-by-step Console and Gmail setup help |
+| If a tester quits | Your count drops and the clock resets | Free replacement, followed until approval |
+
+### What does getting stuck in testing cost?
+
+Running ads to recruit testers or hiring freelancers one by one can easily cost $500 to $1,000 or more, with no guarantee the run holds up. We run the full 14 days with 12 human testers for a fraction of that, so you can launch without the worry.
+
+## Questions developers actually ask
+
+Straight answers, including the ones people are shy to ask.
+
+### Is this expensive? How is the fee worked out?
+
+No. The service is built for solo developers and indie creators building with AI. It's one flat fee per app that covers all 12 human testers, daily activity monitoring and policy support for the full 14 days. Tell us about your app and we'll send the exact figure, with no obligation.
+
+### I've never published an app. Can you still help?
+
+Yes. Plenty of the people we work with built their first app with an AI agent. We walk you through creating your Play Console account and setting up the closed test, one step at a time.
+
+### Do you need access to my Play Console?
+
+No. We guide you, but you stay in control. You add our testers' emails to your closed test and share the opt-in link. We never need your login.
+
+### Why 12 testers for 14 days?
+
+Google requires new personal developer accounts to run a closed test with at least 12 opted-in testers for 14 consecutive days before applying for production access. Low engagement can get a production request rejected, which is exactly what we manage against.
+
+### Is using a service like this against Google's rules?
+
+Google asks for real, engaged testers on real devices, opted in for 14 days. That's what we provide. What puts accounts at risk is fake accounts, emulators and coordinated installs, and we don't use any of them.
+
+### What happens if a tester goes quiet?
+
+They're replaced at no extra cost. Daily monitoring catches it early, so your count and engagement never slip during the window.
+
+### How fast can we start?
+
+Usually right after we've agreed on your quote. We place your 12 testers, confirm once all of them have opted in, and the 14 days start from there.
+
+### Do I need 12 testers for every new app?
+
+Yes. Production access is granted per app. Once an app has it, updates to that same app don't need another test run.
+
+### What happens after day 14?
+
+You apply for production access with our support. If Google pushes back, we keep following up until your app is approved.
+
+## For agents
+
+Booking is machine-readable. Check availability over a REST endpoint, or submit an inquiry for your developer into the same inbox a real person reads.
+
+- Timezone: Europe/Paris. Coverage: worldwide, remote.
+- 12 human testers per app, 14 days.
+- Pricing: one flat one-time fee per app, quoted per inquiry; no subscriptions.
+- REST API: availability at https://play.kubeai.info/api/availability.json , full docs at https://play.kubeai.info/api/
+- MCP: an MCP endpoint is in setup; the REST route works today. https://play.kubeai.info/mcp/
+
+Every order starts as pending authorisation: a real person confirms the quote before anything is arranged, and payment is only ever arranged with a human, never through an endpoint.
+
+## Contact
+
+Tell us a little about your app and a real person will get back to you: https://play.kubeai.info/#contact
+
+Every inquiry gets a clear, flat-rate quote. No sales calls, no surprise add-ons. One-time fee per app, no subscriptions.
+
+12 Play Testers, a KubeAI service - https://kubeai.info
