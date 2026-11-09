@@ -18,8 +18,9 @@ The service is built for apps made with AI by solo developers and indie creators
 ## How to order
 
 - Submit the inquiry form at https://play.kubeai.info/#contact . It asks for app name, category, Play Console status and contact details, and a real person replies with a clear quote.
-- Agents: check availability at https://play.kubeai.info/api/availability.json and read the full REST API at https://play.kubeai.info/api/ . Submit the inquiry by POSTing the fields (app_name, category, console, profile, email, contact_via, handle, message, _subject) as JSON to https://formspree.io/f/xqppdyqb with the header Accept: application/json . The inquiry lands in the same inbox as web submissions. Every order starts as pending authorisation: a real person confirms the quote before anything is arranged, and payment is only ever arranged with a human, never through the endpoint. Software acting for a person should only submit with that person's consent and their own contact details, or email saidi@kubeai.info.
-- MCP: an MCP endpoint is in setup; the REST route above works today. See https://play.kubeai.info/mcp/ .
+- Agents: machine-readable availability lives at https://play.kubeai.info/availability.json (200 application/json). Submit the inquiry by POSTing the fields (app_name, category, console, profile, email, contact_via, handle, message, _subject) as JSON to https://formspree.io/f/xqppdyqb (a temporary form endpoint) with the header Accept: application/json . The inquiry lands in the same inbox as web submissions. Every order starts as pending authorisation: a real person confirms the quote before anything is arranged, and payment is only ever arranged with a human, never through the endpoint. Software acting for a person should only submit with that person's consent and their own contact details, or email saidi@kubeai.info.
+- REST API: planned, not live. https://play.kubeai.info/api/ is a planned stub pointing at the availability file and the temporary form.
+- MCP: planned, not live. https://play.kubeai.info/mcp/ is a planned stub pointing at the availability file and the temporary form.
 - Email: saidi@kubeai.info
 
 ## How the run works
@@ -39,8 +40,9 @@ The service is built for apps made with AI by solo developers and indie creators
 - Contact: https://play.kubeai.info/contact/
 - Privacy: https://play.kubeai.info/privacy/
 - For agents section: https://play.kubeai.info/#agents
-- REST API docs: https://play.kubeai.info/api/
-- MCP: https://play.kubeai.info/mcp/
+- Availability for agents: https://play.kubeai.info/availability.json
+- REST API docs: https://play.kubeai.info/api/ (planned stub)
+- MCP: https://play.kubeai.info/mcp/ (planned stub)
 - Markdown version of the site content: https://play.kubeai.info/content.md
 
 ## About KubeAI

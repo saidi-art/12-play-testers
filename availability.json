@@ -1,0 +1,100 @@
+{
+  "service": "12 Play Testers",
+  "provider": {
+    "name": "KubeAI",
+    "url": "https://kubeai.info",
+    "email": "saidi@kubeai.info"
+  },
+  "url": "https://play.kubeai.info/",
+  "summary": "Managed Google Play closed test: 12 human testers on real Android devices use your app daily for 14 consecutive days, managed end to end until production access is approved.",
+  "testers_per_app": 12,
+  "duration_days": 14,
+  "coverage": "Worldwide, remote",
+  "timezone": "Europe/Paris",
+  "pricing_model": "quote-based",
+  "prices_published": false,
+  "pricing": {
+    "model": "quote-based",
+    "public_price": null,
+    "quote": "Every inquiry gets a clear, flat-rate quote, with no obligation.",
+    "subscriptions": false
+  },
+  "quote_sla": {
+    "target_reply_within": "4h",
+    "target_applies": "24/7",
+    "sla_guarantee": false,
+    "wording": "aims to reply within 4h"
+  },
+  "intake_method": "web form (temporary)",
+  "intake_endpoint": "https://formspree.io/f/xqppdyqb",
+  "intake_label": "a temporary form endpoint (Formspree)",
+  "api_status": "planned",
+  "mcp_status": "planned",
+  "api_surface_today": "a static availability file plus that form",
+  "human_approval_required": true,
+  "client_confirms_quote": true,
+  "approval_state": "pending_authorization",
+  "human_approves": [
+    "Yacine (accountable human) authorises the order before anyone is engaged, a quote is binding, or payment is arranged",
+    "engaging any tester or worker",
+    "issuing a binding quote",
+    "scheduling the 14-day run",
+    "arranging or collecting payment",
+    "scope changes"
+  ],
+  "client_approval": "The client/developer confirms the quote before anything is arranged",
+  "automated_today": [
+    "form submit",
+    "form receive"
+  ],
+  "payment_methods": "{{PAYMENT_METHODS}}",
+  "service_area_and_language": "Worldwide, remote; timezone Europe/Paris; language {{SERVICE_LANGUAGE}}",
+  "contact_email": "saidi@kubeai.info",
+  "honeypot_field": "_gotcha",
+  "honeypot_rule": "leave empty",
+  "order_intake": {
+    "method": "POST",
+    "endpoint": "https://formspree.io/f/xqppdyqb",
+    "content_type": "application/json",
+    "headers": {
+      "Accept": "application/json"
+    },
+    "body": {
+      "app_name": "string, required",
+      "category": "one of: Productivity, Games, Education, Health and fitness, Finance, Social and communication, Tools and utilities, Lifestyle, Other",
+      "console": "'Console account registered' or 'Needs setup guidance'",
+      "profile": "'Solo creator, flat-rate' or 'Multiple apps or studio'",
+      "email": "string, required",
+      "contact_via": "Email, WhatsApp or Telegram",
+      "handle": "optional, only if contact is not email",
+      "message": "optional",
+      "_subject": "optional subject line"
+    },
+    "success_response": "200 with {\"ok\": true}"
+  },
+  "order_policy": {
+    "initial_status": "pending authorisation",
+    "note": "Every order waits for Yacine's authorisation and the client's quote confirmation before anything is arranged. Payment is only ever arranged with a human, never through the intake endpoint.",
+    "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email saidi@kubeai.info."
+  },
+  "pages": {
+    "home": "https://play.kubeai.info/",
+    "how_it_works": "https://play.kubeai.info/#how",
+    "why_us": "https://play.kubeai.info/#compare",
+    "faq": "https://play.kubeai.info/#faq",
+    "for_agents": "https://play.kubeai.info/#agents",
+    "api_docs": "https://play.kubeai.info/api/",
+    "mcp_docs": "https://play.kubeai.info/mcp/",
+    "availability": "https://play.kubeai.info/availability.json",
+    "about": "https://play.kubeai.info/about/",
+    "contact": "https://play.kubeai.info/contact/",
+    "privacy": "https://play.kubeai.info/privacy/",
+    "markdown": "https://play.kubeai.info/content.md"
+  },
+  "last_updated": "2026-11-09",
+  "operator": {
+    "name": "kubeAI",
+    "accountable_human": "Yacine Zairi",
+    "url": "https://kubeai.info"
+  }
+}
