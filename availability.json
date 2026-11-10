@@ -47,8 +47,8 @@
     "form submit",
     "form receive"
   ],
-  "payment_methods": "{{PAYMENT_METHODS}}",
-  "service_area_and_language": "Worldwide, remote; timezone Europe/Paris; language {{SERVICE_LANGUAGE}}",
+  "payment_methods": "Gumroad",
+  "service_area_and_language": "Worldwide, remote; timezone Europe/Paris; languages English and French",
   "contact_email": "saidi@kubeai.info",
   "honeypot_field": "_gotcha",
   "honeypot_rule": "leave empty",
@@ -91,7 +91,7 @@
     "privacy": "https://play.kubeai.info/privacy/",
     "markdown": "https://play.kubeai.info/content.md"
   },
-  "last_updated": "2026-11-09",
+  "last_updated": "2026-11-10",
   "operator": {
     "name": "kubeAI",
     "accountable_human": "Yacine Zairi",

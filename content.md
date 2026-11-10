@@ -19,7 +19,7 @@ You bring the app. We handle the people, the 14 days and the paperwork, and we s
 
 1. Friendly intake. We talk about your app and send you the testers' email addresses to add to your closed test.
 2. Console setup. New to Play Console? We guide you through registration and the closed-test setup, step by step. We never need your login.
-3. 14-day managed run. 12 human testers use your app every day. Anyone who drops off is replaced free, and you get short progress updates.
+3. 14-day managed run. 12 human testers use your app every day. Anyone who drops off is replaced at no extra cost, and you get short progress updates.
 4. Play Store launch. You apply for production access with our help. If Google pushes back, we stay with you until it's approved.
 
 ## Not another tester farm
