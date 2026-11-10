@@ -1,0 +1,12 @@
+{
+  "status": "planned",
+  "path": "/api/",
+  "message": "OpenAPI/REST agent API is planned and not live.",
+  "intake": {
+    "label": "a temporary form endpoint (Formspree)",
+    "method": "POST",
+    "endpoint": "https://formspree.io/f/xqppdyqb",
+    "availability": "/availability.json"
+  },
+  "contact_email": "saidi@kubeai.info"
+}

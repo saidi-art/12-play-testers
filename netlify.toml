@@ -1,0 +1,39 @@
+[build]
+  publish = "."
+
+# Legacy agent availability path: 301 to the canonical file (brief item 3)
+[[redirects]]
+  from = "/api/availability.json"
+  to = "/availability.json"
+  status = 301
+  force = true
+
+# Planned API and MCP stubs served as JSON at the directory root (brief item 4)
+[[redirects]]
+  from = "/api"
+  to = "/api/index.json"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/"
+  to = "/api/index.json"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/mcp"
+  to = "/mcp/index.json"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/mcp/"
+  to = "/mcp/index.json"
+  status = 200
+  force = true
+
+# Content negotiation: text/markdown on the home page gets the markdown twin (brief item 1)
+[[edge_functions]]
+  function = "markdown-negotiate"
+  path = "/"
