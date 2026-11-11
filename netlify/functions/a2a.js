@@ -270,7 +270,7 @@ async function bookCohort(task, meta, msg) {
 }
 
 // ---- handler --------------------------------------------------------------
-exports.handler = async (event) => {
+const handlerV1 = async (event) => {
   const m = event.httpMethod;
   if (m === "OPTIONS") return { statusCode: 204, headers: CORS, body: "" };
 
@@ -352,4 +352,19 @@ exports.handler = async (event) => {
   }
   const res = await one(parsed);
   return reply(200, res);
+};
+
+// Netlify Functions v2 adapter: the v2 runtime provides the Netlify Blobs context.
+exports.default = async (req) => {
+  const headers = {};
+  req.headers.forEach((v, k) => { headers[k.toLowerCase()] = v; });
+  const url = new URL(req.url);
+  const event = {
+    httpMethod: req.method,
+    headers,
+    body: await req.text(),
+    queryStringParameters: Object.fromEntries(url.searchParams),
+  };
+  const r = await handlerV1(event);
+  return new Response(r.body, { status: r.statusCode, headers: r.headers });
 };
