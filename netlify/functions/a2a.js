@@ -308,7 +308,10 @@ exports.handler = async (event) => {
       return rpcErr(req && req.id, -32600, "Request payload validation error");
     const method = req.method;
     if (method === "SendMessage" || method === "message/send") {
-      try { return await handleSend(req, event); }
+      try {
+        const r = await handleSend(req, event);
+        return (r && r.jsonrpc) ? r : rpc(req.id, r);
+      }
       catch (e) { return rpcErr(req.id, -32603, "Internal error"); }
     }
     if (method === "GetTask" || method === "tasks/get") {
