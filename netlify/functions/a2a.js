@@ -279,7 +279,18 @@ exports.handler = async (event) => {
   const versionOk = vRaw === undefined || vRaw === null ? true : (String(vRaw).trim() === "1.0");
 
   if (m === "GET") {
+    let blobCheck;
+    {
+      const s2 = store();
+      if (!s2) blobCheck = "store_unavailable";
+      else try {
+        await s2.setJSON("diag:ping", { t: now() });
+        const v = await s2.get("diag:ping", { type: "json" });
+        blobCheck = v ? "store_ok" : "store_write_ok_read_miss";
+      } catch (e) { blobCheck = "store_err:" + String(e && e.message || e).slice(0, 140); }
+    }
     return reply(200, {
+      blob_check: blobCheck,
       endpoint: "https://play.kubeai.info/a2a",
       binding: "JSONRPC",
       protocol_version: "1.0",
