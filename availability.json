@@ -98,5 +98,8 @@
     "accountable_human": "Yacine Zairi",
     "url": "https://kubeai.info"
   },
-  "agent_card": "https://play.kubeai.info/.well-known/agent-card.json"
+  "agent_card": "https://play.kubeai.info/.well-known/agent-card.json",
+  "a2a_status": "live",
+  "a2a_endpoint": "https://play.kubeai.info/a2a",
+  "a2a_note": "A2A v1.0 JSON-RPC: Send Message (request_quote, book_cohort) plus Get Task; streaming and push not supported; no payments through the endpoint."
 }

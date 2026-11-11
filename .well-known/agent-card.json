@@ -1,6 +1,6 @@
 {
   "name": "12 Play Testers",
-  "description": "Managed Google Play closed testing for Android apps: 12 human testers on real devices, using the app every day for 14 consecutive days, so a new developer account can apply for production access. Operated by KubeAI. Every order starts as pending authorisation: Yacine Zairi, the accountable human, must authorise it, and the client must confirm the quote, before testers are engaged or payment is arranged. A real person aims to reply within 4h (a target, not a guarantee, 24/7). Today's working intake is the form documented at https://play.kubeai.info/availability.json, or email quotes@kubeai.info.",
+  "description": "Managed Google Play closed testing for Android apps: 12 human testers on real devices, using the app every day for 14 consecutive days, so a new developer account can apply for production access. Operated by KubeAI. Every order starts as pending authorisation: Yacine Zairi, the accountable human, must authorise it, and the client must confirm the quote, before testers are engaged or payment is arranged. A real person aims to reply within 4h (a target, not a guarantee, 24/7). Quote intake runs through this agent's request_quote skill at https://play.kubeai.info/a2a, or email quotes@kubeai.info.",
   "version": "1.0.0",
   "provider": {
     "organization": "KubeAI",
@@ -12,8 +12,14 @@
     "pushNotifications": false,
     "extendedAgentCard": false
   },
-  "defaultInputModes": ["text/plain", "application/json"],
-  "defaultOutputModes": ["text/plain", "application/json"],
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/plain",
+    "application/json"
+  ],
   "supportedInterfaces": [
     {
       "url": "https://play.kubeai.info/a2a",
@@ -25,25 +31,49 @@
     {
       "id": "request_quote",
       "name": "Request a quote",
-      "description": "Request a flat-rate, no-obligation quote for a managed Google Play closed test: 12 human testers on real Android devices for 14 consecutive days. A real person aims to reply within 4h (a target, not a guarantee, applying 24/7). The quote is not binding until Yacine Zairi authorises it and the client confirms it. This skill does not complete a booking, engage testers, or take payment. Until the A2A quote handler is live, submit the inquiry fields listed in https://play.kubeai.info/availability.json to the temporary form endpoint there, or email quotes@kubeai.info.",
-      "tags": ["quote", "google-play", "closed-testing", "android", "play-testers"],
+      "description": "Request a flat-rate, no-obligation quote for a managed Google Play closed test: 12 human testers on real Android devices for 14 consecutive days. Send the inquiry to this agent with Send Message (inquiry fields at https://play.kubeai.info/availability.json); the request is logged and a real person aims to reply within 4h (a target, not a guarantee, applying 24/7). The quote is not binding until Yacine Zairi authorises it and the client confirms it. This skill does not complete a booking, engage testers, or take payment.",
+      "tags": [
+        "quote",
+        "google-play",
+        "closed-testing",
+        "android",
+        "play-testers"
+      ],
       "examples": [
         "Get me a quote for 12 Play testers for a 14-day closed test of my Android app.",
         "My Play listing is stuck in closed testing. I need 12 testers. How much is it?"
       ],
-      "inputModes": ["text/plain", "application/json"],
-      "outputModes": ["text/plain", "application/json"]
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json"
+      ]
     },
     {
       "id": "book_cohort",
       "name": "Request a tester cohort",
       "description": "Open a booking request for a 12-tester, 14-day closed-test cohort. This skill does not complete a booking, engage testers, or take payment. It creates an order that remains in pending authorisation until Yacine Zairi authorises it and the client confirms the quote.",
-      "tags": ["booking", "google-play", "closed-testing", "android", "play-testers"],
+      "tags": [
+        "booking",
+        "google-play",
+        "closed-testing",
+        "android",
+        "play-testers"
+      ],
       "examples": [
         "I accept the quote. Please set up the 12-tester closed test for my app."
       ],
-      "inputModes": ["text/plain", "application/json"],
-      "outputModes": ["text/plain", "application/json"]
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json"
+      ]
     }
   ]
 }

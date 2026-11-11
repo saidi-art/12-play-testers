@@ -1,0 +1,8 @@
+{
+  "name": "12-play-testers-site",
+  "private": true,
+  "description": "Static site + Netlify functions for play.kubeai.info",
+  "dependencies": {
+    "@netlify/blobs": "^8.0.0"
+  }
+}
