@@ -284,7 +284,6 @@ exports.handler = async (event) => {
     {
       const s2 = store();
       if (!s2) blobCheck = "store_get_err:" + String(_storeErr || "unavailable");
-      if (!s2) blobCheck = "store_unavailable";
       else try {
         await s2.setJSON("diag:ping", { t: now() });
         const v = await s2.get("diag:ping", { type: "json" });
