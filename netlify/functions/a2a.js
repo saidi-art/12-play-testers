@@ -36,9 +36,10 @@ function store() {
   try {
     const { getStore } = require("@netlify/blobs");
     _store = getStore({ name: "a2a_tasks", consistency: "strong" });
-  } catch (e) { _store = false; }
+  } catch (e) { _store = false; _storeErr = String(e && e.message || e).slice(0, 200); }
   return _store;
 }
+let _storeErr;
 async function putTask(t) {
   _mem.set(t.id, t);
   const s = store();
@@ -282,6 +283,7 @@ exports.handler = async (event) => {
     let blobCheck;
     {
       const s2 = store();
+      if (!s2) blobCheck = "store_get_err:" + String(_storeErr || "unavailable");
       if (!s2) blobCheck = "store_unavailable";
       else try {
         await s2.setJSON("diag:ping", { t: now() });
