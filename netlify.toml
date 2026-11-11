@@ -37,3 +37,33 @@
 [[edge_functions]]
   function = "markdown-negotiate"
   path = "/"
+
+# A2A Agent Card: A2A v1.0 well-known discovery + open CORS (phase 1, 11 Nov pack)
+[[headers]]
+  for = "/.well-known/agent-card.json"
+  [headers.values]
+    Content-Type = "application/json; charset=utf-8"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS"
+    Access-Control-Allow-Headers = "Accept, Content-Type, A2A-Version"
+    Cache-Control = "public, max-age=3600"
+
+# /a2a: declared interface URL, served by the a2a function (phase 1 minimal stub)
+[[redirects]]
+  from = "/a2a"
+  to = "/.netlify/functions/a2a"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/a2a/"
+  to = "/.netlify/functions/a2a"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/a2a"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, OPTIONS, POST"
+    Access-Control-Allow-Headers = "Accept, Content-Type, A2A-Version"

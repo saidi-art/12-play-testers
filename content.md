@@ -87,6 +87,7 @@ Booking is machine-readable. Check availability over a REST endpoint, or submit 
 - Pricing: one flat one-time fee per app, quoted per inquiry; no subscriptions.
 - REST API: availability at https://play.kubeai.info/api/availability.json , full docs at https://play.kubeai.info/api/
 - MCP: an MCP endpoint is in setup; the REST route works today. https://play.kubeai.info/mcp/
+- A2A: agent card at https://play.kubeai.info/.well-known/agent-card.json ; declared interface at https://play.kubeai.info/a2a (minimal input-required stub, no quotes or payments yet)
 
 Every order starts as pending authorisation: a real person confirms the quote before anything is arranged, and payment is only ever arranged with a human, never through an endpoint.
 

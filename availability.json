@@ -89,12 +89,14 @@
     "about": "https://play.kubeai.info/about/",
     "contact": "https://play.kubeai.info/contact/",
     "privacy": "https://play.kubeai.info/privacy/",
-    "markdown": "https://play.kubeai.info/content.md"
+    "markdown": "https://play.kubeai.info/content.md",
+    "agent_card": "https://play.kubeai.info/.well-known/agent-card.json"
   },
-  "last_updated": "2026-11-10",
+  "last_updated": "2026-11-12",
   "operator": {
     "name": "kubeAI",
     "accountable_human": "Yacine Zairi",
     "url": "https://kubeai.info"
-  }
+  },
+  "agent_card": "https://play.kubeai.info/.well-known/agent-card.json"
 }
