@@ -18,10 +18,10 @@ The service is built for apps made with AI by solo developers and indie creators
 ## How to order
 
 - Submit the inquiry form at https://play.kubeai.info/#contact . It asks for app name, category, Play Console status and contact details, and a real person replies with a clear quote.
-- Agents: machine-readable availability lives at https://play.kubeai.info/availability.json (200 application/json). Submit the inquiry by POSTing the fields (app_name, category, console, profile, email, contact_via, handle, message, _subject) as JSON to https://formspree.io/f/xqppdyqb (a temporary form endpoint) with the header Accept: application/json . The inquiry lands in the same inbox as web submissions. Every order starts as pending authorisation: a real person confirms the quote before anything is arranged, and payment is only ever arranged with a human, never through the endpoint. Software acting for a person should only submit with that person's consent and their own contact details, or email saidi@kubeai.info.
+- Agents: machine-readable availability lives at https://play.kubeai.info/availability.json (200 application/json). Submit the inquiry by POSTing the fields (app_name, category, console, profile, email, contact_via, handle, message, _subject) as JSON to https://formspree.io/f/xqppdyqb (a temporary form endpoint) with the header Accept: application/json . The inquiry lands in the same inbox as web submissions. Every order starts as pending authorisation: a real person confirms the quote before anything is arranged, and payment is only ever arranged with a human, never through the endpoint. Software acting for a person should only submit with that person's consent and their own contact details, or email quotes@kubeai.info.
 - REST API: planned, not live. https://play.kubeai.info/api/ is a planned stub pointing at the availability file and the temporary form.
 - MCP: planned, not live. https://play.kubeai.info/mcp/ is a planned stub pointing at the availability file and the temporary form.
-- Email: saidi@kubeai.info
+- Email: quotes@kubeai.info
 
 ## How the run works
 
@@ -50,4 +50,4 @@ The service is built for apps made with AI by solo developers and indie creators
 - KubeAI is an independent maker of AI-assisted products.
 - Main site: https://kubeai.info
 - YouTube channel: https://www.youtube.com/@KubeAI
-- Contact email: saidi@kubeai.info
+- Contact email: quotes@kubeai.info

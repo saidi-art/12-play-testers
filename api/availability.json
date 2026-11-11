@@ -3,7 +3,7 @@
   "provider": {
     "name": "KubeAI",
     "url": "https://kubeai.info",
-    "email": "saidi@kubeai.info"
+    "email": "quotes@kubeai.info"
   },
   "url": "https://play.kubeai.info/",
   "summary": "Managed Google Play closed test: 12 human testers on real Android devices use your app daily for 14 consecutive days, managed end to end until production access is approved.",
@@ -40,7 +40,7 @@
   "order_policy": {
     "initial_status": "pending authorisation",
     "note": "Every order waits for a human approval step before anything is arranged. Payment is only ever arranged with a human, never through the intake endpoint.",
-    "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email saidi@kubeai.info."
+    "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email quotes@kubeai.info."
   },
   "pages": {
     "home": "https://play.kubeai.info/",

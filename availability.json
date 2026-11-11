@@ -3,7 +3,7 @@
   "provider": {
     "name": "KubeAI",
     "url": "https://kubeai.info",
-    "email": "saidi@kubeai.info"
+    "email": "quotes@kubeai.info"
   },
   "url": "https://play.kubeai.info/",
   "summary": "Managed Google Play closed test: 12 human testers on real Android devices use your app daily for 14 consecutive days, managed end to end until production access is approved.",
@@ -49,7 +49,7 @@
   ],
   "payment_methods": "Gumroad",
   "service_area_and_language": "Worldwide, remote; timezone Europe/Paris; languages English and French",
-  "contact_email": "saidi@kubeai.info",
+  "contact_email": "quotes@kubeai.info",
   "honeypot_field": "_gotcha",
   "honeypot_rule": "leave empty",
   "order_intake": {
@@ -75,7 +75,7 @@
   "order_policy": {
     "initial_status": "pending authorisation",
     "note": "Every order waits for Yacine's authorisation and the client's quote confirmation before anything is arranged. Payment is only ever arranged with a human, never through the intake endpoint.",
-    "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email saidi@kubeai.info."
+    "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email quotes@kubeai.info."
   },
   "pages": {
     "home": "https://play.kubeai.info/",
