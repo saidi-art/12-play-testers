@@ -31,7 +31,7 @@
     {
       "id": "request_quote",
       "name": "Request a quote",
-      "description": "Request a flat-rate, no-obligation quote for a managed Google Play closed test: 12 human testers on real Android devices for 14 consecutive days. Send the inquiry to this agent with Send Message (inquiry fields at https://play.kubeai.info/availability.json); the request is logged and a real person aims to reply within 4h (a target, not a guarantee, applying 24/7). The quote is not binding until Yacine Zairi authorises it and the client confirms it. This skill does not complete a booking, engage testers, or take payment.",
+      "description": "Request a managed Google Play closed test at the published price: 12 human testers on real Android devices for 14 consecutive days, €200 flat per engagement (EUR, no subscriptions). Send the inquiry to this agent with Send Message (inquiry fields at https://play.kubeai.info/availability.json); the request is logged and a real person aims to reply within 4h (a target, not a guarantee, applying 24/7). The quote is not binding until Yacine Zairi authorises it and the client confirms it. This skill does not complete a booking, engage testers, or take payment.",
       "tags": [
         "quote",
         "google-play",
