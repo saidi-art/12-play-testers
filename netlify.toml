@@ -45,7 +45,7 @@
     Content-Type = "application/json; charset=utf-8"
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, OPTIONS"
-    Access-Control-Allow-Headers = "Accept, Content-Type, A2A-Version"
+    Access-Control-Allow-Headers = "Accept, Content-Type, A2A-Version, A2A-Extensions"
     Cache-Control = "public, max-age=3600"
 
 # /a2a: declared interface URL, served by the a2a function (phase 1 minimal stub)
@@ -66,4 +66,4 @@
   [headers.values]
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, OPTIONS, POST"
-    Access-Control-Allow-Headers = "Accept, Content-Type, A2A-Version"
+    Access-Control-Allow-Headers = "Accept, Content-Type, A2A-Version, A2A-Extensions"

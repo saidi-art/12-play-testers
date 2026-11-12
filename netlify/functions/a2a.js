@@ -25,7 +25,8 @@ const rpcErr = (id, code, message, data) => ({
   jsonrpc: "2.0", id: id === undefined ? null : id,
   error: data === undefined ? { code, message } : { code, message, data },
 });
-const reply = (statusCode, body) => ({ statusCode, headers: CORS, body: JSON.stringify(body, null, 2) });
+const A2A_CT = "application/a2a+json";
+const reply = (statusCode, body, ct) => ({ statusCode, headers: Object.assign({}, CORS, { "Content-Type": ct || "application/json; charset=utf-8" }), body: JSON.stringify(body, null, 2) });
 
 // ---- persistence ----------------------------------------------------------
 let _store; // undefined = not tried, false = unavailable, object = store
@@ -265,7 +266,7 @@ async function bookCohort(task, meta, msg) {
 // ---- handler --------------------------------------------------------------
 const handlerV1 = async (event) => {
   const m = event.httpMethod;
-  if (m === "OPTIONS") return { statusCode: 204, headers: CORS, body: "" };
+  if (m === "OPTIONS") return { statusCode: 200, headers: CORS, body: "" };
 
   // A2A-Version: header or query param (spec 3.6). Empty value means 0.3 -> unsupported.
   const vRaw = (event.headers && (event.headers["a2a-version"] || event.headers["A2A-Version"])) ||
@@ -280,12 +281,12 @@ const handlerV1 = async (event) => {
       binding: "JSONRPC",
       protocol_version: "1.0",
       state: "phase_2_live",
-      note: "Send Message (skills request_quote, book_cohort): complete requests are logged and answered with a " +
-        "flat-rate quote by email within " +
-        "the 4h target (a target, not a guarantee, 24/7). Get Task (tasks/get) resumes by taskId. Streaming and push " +
-        "notifications are not supported. Every order stays pending authorisation until Yacine Zairi authorises it " +
-        "and the client confirms the quote. Payment is never taken through this endpoint. " +
-        "Agent Card: " + CARD_URL,
+      note: "Send Message (skills request_quote, book_cohort): complete requests are logged and a human at " +
+        "quotes@kubeai.info is notified. A real person aims to reply with a flat-rate quote by email within 4h " +
+        "(a target, not a guarantee, 24/7). This endpoint does not compute or return a price. Get Task (tasks/get) " +
+        "resumes by taskId. Streaming and push notifications are not supported. Every order stays pending " +
+        "authorisation until Yacine Zairi authorises it and the client confirms the quote. Payment is never taken " +
+        "through this endpoint. Agent Card: " + CARD_URL,
     });
   }
   if (m !== "POST") return reply(405, { error: "method_not_allowed", allowed: ["GET", "OPTIONS", "POST"] });
@@ -293,7 +294,7 @@ const handlerV1 = async (event) => {
     return reply(400, rpcErr(null, -32009, "Version not supported", {
       "@type": "VersionNotSupportedError", supported: ["1.0"],
       note: "Send the A2A-Version: 1.0 header (or ?A2A-Version=1.0).",
-    }));
+    }), A2A_CT);
 
   let parsed;
   try { parsed = JSON.parse(event.body || ""); }
@@ -332,10 +333,10 @@ const handlerV1 = async (event) => {
   if (Array.isArray(parsed)) {
     const out = [];
     for (const req of parsed) { const r = await one(req); if (!(r && r.result && r.result.id === undefined)) out.push(r); }
-    return reply(200, out.length ? out : null);
+    return reply(200, out.length ? out : null, A2A_CT);
   }
   const res = await one(parsed);
-  return reply(200, res);
+  return reply(200, res, A2A_CT);
 };
 
 // Netlify Functions v2 adapter: the v2 runtime provides the Netlify Blobs context.
@@ -349,6 +350,8 @@ exports.default = async (req) => {
     body: await req.text(),
     queryStringParameters: Object.fromEntries(url.searchParams),
   };
-  const r = await handlerV1(event);
+  let r;
+  try { r = await handlerV1(event); }
+  catch (e) { r = { statusCode: 500, headers: CORS, body: JSON.stringify({ error: "internal_error" }) }; }
   return new Response(r.body, { status: r.statusCode, headers: r.headers });
 };

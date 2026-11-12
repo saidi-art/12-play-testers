@@ -25,12 +25,12 @@
     "sla_guarantee": false,
     "wording": "aims to reply within 4h"
   },
-  "intake_method": "web form (temporary)",
+  "intake_method": "web form (temporary) plus the live A2A endpoint (logs the request and notifies a human; no prices through the endpoint)",
   "intake_endpoint": "https://formspree.io/f/xqppdyqb",
   "intake_label": "a temporary form endpoint (Formspree)",
   "api_status": "planned",
   "mcp_status": "planned",
-  "api_surface_today": "a static availability file plus that form",
+  "api_surface_today": "a static availability file, that temporary form, and the live A2A endpoint (logging-and-notify intake, not a quote API)",
   "human_approval_required": true,
   "client_confirms_quote": true,
   "approval_state": "pending_authorization",
@@ -44,8 +44,9 @@
   ],
   "client_approval": "The client/developer confirms the quote before anything is arranged",
   "automated_today": [
-    "form submit",
-    "form receive"
+    "a2a request logging and human notification",
+    "form receive",
+    "form submit"
   ],
   "payment_methods": "Gumroad",
   "service_area_and_language": "Worldwide, remote; timezone Europe/Paris; languages English and French",
@@ -101,5 +102,5 @@
   "agent_card": "https://play.kubeai.info/.well-known/agent-card.json",
   "a2a_status": "live",
   "a2a_endpoint": "https://play.kubeai.info/a2a",
-  "a2a_note": "A2A v1.0 JSON-RPC: Send Message (request_quote, book_cohort) plus Get Task; streaming and push not supported; no payments through the endpoint."
+  "a2a_note": "A2A v1.0 JSON-RPC: Send Message (request_quote, book_cohort) plus Get Task; streaming and push not supported; the endpoint logs requests and notifies a human, it does not compute or return a price; no payments through the endpoint."
 }
