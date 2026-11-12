@@ -2,9 +2,8 @@
 // request_quote is email-backed: a complete inquiry goes through the same Formspree
 // form the web form uses, so it lands in the quotes@kubeai.info inbox. Tasks persist
 // (Netlify Blobs) so a client can resume by taskId via tasks/get.
-// No prices are invented here: a flat-fee quote is issued automatically only when
-// QUOTE_FLAT_FEE_USD is configured for the function. Until then the quote is prepared
-// by a real person within the 4h target (the standing SLA). Every order stays
+// No prices are invented here and no auto-quote exists, ever (standing rule: quote-based,
+// no public figure). The quote is prepared by a real person within the 4h target. Every order stays
 // pending authorisation until Yacine Zairi authorises it and the client confirms the
 // quote. Payment is never taken through this endpoint; no AP2/x402/ACP/UCP.
 
@@ -220,19 +219,13 @@ async function requestQuote(task, fl, msg) {
     task.inquirySentAt = task.inquirySent ? now() : undefined;
   }
 
-  const fee = process.env.QUOTE_FLAT_FEE_USD && process.env.QUOTE_FLAT_FEE_USD.trim();
-  if (fee) {
-    const art = quoteArtifact(fee, task);
-    task.artifacts = [art];
-    task.status = { state: "TASK_STATE_AUTH_REQUIRED", timestamp: now(), message: agentMsg(
-      [{ kind: "text", text: art.parts[1].text }], task.id, task.contextId) };
-  } else {
-    task.status = { state: "TASK_STATE_WORKING", timestamp: now(), message: agentMsg(
-      [{ kind: "text", text: "Your quote request is logged (task " + task.id + "). A real person aims to reply with " +
-        "your flat-rate, no-obligation quote within 4h (a target, not a guarantee, 24/7). The quote is not binding " +
-        "until Yacine Zairi authorises it and you confirm it. Payment is never taken through this endpoint." }],
-      task.id, task.contextId) };
-  }
+  // No auto-quote, ever: pricing stays quote-based with no public figure (Yacine's standing
+  // rule). Every inquiry goes to the 4h human reply; nothing is issued from the endpoint.
+  task.status = { state: "TASK_STATE_WORKING", timestamp: now(), message: agentMsg(
+    [{ kind: "text", text: "Your quote request is logged (task " + task.id + "). A real person aims to reply with " +
+      "your flat-rate, no-obligation quote within 4h (a target, not a guarantee, 24/7). The quote is not binding " +
+      "until Yacine Zairi authorises it and you confirm it. Payment is never taken through this endpoint." }],
+    task.id, task.contextId) };
   await putTask(task);
   return task;
 }
@@ -288,7 +281,7 @@ const handlerV1 = async (event) => {
       protocol_version: "1.0",
       state: "phase_2_live",
       note: "Send Message (skills request_quote, book_cohort): complete requests are logged and answered with a " +
-        "flat-rate quote (as an artifact when automatic quoting is configured, otherwise a reply by email) within " +
+        "flat-rate quote by email within " +
         "the 4h target (a target, not a guarantee, 24/7). Get Task (tasks/get) resumes by taskId. Streaming and push " +
         "notifications are not supported. Every order stays pending authorisation until Yacine Zairi authorises it " +
         "and the client confirms the quote. Payment is never taken through this endpoint. " +
