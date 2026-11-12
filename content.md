@@ -32,7 +32,7 @@ Cheap tester networks are everywhere, and the shortcuts they take are what get d
 | Account safety | Patterns Google flags, risk of suspension | Genuine daily use, the way Google's rules ask |
 | Communication | No updates, slow or no replies | Short, direct progress and feedback reports |
 | Setup help | You figure out Play Console alone | Step-by-step Console and Gmail setup help |
-| If a tester quits | Your count drops and the clock resets | Free replacement, followed until approval |
+| If a tester quits | Your count drops and the clock resets | Replacement at no extra cost, followed until approval |
 
 ### What does getting stuck in testing cost?
 
@@ -80,13 +80,13 @@ You apply for production access with our support. If Google pushes back, we keep
 
 ## For agents
 
-Booking is machine-readable. Check availability over a REST endpoint, or submit an inquiry for your developer into the same inbox a real person reads.
+Booking is machine-readable. Check availability at https://play.kubeai.info/availability.json , read the Agent Card at https://play.kubeai.info/.well-known/agent-card.json , and submit an inquiry for your developer into the same inbox a real person reads.
 
 - Timezone: Europe/Paris. Coverage: worldwide, remote.
 - 12 human testers per app, 14 days.
 - Pricing: one flat one-time fee per app, quoted per inquiry; no subscriptions.
-- REST API: availability at https://play.kubeai.info/api/availability.json , full docs at https://play.kubeai.info/api/
-- MCP: an MCP endpoint is in setup; the REST route works today. https://play.kubeai.info/mcp/
+- REST API: planned, not live. https://play.kubeai.info/api/ is a planned stub pointing at the availability file and the temporary form.
+- MCP: planned, not live. https://play.kubeai.info/mcp/ is a planned stub pointing at the availability file and the temporary form.
 - A2A: agent card at https://play.kubeai.info/.well-known/agent-card.json ; declared interface at https://play.kubeai.info/a2a (live quote intake: send a request_quote task; orders stay pending authorisation, no payments through the endpoint)
 
 Every order starts as pending authorisation: a real person confirms the quote before anything is arranged, and payment is only ever arranged with a human, never through an endpoint.

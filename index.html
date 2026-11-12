@@ -38,7 +38,7 @@
       "areaServed": "Worldwide",
       "audience": {"@type": "Audience", "audienceType": "Solo developers and indie creators building Android apps with AI"},
       "description": "Managed Google Play closed testing: 12 human testers on real Android devices use your app daily for 14 consecutive days, with replacement at no extra cost if a tester drops and step-by-step Play Console setup help. One flat one-time fee per app, no subscriptions; the exact figure is quoted per app.",
-      "potentialAction":{"@type":"Action","name":"Submit an inquiry via API","url":"https://play.kubeai.info/api/","description":"Agents can check availability and submit an inquiry over REST. Every order starts as pending authorisation."},"makesOffer": {
+      "potentialAction":{"@type":"Action","name":"Submit an inquiry","url":"https://play.kubeai.info/contact/","description":"Agents can check machine-readable availability and submit an inquiry. Every order starts as pending authorisation."},"makesOffer": {
         "@type": "Offer",
         "name": "Flat-rate managed 14-day closed test",
         "description": "One flat one-time fee per app. The exact figure is quoted per app; no subscriptions.",
@@ -327,7 +327,7 @@
         <tr><th scope="row">Account safety</th><td class="them" data-label="Cheap tester networks">Patterns Google flags, risk of suspension</td><td class="us" data-label="12 Play Testers">Genuine daily use, the way Google's rules ask</td></tr>
         <tr><th scope="row">Communication</th><td class="them" data-label="Cheap tester networks">No updates, slow or no replies</td><td class="us" data-label="12 Play Testers">Short, direct progress and feedback reports</td></tr>
         <tr><th scope="row">Setup help</th><td class="them" data-label="Cheap tester networks">You figure out Play Console alone</td><td class="us" data-label="12 Play Testers">Step-by-step Console and Gmail setup help</td></tr>
-        <tr><th scope="row">If a tester quits</th><td class="them" data-label="Cheap tester networks">Your count drops and the clock resets</td><td class="us" data-label="12 Play Testers">Free replacement, followed until approval</td></tr>
+        <tr><th scope="row">If a tester quits</th><td class="them" data-label="Cheap tester networks">Your count drops and the clock resets</td><td class="us" data-label="12 Play Testers">Replacement at no extra cost, followed until approval</td></tr>
       </tbody>
     </table>
     <div class="anchor">
@@ -354,15 +354,15 @@
 
   <section id="agents" class="wrap agents">
     <h2>For agents</h2>
-    <p class="sub">Booking is machine-readable. Check availability over a REST endpoint, or submit an inquiry for your developer into the same inbox a real person reads.</p>
+    <p class="sub">Booking is machine-readable. Check availability at <a href="/availability.json">availability.json</a>, read the <a href="/.well-known/agent-card.json">Agent Card</a>, and submit an inquiry for your developer into the same inbox a real person reads.</p>
     <div class="kv">
       <div><span>timezone</span><b>Europe/Paris</b></div>
       <div><span>coverage</span><b>Worldwide, remote</b></div>
       <div><span>testers per app</span><b>12 human testers, 14 days</b></div>
       <div><span>pricing</span><b>Flat one-time fee, quoted per inquiry</b></div>
     </div>
-    <p class="book">Book via MCP or REST API</p>
-    <p class="agent-links"><a href="/api/">API &rsaquo;</a><a href="/mcp/">MCP &rsaquo;</a><a href="/.well-known/agent-card.json">A2A card &rsaquo;</a></p>
+    <p class="book">A2A quote intake is live; REST API and MCP are planned.</p>
+    <p class="agent-links"><a href="/availability.json">availability.json &rsaquo;</a><a href="/.well-known/agent-card.json">Agent Card &rsaquo;</a><a href="/a2a">A2A endpoint &rsaquo;</a><a href="/contact/">Inquiry form &rsaquo;</a></p>
   </section>
 
   <section id="contact" class="wrap">

@@ -11,7 +11,7 @@
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, OPTIONS, POST",
-  "Access-Control-Allow-Headers": "Accept, Content-Type, A2A-Version",
+  "Access-Control-Allow-Headers": "Accept, Content-Type, A2A-Version, A2A-Extensions",
   "Content-Type": "application/json; charset=utf-8",
 };
 
@@ -204,7 +204,7 @@ async function requestQuote(task, fl, msg) {
     task.status = { state: "TASK_STATE_INPUT_REQUIRED", timestamp: now(), message: agentMsg(
       [{ kind: "text", text: "To prepare your flat-rate, no-obligation quote I need a few details. Please reply with: " +
         missing.map((m) => "- " + m).join("; ") +
-        ". The full intake field list is at https://play.kubeai.info/availability.json. " +
+        ". The full intake field list is at https://play.kubeai.info/availability.json; intake lands in the same inbox as web submissions (quotes@kubeai.info). " +
         "Nothing is arranged from a quote request: every order stays pending authorisation until " +
         "Yacine Zairi authorises it and you confirm the quote. Payment is never taken through this endpoint." }],
       task.id, task.contextId) };
@@ -277,7 +277,9 @@ const handlerV1 = async (event) => {
   // A2A-Version: header or query param (spec 3.6). Empty value means 0.3 -> unsupported.
   const vRaw = (event.headers && (event.headers["a2a-version"] || event.headers["A2A-Version"])) ||
     (event.queryStringParameters && event.queryStringParameters["A2A-Version"]);
-  const versionOk = vRaw === undefined || vRaw === null ? true : (String(vRaw).trim() === "1.0");
+  // Spec 3.6.2: agents MUST interpret an empty A2A-Version as 0.3. We support 1.0 only,
+  // so a missing, empty, or otherwise unsupported value answers VersionNotSupportedError.
+  const versionOk = vRaw !== undefined && vRaw !== null && String(vRaw).trim() === "1.0";
 
   if (m === "GET") {
     return reply(200, {
