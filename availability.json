@@ -11,15 +11,15 @@
   "duration_days": 14,
   "coverage": "Worldwide, remote",
   "timezone": "Europe/Paris",
-  "pricing_model": "quote-based",
-  "prices_published": false,
+  "pricing_model": "fixed",
+  "prices_published": true,
   "pricing": {
-    "model": "quote-based",
-    "public_price": null,
-    "quote": "Every inquiry gets a clear, flat-rate quote, with no obligation.",
+    "model": "fixed",
+    "public_price": {"amount": 200, "currency": "EUR", "display": "€200 flat per engagement", "covers": "12 testers, 14 days, replacement at no extra cost if a tester drops, Play Console setup help"},
+    "pricing_note": "One engagement, one price: €200 flat. No per-tester add-ons, no tiers.",
     "subscriptions": false
   },
-  "quote_sla": {
+  "response_sla": {
     "target_reply_within": "4h",
     "target_applies": "24/7",
     "sla_guarantee": false,
@@ -30,19 +30,19 @@
   "intake_label": "a temporary form endpoint (Formspree)",
   "api_status": "planned",
   "mcp_status": "planned",
-  "api_surface_today": "a static availability file, that temporary form, and the live A2A endpoint (logging-and-notify intake, not a quote API)",
+  "api_surface_today": "a static availability file, that temporary form, and the live A2A endpoint (logging-and-notify intake, not a pricing API)",
   "human_approval_required": true,
-  "client_confirms_quote": true,
+  "client_confirms_booking": true,
   "approval_state": "pending_authorization",
   "human_approves": [
-    "Yacine (accountable human) authorises the order before anyone is engaged, a quote is binding, or payment is arranged",
+    "Yacine (accountable human) authorises the order before anyone is engaged, the booking is binding, or payment is arranged",
     "engaging any tester or worker",
-    "issuing a binding quote",
+    "issuing the binding booking confirmation",
     "scheduling the 14-day run",
     "arranging or collecting payment",
     "scope changes"
   ],
-  "client_approval": "The client/developer confirms the quote before anything is arranged",
+  "client_approval": "The client/developer confirms the booking before anything is arranged",
   "automated_today": [
     "a2a request logging and human notification",
     "form receive",
@@ -75,7 +75,7 @@
   },
   "order_policy": {
     "initial_status": "pending authorisation",
-    "note": "Every order waits for Yacine's authorisation and the client's quote confirmation before anything is arranged. Payment is only ever arranged with a human, never through the intake endpoint.",
+    "note": "Every order waits for Yacine's authorisation and the client's booking confirmation before anything is arranged. Payment is only ever arranged with a human, never through the intake endpoint.",
     "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email quotes@kubeai.info."
   },
   "pages": {
@@ -102,5 +102,5 @@
   "agent_card": "https://play.kubeai.info/.well-known/agent-card.json",
   "a2a_status": "live",
   "a2a_endpoint": "https://play.kubeai.info/a2a",
-  "a2a_note": "A2A v1.0 JSON-RPC: Send Message (request_quote, book_cohort) plus Get Task; streaming and push not supported; the endpoint logs requests and notifies a human, it does not compute or return a price; no payments through the endpoint."
+  "a2a_note": "A2A v1.0 JSON-RPC: Send Message (request_quote, book_cohort) plus Get Task; streaming and push not supported; the endpoint logs requests and notifies a human, it does not compute or return a price; no payments through the endpoint. The published service price is €200 flat per engagement."
 }

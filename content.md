@@ -68,7 +68,7 @@ They're replaced at no extra cost. Daily monitoring catches it early, so your co
 
 ### How fast can we start?
 
-Usually right after we've agreed on your quote. We place your 12 testers, confirm once all of them have opted in, and the 14 days start from there.
+Usually right after you book: the price is €200 flat. We place your 12 testers, confirm once all of them have opted in, and the 14 days start from there.
 
 ### Do I need 12 testers for every new app?
 
@@ -84,17 +84,17 @@ Booking is machine-readable. Check availability at https://play.kubeai.info/avai
 
 - Timezone: Europe/Paris. Coverage: worldwide, remote.
 - 12 human testers per app, 14 days.
-- Pricing: one flat one-time fee per app, quoted per inquiry; no subscriptions.
+- Pricing: €200 flat per engagement (12 testers, 14 days); one engagement, one price, no per-tester add-ons, no subscriptions.
 - REST API: planned, not live. https://play.kubeai.info/api/ is a planned stub pointing at the availability file and the temporary form.
 - MCP: planned, not live. https://play.kubeai.info/mcp/ is a planned stub pointing at the availability file and the temporary form.
-- A2A: agent card at https://play.kubeai.info/.well-known/agent-card.json ; declared interface at https://play.kubeai.info/a2a (live quote intake: send a request_quote task; orders stay pending authorisation, no payments through the endpoint)
+- A2A: agent card at https://play.kubeai.info/.well-known/agent-card.json ; declared interface at https://play.kubeai.info/a2a (live intake: send a request_quote task; the service price is €200 flat per engagement, a submission is a booking request, and a human confirms before any payment is taken; orders stay pending authorisation)
 
-Every order starts as pending authorisation: a real person confirms the quote before anything is arranged, and payment is only ever arranged with a human, never through an endpoint.
+Every order starts as pending authorisation: a real person confirms the booking before anything is arranged, and payment is only ever arranged with a human, never through an endpoint.
 
 ## Contact
 
 Tell us a little about your app and a real person will get back to you: https://play.kubeai.info/#contact
 
-Every inquiry gets a clear, flat-rate quote. No sales calls, no surprise add-ons. One-time fee per app, no subscriptions.
+One price: €200 flat per engagement (12 testers, 14 days). No sales calls, no surprise add-ons. One-time fee, no subscriptions.
 
 12 Play Testers, a KubeAI service - https://kubeai.info
