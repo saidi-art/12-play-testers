@@ -61,7 +61,7 @@ Cheap tester networks are everywhere, and the shortcuts they take are what get d
 | Account safety | Patterns Google flags, risk of suspension | Genuine daily use, the way Google's rules ask |
 | Communication | No updates, slow or no replies | Short, direct progress and feedback reports |
 | Setup help | You figure out Play Console alone | Step-by-step Console and Gmail setup help |
-| If a tester quits | Your count drops and the clock resets | Replacement at no extra cost, followed until approval |
+| If a tester quits | Other services restart the clock at your cost. | Ours restarts at ours: same-day replacements, no extra charge, and we don't bill until the full 14-day streak validates. |
 
 ### What does getting stuck in testing cost?
 
@@ -103,7 +103,7 @@ Google asks for real, engaged testers on real devices, opted in for 14 days. Tha
 
 ### What happens if a tester goes quiet?
 
-They're replaced at no extra cost. Daily monitoring catches it early, so your count and engagement never slip during the window.
+They're replaced at no extra cost. Twelve testers, every day: if anyone drops out, the streak restarts and we cover it, same day, at no cost to you.
 
 ### How fast can we start?
 
