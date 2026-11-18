@@ -13,6 +13,23 @@ Flat one-time fee per app, priced for solo developers. No subscriptions.
 - Short, direct updates. You always know where the run stands.
 - Built around Google's rules. Every step follows the closed-testing requirement.
 
+## Your app is the centre of the run (example run)
+
+Every run has one app at its centre: yours. Shown here with Pocket Planner, a sample app rather than a client.
+
+What the 12 testers exercised:
+
+- First launch, sign-up and onboarding
+- The app's main flow, every day for 14 days
+- Reminders and notifications
+- Closing, reopening and updating the app
+
+What the 14 days proved: all 12 testers stayed opted in and active for 14 days in a row, so the app was ready to apply for production access.
+
+## Your 12 testers, every day for 14 days
+
+Each row is one tester, each column one day of your closed test.
+
 ## How we work together
 
 You bring the app. We handle the people, the 14 days and the paperwork, and we stay until Google says yes.
@@ -21,6 +38,18 @@ You bring the app. We handle the people, the 14 days and the paperwork, and we s
 2. Console setup. New to Play Console? We guide you through registration and the closed-test setup, step by step. We never need your login.
 3. 14-day managed run. 12 human testers use your app every day. Anyone who drops off is replaced at no extra cost, and you get short progress updates.
 4. Play Store launch. You apply for production access with our help. If Google pushes back, we stay with you until it's approved.
+
+## The machine behind the run
+
+- Recruited for your run. Testers apply for each engagement and are vetted before they join. No standing pool of idle accounts.
+- One guide, one thread. All 12 work from the same written guide and talk in one shared chat thread.
+- A shared 14-day streak. If anyone drops out, the streak goes back to day 0 for everyone.
+- Paid when the run validates. Testers are paid only when the full 14-day run validates.
+- Same-day replacement. If someone stops, a vetted replacement joins the same day, at no extra cost to you.
+
+### How testers are vetted
+
+Every tester applies for a specific run. We check each application before anyone is added to your closed test, and applicants who don't meet the bar aren't placed.
 
 ## Not another tester farm
 
@@ -38,6 +67,16 @@ Cheap tester networks are everywhere, and the shortcuts they take are what get d
 
 Running ads to recruit testers or hiring freelancers one by one can easily cost $500 to $1,000 or more, with no guarantee the run holds up. We run the full 14 days with 12 human testers for a fraction of that, so you can launch without the worry.
 
+## We're new, and we'll say so
+
+12 Play Testers opened in October 2026. Our first runs are founding cohorts: the same 14-day run at the same €200, with every booking signed off by the publisher.
+
+- Payment: €200 flat, paid through Gumroad once your booking is confirmed.
+- If a tester drops: a vetted replacement joins the same day, at no extra cost.
+- Until approval: if Google pushes back after day 14, we keep following up until your app is approved.
+
+Publisher: Yacine Zairi. Yacine confirms every quote and authorises every order before anything is arranged. 12 Play Testers uses AI assistants to help with replies and run coordination; a person reviews and authorises every quote and order.
+
 ## Questions developers actually ask
 
 Straight answers, including the ones people are shy to ask.
@@ -48,7 +87,7 @@ No. The service is built for solo developers and indie creators building with AI
 
 ### I've never published an app. Can you still help?
 
-Yes. Plenty of the people we work with built their first app with an AI agent. We walk you through creating your Play Console account and setting up the closed test, one step at a time.
+Yes. The service is built for people publishing their first app, often one built with an AI agent. We walk you through creating your Play Console account and setting up the closed test, one step at a time.
 
 ### Do you need access to my Play Console?
 
