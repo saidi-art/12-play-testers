@@ -174,7 +174,6 @@ footer a{color:var(--slate)}
 }
 
 /* for agents */
-.agents{padding-top:10px}
 .agents .kv{max-width:620px;border-top:1px solid var(--rule);margin:22px 0 0}
 .agents .kv div{display:flex;justify-content:space-between;align-items:baseline;gap:18px;padding:12px 2px;border-bottom:1px solid var(--rule);font-size:15px}
 .agents .kv span{color:var(--slate)}
@@ -184,3 +183,6 @@ footer a{color:var(--slate)}
 .agents .agent-links a{color:var(--done);font-weight:700;text-decoration:none}
 .agents .agent-links a:hover{text-decoration:underline}
 @media(max-width:560px){.agents .kv div{flex-direction:column;gap:2px}.agents .kv b{text-align:left}}
+
+/* netlify hud badge: floats over page content at the right edge, hidden site-wide */
+#nl-badge-frame,#nl-hud-frame{display:none!important}
