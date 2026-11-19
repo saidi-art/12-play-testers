@@ -51,6 +51,19 @@ You bring the app. We handle the people, the 14 days and the paperwork, and we s
 
 Every tester applies for a specific run. We check each application before anyone is added to your closed test, and applicants who don't meet the bar aren't placed.
 
+## €200 for the whole run
+
+One flat fee per app, paid once your booking is confirmed. No subscriptions, no per-tester add-ons.
+
+12 testers × 14 days = 168 tester-days: about €1.20 per tester-day.
+
+- 12 vetted testers, recruited for your run
+- One written guide and one shared thread
+- Same-day replacements and every restart
+- Play Console setup help and follow-up until approval
+
+Every restart is on us. If someone drops out and the streak goes back to day 0, the extra tester-days are ours to cover. Your price stays €200.
+
 ## Not another tester farm
 
 Cheap tester networks are everywhere, and the shortcuts they take are what get developer accounts flagged. Here's the difference.
@@ -65,7 +78,7 @@ Cheap tester networks are everywhere, and the shortcuts they take are what get d
 
 ### What does getting stuck in testing cost?
 
-Running ads to recruit testers or hiring freelancers one by one can easily cost $500 to $1,000 or more, with no guarantee the run holds up. We run the full 14 days with 12 human testers for a fraction of that, so you can launch without the worry.
+Recruiting 12 testers yourself, through ads or freelancers one by one, costs time and money, and nothing guarantees they stay active for 14 days in a row. We run the whole streak for one flat fee, so you can launch without the worry.
 
 ## We're new, and we'll say so
 
@@ -107,7 +120,7 @@ They're replaced at no extra cost. Twelve testers, every day: if anyone drops ou
 
 ### How fast can we start?
 
-Usually right after you book: the price is €200 flat. We place your 12 testers, confirm once all of them have opted in, and the 14 days start from there.
+Usually right after you book. We place your 12 testers, confirm once all of them have opted in, and the 14 days start from there.
 
 ### Do I need 12 testers for every new app?
 
