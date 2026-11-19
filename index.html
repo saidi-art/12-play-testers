@@ -102,7 +102,7 @@
                 <span class="cell a" style="--c:4"></span>
                 <span class="cell a" style="--c:1"></span>
                 <span class="cell a" style="--c:2"></span>
-                <span class="cell r" style="--c:3"></span>
+                <span class="cell a" style="--c:3"></span>
                 <span class="cell a" style="--c:4"></span>
                 <span class="cell a" style="--c:1"></span>
                 <span class="cell a" style="--c:2"></span>
@@ -167,15 +167,20 @@
 
   <section id="proof" class="wrap">
     <h2>Your 12 testers, every day for 14 days</h2>
-    <p class="sub">Each row is one tester, each column one day of your closed test.</p>
-    <figure class="pipe" style="margin:0" role="img" aria-label="Your app's path: built with AI, then a 14-day test with 12 human testers (shown on day 8, with one tester replaced), then live on Google Play.">
+    <p class="sub">Each row is one tester, each column one day. If anyone drops out, a replacement joins the same day and the streak goes back to day 0 for all 12. Only a full, unbroken 14 days counts.</p>
+    <figure class="pipe" style="margin:0" role="img" aria-label="Your app's path: built with AI, then a 14-day test with 12 human testers, then live on Google Play. In this example, tester 7 dropped out on day 3; a replacement joined the same day and the streak restarted at day 0 for all 12. The new streak is on day 8 of 14.">
         <ol class="stages" aria-hidden="true">
           <li><b>Built with AI</b>Your app, ready</li>
           <li class="now"><b>14-day human test</b>12 testers, day 8 of 14</li>
           <li class="next"><b>Live on Google Play</b>Production access</li>
         </ol>
         <div class="reg-grid" aria-hidden="true">
+<span></span><span class="seg seg-old" style="grid-column:2/5">First 3 days</span><span class="seg seg-new" style="grid-column:5/20">Restart at day 0, then the 14-day streak</span>
 <span class="row-label"></span>
+<span class="day-num old-n">1</span>
+<span class="day-num old-n">2</span>
+<span class="day-num old-n">3</span>
+<span class="day-num zero-n">0</span>
 <span class="day-num">1</span>
 <span class="day-num">2</span>
 <span class="day-num">3</span>
@@ -191,6 +196,10 @@
 <span class="day-num">13</span>
 <span class="day-num">14</span>
 <span class="row-label">1</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -206,6 +215,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">2</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -221,13 +234,17 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">3</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
 <span class="cell a" style="--c:4"></span>
 <span class="cell a" style="--c:5"></span>
 <span class="cell a" style="--c:6"></span>
-<span class="cell r" style="--c:7"></span>
+<span class="cell a" style="--c:7"></span>
 <span class="cell a" style="--c:8"></span>
 <span class="cell"></span>
 <span class="cell"></span>
@@ -236,6 +253,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">4</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -251,6 +272,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">5</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -266,6 +291,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">6</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -281,10 +310,14 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">7</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell miss"></span>
+<span class="cell r" style="--c:0"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
-<span class="cell r" style="--c:4"></span>
+<span class="cell a" style="--c:4"></span>
 <span class="cell a" style="--c:5"></span>
 <span class="cell a" style="--c:6"></span>
 <span class="cell a" style="--c:7"></span>
@@ -296,6 +329,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">8</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -311,6 +348,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">9</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -326,6 +367,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">10</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -341,6 +386,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">11</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -356,6 +405,10 @@
 <span class="cell"></span>
 <span class="cell"></span>
 <span class="row-label">12</span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell old"></span>
+<span class="cell zero"></span>
 <span class="cell a" style="--c:1"></span>
 <span class="cell a" style="--c:2"></span>
 <span class="cell a" style="--c:3"></span>
@@ -372,8 +425,10 @@
 <span class="cell"></span>
         </div>
         <div class="legend" aria-hidden="true">
-          <span><i style="background:var(--done)"></i>Active day</span>
-          <span><i style="background:var(--repl)"></i>Tester replaced, no extra cost</span>
+          <span><i style="background:var(--done)"></i>Streak day</span>
+          <span><i class="lg-old"></i>Before the restart, no longer counts</span>
+          <span><i class="lg-miss"></i>Tester dropped out</span>
+          <span><i style="background:var(--repl)"></i>Replacement joined the same day, no extra cost</span>
           <span><i style="background:var(--up)"></i>Still to run</span>
         </div>
       </figure>
@@ -433,7 +488,7 @@
         <tr><th scope="row">Account safety</th><td class="them" data-label="Cheap tester networks">Patterns Google flags, risk of suspension</td><td class="us" data-label="12 Play Testers">Genuine daily use, the way Google's rules ask</td></tr>
         <tr><th scope="row">Communication</th><td class="them" data-label="Cheap tester networks">No updates, slow or no replies</td><td class="us" data-label="12 Play Testers">Short, direct progress and feedback reports</td></tr>
         <tr><th scope="row">Setup help</th><td class="them" data-label="Cheap tester networks">You figure out Play Console alone</td><td class="us" data-label="12 Play Testers">Step-by-step Console and Gmail setup help</td></tr>
-        <tr><th scope="row">If a tester quits</th><td class="them" data-label="Cheap tester networks">Other services restart the clock at your cost.</td><td class="us" data-label="12 Play Testers">Ours restarts at ours: same-day replacements, no extra charge, and we don't bill until the full 14-day streak validates.</td></tr>
+        <tr><th scope="row">If a tester quits</th><td class="them" data-label="Cheap tester networks">Other services restart the clock at your cost.</td><td class="us" data-label="12 Play Testers">Ours restarts at ours: same-day replacements, no extra charge.</td></tr>
       </tbody>
     </table>
     <div class="anchor">

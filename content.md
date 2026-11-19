@@ -28,7 +28,7 @@ What the 14 days proved: all 12 testers stayed opted in and active for 14 days i
 
 ## Your 12 testers, every day for 14 days
 
-Each row is one tester, each column one day of your closed test.
+Each row is one tester, each column one day. If anyone drops out, a replacement joins the same day and the streak goes back to day 0 for all 12. Only a full, unbroken 14 days counts.
 
 ## How we work together
 
@@ -61,7 +61,7 @@ Cheap tester networks are everywhere, and the shortcuts they take are what get d
 | Account safety | Patterns Google flags, risk of suspension | Genuine daily use, the way Google's rules ask |
 | Communication | No updates, slow or no replies | Short, direct progress and feedback reports |
 | Setup help | You figure out Play Console alone | Step-by-step Console and Gmail setup help |
-| If a tester quits | Other services restart the clock at your cost. | Ours restarts at ours: same-day replacements, no extra charge, and we don't bill until the full 14-day streak validates. |
+| If a tester quits | Other services restart the clock at your cost. | Ours restarts at ours: same-day replacements, no extra charge. |
 
 ### What does getting stuck in testing cost?
 
