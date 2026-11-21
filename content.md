@@ -4,7 +4,7 @@ You built it with AI. We get it through Google Play testing.
 
 Google's 12-tester, 14-day closed test is the wall between your app and production. We run the whole thing with real people on real phones, so you can focus on your next build. No bots, no spam, no stress.
 
-Flat one-time fee per app, priced for solo developers. No subscriptions.
+Starting at $65 (USD). One-time fee per app, no subscriptions.
 
 ## What you can count on
 
@@ -51,18 +51,18 @@ You bring the app. We handle the people, the 14 days and the paperwork, and we s
 
 Every tester applies for a specific run. We check each application before anyone is added to your closed test, and applicants who don't meet the bar aren't placed.
 
-## €200 for the whole run
+## Starting at $65 (USD)
 
-One flat fee per app, paid once your booking is confirmed. No subscriptions, no per-tester add-ons.
+Every engagement is managed end to end: setup, onboarding, install confirmations, daily screenshots, follow-ups and client correspondence. Final quote depends on scope.
 
-12 testers × 14 days = 168 tester-days: about €1.20 per tester-day.
+12 testers × 14 days = 168 tester-days, each one watched, confirmed and followed up.
 
 - 12 vetted testers, recruited for your run
 - One written guide and one shared thread
 - Same-day replacements and every restart
 - Play Console setup help and follow-up until approval
 
-Every restart is on us. If someone drops out and the streak goes back to day 0, the extra tester-days are ours to cover. Your price stays €200.
+Every restart is on us. If someone drops out and the streak goes back to day 0, the extra tester-days are ours to cover. Restarts never change your quote.
 
 ## Not another tester farm
 
@@ -78,13 +78,13 @@ Cheap tester networks are everywhere, and the shortcuts they take are what get d
 
 ### What does getting stuck in testing cost?
 
-Recruiting 12 testers yourself, through ads or freelancers one by one, costs time and money, and nothing guarantees they stay active for 14 days in a row. We run the whole streak for one flat fee, so you can launch without the worry.
+Recruiting 12 testers yourself, through ads or freelancers one by one, costs time and money, and nothing guarantees they stay active for 14 days in a row. We run and manage the whole streak for you, so you can launch without the worry.
 
 ## We're new, and we'll say so
 
-12 Play Testers opened in October 2026. Our first runs are founding cohorts: the same 14-day run at the same €200, with every booking signed off by the publisher.
+12 Play Testers opened in October 2026. Our first runs are founding cohorts: the same managed 14-day run, with every booking signed off by the publisher.
 
-- Payment: €200 flat, paid through Gumroad once your booking is confirmed.
+- Payment: Starting at $65 (USD). You get a final quote for your app first, and pay through Gumroad once your booking is confirmed.
 - If a tester drops: a vetted replacement joins the same day, at no extra cost.
 - Until approval: if Google pushes back after day 14, we keep following up until your app is approved.
 
@@ -96,7 +96,7 @@ Straight answers, including the ones people are shy to ask.
 
 ### Is this expensive? How is the fee worked out?
 
-No. The service is built for solo developers and indie creators building with AI. It's one flat fee per app that covers all 12 human testers, daily activity monitoring and policy support for the full 14 days. Tell us about your app and we'll send the exact figure, with no obligation.
+No. The service is built for solo developers and indie creators building with AI. Starting at $65 (USD), managed end to end for the full 14 days. The final quote depends on your app's scope: tell us about your app and we'll send it, with no obligation.
 
 ### I've never published an app. Can you still help?
 
@@ -136,10 +136,10 @@ Booking is machine-readable. Check availability at https://play.kubeai.info/avai
 
 - Timezone: Europe/Paris. Coverage: worldwide, remote.
 - 12 human testers per app, 14 days.
-- Pricing: €200 flat per engagement (12 testers, 14 days); one engagement, one price, no per-tester add-ons, no subscriptions.
+- Pricing: Starting at $65 (USD); the final quote depends on scope. No subscriptions.
 - REST API: planned, not live. https://play.kubeai.info/api/ is a planned stub pointing at the availability file and the temporary form.
 - MCP: planned, not live. https://play.kubeai.info/mcp/ is a planned stub pointing at the availability file and the temporary form.
-- A2A: agent card at https://play.kubeai.info/.well-known/agent-card.json ; declared interface at https://play.kubeai.info/a2a (live intake: send a request_quote task; the service price is €200 flat per engagement, a submission is a booking request, and a human confirms before any payment is taken; orders stay pending authorisation)
+- A2A: agent card at https://play.kubeai.info/.well-known/agent-card.json ; declared interface at https://play.kubeai.info/a2a (live intake: send a request_quote task; pricing starts at $65 (USD) and the final quote depends on scope, a submission is a booking request, and a human confirms before any payment is taken; orders stay pending authorisation)
 
 Every order starts as pending authorisation: a real person confirms the booking before anything is arranged, and payment is only ever arranged with a human, never through an endpoint.
 
@@ -147,6 +147,6 @@ Every order starts as pending authorisation: a real person confirms the booking 
 
 Tell us a little about your app and a real person will get back to you: https://play.kubeai.info/#contact
 
-One price: €200 flat per engagement (12 testers, 14 days). No sales calls, no surprise add-ons. One-time fee, no subscriptions.
+Starting at $65 (USD), with a final quote for your app before you pay. No sales calls, no surprise add-ons. One-time fee, no subscriptions.
 
 12 Play Testers, a KubeAI service - https://kubeai.info
