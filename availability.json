@@ -11,12 +11,18 @@
   "duration_days": 14,
   "coverage": "Worldwide, remote",
   "timezone": "Europe/Paris",
-  "pricing_model": "fixed",
+  "pricing_model": "starts_at",
   "prices_published": true,
   "pricing": {
-    "model": "fixed",
-    "public_price": {"amount": 200, "currency": "EUR", "display": "€200 flat per engagement", "covers": "12 testers, 14 days, replacement at no extra cost if a tester drops, Play Console setup help"},
-    "pricing_note": "One engagement, one price: €200 flat. No per-tester add-ons, no tiers.",
+    "model": "starts_at",
+    "public_price": {
+      "amount": 65,
+      "currency": "USD",
+      "display": "Starting at $65 USD",
+      "basis": "starting price; final quote depends on scope",
+      "covers": "12 testers, 14 days, replacement at no extra cost if a tester drops, Play Console setup help"
+    },
+    "pricing_note": "Starting at $65 USD, the entry point of a managed end-to-end engagement. Final quote depends on scope. No subscriptions.",
     "subscriptions": false
   },
   "response_sla": {
