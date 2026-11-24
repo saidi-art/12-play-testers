@@ -455,7 +455,7 @@ def main():
     # Sitemap step-down: add the new guide to the static sitemap in the same
     # draft PR, so merging publishes the page AND its sitemap entry together.
     sitemap_path = ROOT / "sitemap.xml"
-    tree_files = [{"path": str(out.relative_to(ROOT)), "mode": "100644",
+    tree_files = [{"path": str(out.relative_to(Path.cwd()) if out.is_absolute() else out), "mode": "100644",
                    "type": "blob", "content": page}]
     if sitemap_path.exists():
         sp = sitemap_path.read_text()
