@@ -20,7 +20,7 @@ import urllib.request
 from pathlib import Path
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "saidi-art/12-play-testers")
-PINNED_MODEL = "grok-4-fast"
+PINNED_MODEL = "grok-4.20-non-reasoning"
 MODEL_ID = os.environ.get("XAI_MODEL", PINNED_MODEL)
 MODEL_PIN_OVERRIDE = os.environ.get("MODEL_PIN_OVERRIDE") == "1"
 WEEKLY_LIMIT = int(os.environ.get("WEEKLY_DRAFT_LIMIT", "3"))
