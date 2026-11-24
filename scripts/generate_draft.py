@@ -320,17 +320,20 @@ def boilerplate():
         f"Spotted an error? [{CORRECTIONS}](mailto:{CORRECTIONS}).\n")
 
 
-def create_branch_and_pr(token, branch, path, content, commit_msg, pr_title,
+def create_branch_and_pr(token, branch, tree_files, commit_msg, pr_title,
                          pr_body):
     base = gh(f"/repos/{REPO}/git/ref/heads/master", token)
     base_sha = base["object"]["sha"]
-    blob = gh("/repos/" + REPO + "/git/blobs", token, "POST",
-              {"content": content, "encoding": "utf-8"})
     commit = gh(f"/repos/{REPO}/git/commits/{base_sha}", token)
+    tree_entries = []
+    for tf in tree_files:
+        blob = gh("/repos/" + REPO + "/git/blobs", token, "POST",
+                  {"content": tf["content"], "encoding": "utf-8"})
+        tree_entries.append({"path": tf["path"], "mode": tf["mode"],
+                             "type": "blob", "sha": blob["sha"]})
     tree = gh("/repos/" + REPO + "/git/trees", token, "POST", {
         "base_tree": commit["tree"]["sha"],
-        "tree": [{"path": path, "mode": "100644", "type": "blob",
-                  "sha": blob["sha"]}]})
+        "tree": tree_entries})
     new_commit = gh("/repos/" + REPO + "/git/commits", token, "POST", {
         "message": commit_msg, "tree": tree["sha"], "parents": [base_sha]})
     gh("/repos/" + REPO + "/git/refs", token, "POST", {
@@ -421,6 +424,26 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(page)
 
+    # Sitemap step-down: add the new guide to the static sitemap in the same
+    # draft PR, so merging publishes the page AND its sitemap entry together.
+    sitemap_path = ROOT / "sitemap.xml"
+    tree_files = [{"path": str(out.relative_to(ROOT)), "mode": "100644",
+                   "type": "blob", "content": page}]
+    if sitemap_path.exists():
+        sp = sitemap_path.read_text()
+        entry = (f"  <url><loc>https://play.kubeai.info/guides/{slug}/"
+                 f"</loc></url>\n")
+        if f"/guides/{slug}/" not in sp:
+            if "</urlset>" in sp:
+                sp = sp.replace("</urlset>", entry + "</urlset>")
+            else:
+                sp += "\n" + entry + "</urlset>\n"
+            sitemap_path.write_text(sp)
+            tree_files.append({"path": "sitemap.xml", "mode": "100644",
+                               "type": "blob", "content": sp})
+        else:
+            print("::notice::sitemap already lists this slug; skipping.")
+
     branch = f"draft/{slug}"
     est_cost = RUN_COST_ESTIMATE_USD
     pr_body = (
@@ -434,6 +457,7 @@ def main():
         f"{usage.get('promptTokenCount', '?')} in / "
         f"{usage.get('candidatesTokenCount', '?')} out tokens "
         f"(\u2248${est_cost:.2f} conservative charge against the monthly cap)\n"
+        f"- Sitemap: guides/{slug}/ added to sitemap.xml in the same commit\n"
         f"- Brand lint: passed (no prices, no \u201cfree\u201d in title, no "
         f"guarantee/agency wording, {CONTACT} present, AI byline + publisher "
         "line, corrections link)\n\n"
@@ -443,7 +467,7 @@ def main():
         "onboarding packets or touch the live hub from this repo.")
 
     pr = create_branch_and_pr(
-        token, branch, str(out.relative_to(ROOT)), page,
+        token, branch, tree_files,
         f"Draft guide: {item['keyword']}", f"Draft guide: {item['keyword']}",
         pr_body)
     print(f"::notice::draft PR #{pr['number']} opened for {slug} "
