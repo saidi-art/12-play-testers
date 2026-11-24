@@ -30,7 +30,8 @@ jobs:
 
       - name: Draft one queued guide
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          XAI_MODEL: ${{ vars.XAI_MODEL }}
           GITHUB_TOKEN: ${{ github.token }}
           AUTOMATION_ENABLED: ${{ vars.AUTOMATION_ENABLED }}
           WEEKLY_DRAFT_LIMIT: "3"
