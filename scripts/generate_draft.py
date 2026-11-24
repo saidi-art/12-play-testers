@@ -105,7 +105,8 @@ def call_gemini(prompt):
     url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
            f"{MODEL_ID}:generateContent")
     body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.6, "maxOutputTokens": 8192}}
+            "generationConfig": {"temperature": 0.6, "maxOutputTokens": 8192},
+            "tools": [{"google_search": {}}]}
     req = urllib.request.Request(
         url, method="POST",
         headers={"Content-Type": "application/json", "x-goog-api-key": key},
@@ -184,7 +185,7 @@ def lint(title, body, slug):
         problems.append(f"missing contact {CONTACT}")
     if CORRECTIONS not in body:
         problems.append(f"missing corrections link {CORRECTIONS}")
-    if "AI-assisted" not in body or PUBLISHER not in body:
+    if "AI assist" not in body or PUBLISHER not in body:
         problems.append("missing AI byline / publisher line")
     for im in re.finditer(r"<img[^>]*>", body):
         if "ai-generated" not in im.group(0).lower():
