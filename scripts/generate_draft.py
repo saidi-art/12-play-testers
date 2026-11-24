@@ -282,6 +282,7 @@ __JSONLD__
 
 <main class="wrap">
   <div class="prose">
+    <h1>__TITLE__</h1>
 __BODY__
   </div>
 </main>
