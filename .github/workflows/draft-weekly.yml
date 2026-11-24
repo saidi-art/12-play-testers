@@ -1,0 +1,40 @@
+name: Draft weekly SEO guide
+
+on:
+  schedule:
+    # Mon/Wed/Fri 08:17 UTC (~09:17 Paris). Hard weekly cap of 3 is also
+    # enforced in scripts/generate_draft.py, so manual runs cannot exceed it.
+    - cron: "17 8 * * 1,3,5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: draft-weekly
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gate on AUTOMATION_ENABLED (gate 2)
+        run: |
+          if [ "${{ vars.AUTOMATION_ENABLED }}" != "true" ]; then
+            echo "AUTOMATION_ENABLED is not true; the pipeline stays off. Skipping."
+            exit 0
+          fi
+
+      - name: Draft one queued guide
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          XAI_MODEL: ${{ vars.XAI_MODEL }}
+          GITHUB_TOKEN: ${{ github.token }}
+          AUTOMATION_ENABLED: ${{ vars.AUTOMATION_ENABLED }}
+          WEEKLY_DRAFT_LIMIT: "3"
+          SPEND_CAP_USD: "10"
+          RUN_COST_ESTIMATE_USD: "0.05"
+        run: python3 scripts/generate_draft.py

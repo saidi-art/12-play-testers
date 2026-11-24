@@ -1,0 +1,20 @@
+name: Daily site baseline check
+
+on:
+  schedule:
+    - cron: "3 6 * * *" # 06:03 UTC daily (~07:03 Paris)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check both hosts against their baselines
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/daily_check.py
