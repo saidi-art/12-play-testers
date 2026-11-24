@@ -21,7 +21,7 @@ from pathlib import Path
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "saidi-art/12-play-testers")
 PINNED_MODEL = "grok-4.20-non-reasoning"
-MODEL_ID = os.environ.get("XAI_MODEL", PINNED_MODEL)
+MODEL_ID = (os.environ.get("XAI_MODEL", "") or "").strip() or PINNED_MODEL
 MODEL_PIN_OVERRIDE = os.environ.get("MODEL_PIN_OVERRIDE") == "1"
 WEEKLY_LIMIT = int(os.environ.get("WEEKLY_DRAFT_LIMIT", "3"))
 SPEND_CAP_USD = float(os.environ.get("SPEND_CAP_USD", "10"))
@@ -469,9 +469,9 @@ def main():
         f"- Distribb ID: {item['distribb_id']} (queue date {item['date']})\n"
         f"- Style: {item['style']}\n"
         f"- Words: {words} (allowed {MIN_WORDS}-{MAX_WORDS})\n"
-        f"- Model: `{MODEL_ID}` (pinned) \u00b7 Gemini usage: "
-        f"{usage.get('promptTokenCount', '?')} in / "
-        f"{usage.get('candidatesTokenCount', '?')} out tokens "
+        f"- Model: `{MODEL_ID}` (pinned) \u00b7 API usage: "
+        f"{usage.get('input_tokens', '?')} in / "
+        f"{usage.get('output_tokens', '?')} out tokens "
         f"(\u2248${est_cost:.2f} conservative charge against the monthly cap)\n"
         f"- Sitemap: guides/{slug}/ added to sitemap.xml in the same commit\n"
         f"- Brand lint: passed (no prices, no \u201cfree\u201d in title, no "
