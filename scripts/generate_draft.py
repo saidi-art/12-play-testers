@@ -413,7 +413,7 @@ def main():
 
     usage_log = []
     draft, usage = call_grok(build_prompt(item))
-    m = re.search(r"^#\s+(.+)$", draft, re.M)
+    m = re.search(r"^\s*\**#\s+(.+?)\s*\**$", draft, re.M)
     if not m:
         print("[diag] no H1 in draft; head: " + draft[:300].replace("\n", " | "),
               file=sys.stderr)
@@ -422,7 +422,7 @@ def main():
             "Rewrite the full article; the very first line of your output must "
             "be the markdown H1 title, formatted exactly as "
             "'# Your Title Here'."))
-        m = re.search(r"^#\s+(.+)$", draft, re.M)
+        m = re.search(r"^\s*\**#\s+(.+?)\s*\**$", draft, re.M)
         if not m:
             die("draft has no H1 title even after one retry. Head: "
                 + draft[:300].replace("\n", " | "))
@@ -433,7 +433,7 @@ def main():
         retry, _ = call_grok(build_prompt(
             item, "Your previous attempt broke these rules: "
             + "; ".join(problems) + ". Rewrite the full article obeying them."))
-        m = re.search(r"^#\s+(.+)$", retry, re.M)
+        m = re.search(r"^\s*\**#\s+(.+?)\s*\**$", retry, re.M)
         if not m:
             die("retry draft has no H1 title.")
         title = m.group(1).strip()
