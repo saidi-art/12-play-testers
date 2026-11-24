@@ -20,8 +20,8 @@ import urllib.request
 from pathlib import Path
 
 REPO = os.environ.get("GITHUB_REPOSITORY", "saidi-art/12-play-testers")
-PINNED_MODEL = "gemini-3.8-flash"
-MODEL_ID = os.environ.get("MODEL_ID", PINNED_MODEL)
+PINNED_MODEL = "grok-4-fast"
+MODEL_ID = os.environ.get("XAI_MODEL", PINNED_MODEL)
 MODEL_PIN_OVERRIDE = os.environ.get("MODEL_PIN_OVERRIDE") == "1"
 WEEKLY_LIMIT = int(os.environ.get("WEEKLY_DRAFT_LIMIT", "3"))
 SPEND_CAP_USD = float(os.environ.get("SPEND_CAP_USD", "10"))
@@ -97,28 +97,43 @@ def runs_this_month(token):
     return data.get("total_count", 0)
 
 
-def call_gemini(prompt):
-    key = os.environ.get("GEMINI_API_KEY")
+def call_grok(prompt):
+    key = os.environ.get("XAI_API_KEY")
     if not key:
-        die("GEMINI_API_KEY secret is not set. Add it in Settings > Secrets and "
+        die("XAI_API_KEY secret is not set. Add it in Settings > Secrets and "
             "variables > Actions, then re-run.")
-    url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
-           f"{MODEL_ID}:generateContent")
-    body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
-            "generationConfig": {"temperature": 0.6, "maxOutputTokens": 8192},
-            "tools": [{"google_search": {}}]}
+    url = "https://api.x.ai/v1/responses"
+    body = {
+        "model": MODEL_ID,
+        "input": [{"role": "user", "content": prompt}],
+        "temperature": 0.6,
+        "max_output_tokens": 8192,
+        "tools": [{"type": "web_search",
+                   "filters": {"allowed_domains":
+                               ["support.google.com", "developer.android.com"]}}],
+    }
     req = urllib.request.Request(
         url, method="POST",
-        headers={"Content-Type": "application/json", "x-goog-api-key": key},
+        headers={"Content-Type": "application/json",
+                 "Authorization": "Bearer " + key},
         data=json.dumps(body).encode())
     try:
         with urllib.request.urlopen(req, timeout=240) as r:
             data = json.loads(r.read().decode())
     except urllib.error.HTTPError as e:
-        die(f"Gemini API returned {e.code}: {e.read().decode()[:300]}")
-    text = data["candidates"][0]["content"]["parts"][0]["text"]
-    usage = data.get("usageMetadata", {})
-    return text.strip(), usage
+        die(f"xAI API returned {e.code}: {e.read().decode()[:300]}")
+    texts = []
+    for item in data.get("output", []):
+        if item.get("type") == "message":
+            for part in item.get("content", []):
+                if part.get("type") in ("output_text", "text") and part.get("text"):
+                    texts.append(part["text"])
+    if not texts and data.get("output_text"):
+        texts = [data["output_text"]]
+    if not texts:
+        die("xAI response contained no text.")
+    usage = data.get("usage", {})
+    return "\n".join(texts).strip(), usage
 
 
 def slugify(keyword):
@@ -395,7 +410,7 @@ def main():
         skip("queue is empty: every keyword is drafted or published.")
 
     usage_log = []
-    draft, usage = call_gemini(build_prompt(item))
+    draft, usage = call_grok(build_prompt(item))
     m = re.search(r"^#\s+(.+)$", draft, re.M)
     if not m:
         die("draft has no H1 title.")
@@ -403,7 +418,7 @@ def main():
     body = draft[m.end():].strip() + "\n\n" + boilerplate()
     problems, words = lint(title, body, slug)
     if problems:
-        retry, _ = call_gemini(build_prompt(
+        retry, _ = call_grok(build_prompt(
             item, "Your previous attempt broke these rules: "
             + "; ".join(problems) + ". Rewrite the full article obeying them."))
         m = re.search(r"^#\s+(.+)$", retry, re.M)
