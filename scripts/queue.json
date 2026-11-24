@@ -1,22 +1,116 @@
 [
-  {"distribb_id": "132959", "date": "2026-12-01", "keyword": "google play closed testing tester dropout", "style": "How-To"},
-  {"distribb_id": "132960", "date": "2026-12-02", "keyword": "google play production access questions", "style": "Resources"},
-  {"distribb_id": "132961", "date": "2026-12-03", "keyword": "how to track google play closed testing", "style": "How-To"},
-  {"distribb_id": "132962", "date": "2026-12-04", "keyword": "google play closed testing link not working", "style": "How-To"},
-  {"distribb_id": "132963", "date": "2026-12-05", "keyword": "play console testing requirements for personal accounts", "style": "Explainer"},
-  {"distribb_id": "132964", "date": "2026-12-06", "keyword": "google play closed testing feedback", "style": "How-To"},
-  {"distribb_id": "132965", "date": "2026-12-07", "keyword": "google play production access rejected", "style": "How-To"},
-  {"distribb_id": "132966", "date": "2026-12-08", "keyword": "google play closed testing test report", "style": "Resources"},
-  {"distribb_id": "132967", "date": "2026-12-09", "keyword": "google play closed testing opt in link", "style": "How-To"},
-  {"distribb_id": "132968", "date": "2026-12-10", "keyword": "google play 14 day testing requirement", "style": "Explainer"},
-  {"distribb_id": "132969", "date": "2026-12-11", "keyword": "google play closed testing app not available", "style": "How-To"},
-  {"distribb_id": "132970", "date": "2026-12-12", "keyword": "how to upload aab to google play console", "style": "How-To"},
-  {"distribb_id": "132971", "date": "2026-12-13", "keyword": "how to add testers to google play console", "style": "How-To"},
-  {"distribb_id": "132972", "date": "2026-12-14", "keyword": "google play closed testing email list", "style": "How-To"},
-  {"distribb_id": "132973", "date": "2026-12-15", "keyword": "how to set up google play console", "style": "How-To"},
-  {"distribb_id": "132974", "date": "2026-12-16", "keyword": "google play developer account verification", "style": "How-To"},
-  {"distribb_id": "132975", "date": "2026-12-17", "keyword": "how to update app during closed testing", "style": "How-To"},
-  {"distribb_id": "132976", "date": "2026-12-18", "keyword": "how to test app on different devices google play", "style": "How-To"},
-  {"distribb_id": "132977", "date": "2026-12-19", "keyword": "google play closed testing to production", "style": "How-To"},
-  {"distribb_id": "132978", "date": "2026-12-20", "keyword": "google play closed testing google groups", "style": "How-To"}
+  {
+    "distribb_id": "132960",
+    "date": "2026-12-02",
+    "keyword": "google play production access questions",
+    "style": "Resources"
+  },
+  {
+    "distribb_id": "132961",
+    "date": "2026-12-03",
+    "keyword": "how to track google play closed testing",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132962",
+    "date": "2026-12-04",
+    "keyword": "google play closed testing link not working",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132963",
+    "date": "2026-12-05",
+    "keyword": "play console testing requirements for personal accounts",
+    "style": "Explainer"
+  },
+  {
+    "distribb_id": "132964",
+    "date": "2026-12-06",
+    "keyword": "google play closed testing feedback",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132965",
+    "date": "2026-12-07",
+    "keyword": "google play production access rejected",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132966",
+    "date": "2026-12-08",
+    "keyword": "google play closed testing test report",
+    "style": "Resources"
+  },
+  {
+    "distribb_id": "132967",
+    "date": "2026-12-09",
+    "keyword": "google play closed testing opt in link",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132968",
+    "date": "2026-12-10",
+    "keyword": "google play 14 day testing requirement",
+    "style": "Explainer"
+  },
+  {
+    "distribb_id": "132969",
+    "date": "2026-12-11",
+    "keyword": "google play closed testing app not available",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132970",
+    "date": "2026-12-12",
+    "keyword": "how to upload aab to google play console",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132971",
+    "date": "2026-12-13",
+    "keyword": "how to add testers to google play console",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132972",
+    "date": "2026-12-14",
+    "keyword": "google play closed testing email list",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132973",
+    "date": "2026-12-15",
+    "keyword": "how to set up google play console",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132974",
+    "date": "2026-12-16",
+    "keyword": "google play developer account verification",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132975",
+    "date": "2026-12-17",
+    "keyword": "how to update app during closed testing",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132976",
+    "date": "2026-12-18",
+    "keyword": "how to test app on different devices google play",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132977",
+    "date": "2026-12-19",
+    "keyword": "google play closed testing to production",
+    "style": "How-To"
+  },
+  {
+    "distribb_id": "132978",
+    "date": "2026-12-20",
+    "keyword": "google play closed testing google groups",
+    "style": "How-To"
+  }
 ]
