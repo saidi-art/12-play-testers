@@ -165,8 +165,10 @@ def build_prompt(item, extra=""):
         "English, plain, concrete, helpful. No fluff, no invented statistics, "
         "no quotes from named people.\n"
         f"Length: {MIN_WORDS}-{MAX_WORDS} words.\n"
-        'Start with an H1 title ("# ...") containing the target keyword or a '
-        'close natural variant. The title must NOT contain the word "free".\n'
+        'Your very first line must be the markdown H1 title, formatted exactly '
+        'as "# Your Title Here" (a hash, one space, then the title), containing '
+        'the target keyword or a close natural variant. The title must NOT '
+        'contain the word "free".\n'
         "Then H2 sections; short bullet lists where useful.\n"
         "Hard content rules:\n"
         "- Never mention prices, fees, discounts or currency amounts for any "
@@ -413,7 +415,17 @@ def main():
     draft, usage = call_grok(build_prompt(item))
     m = re.search(r"^#\s+(.+)$", draft, re.M)
     if not m:
-        die("draft has no H1 title.")
+        print("[diag] no H1 in draft; head: " + draft[:300].replace("\n", " | "),
+              file=sys.stderr)
+        draft, usage = call_grok(build_prompt(
+            item, "Your previous attempt did not begin with an H1 title line. "
+            "Rewrite the full article; the very first line of your output must "
+            "be the markdown H1 title, formatted exactly as "
+            "'# Your Title Here'."))
+        m = re.search(r"^#\s+(.+)$", draft, re.M)
+        if not m:
+            die("draft has no H1 title even after one retry. Head: "
+                + draft[:300].replace("\n", " | "))
     title = m.group(1).strip()
     body = draft[m.end():].strip() + "\n\n" + boilerplate()
     problems, words = lint(title, body, slug)
