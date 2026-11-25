@@ -1,0 +1,501 @@
+{
+  "_note": "Placeholder data for the static shell. Not a data contract: the admin feed is pending Yacine.",
+  "run": {
+    "client": "Maya",
+    "clientEmail": "maya@pocketplanner.app",
+    "app": "Pocket Planner",
+    "startDate": "2026-12-01",
+    "day": 14,
+    "state": "closed",
+    "closedOn": "2026-12-15",
+    "lastUpdate": "15 December"
+  },
+  "testers": [
+    {
+      "seat": 0,
+      "name": "Ana",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 1,
+      "name": "Ben",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 2,
+      "name": "Chloé",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 3,
+      "name": "Dev",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 4,
+      "name": "Emma",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 5,
+      "name": "Farid",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 6,
+      "name": "Grace",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 7,
+      "name": "Hugo",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 8,
+      "name": "Inès",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 9,
+      "name": "Jon",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 10,
+      "name": "Kofi",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    },
+    {
+      "seat": 11,
+      "name": "Léa",
+      "status": "active",
+      "days": 14,
+      "streak": [
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on",
+        "on"
+      ]
+    }
+  ],
+  "activity": [
+    {
+      "date": "2026-12-14",
+      "day": 14,
+      "label": "Today, day 14",
+      "checkedIn": 12,
+      "screenshots": [
+        {
+          "id": "s0",
+          "src": null
+        },
+        {
+          "id": "s1",
+          "src": null
+        },
+        {
+          "id": "s2",
+          "src": null
+        },
+        {
+          "id": "s3",
+          "src": null
+        },
+        {
+          "id": "s4",
+          "src": null
+        },
+        {
+          "id": "s5",
+          "src": null
+        },
+        {
+          "id": "s6",
+          "src": null
+        },
+        {
+          "id": "s7",
+          "src": null
+        },
+        {
+          "id": "s8",
+          "src": null
+        },
+        {
+          "id": "s9",
+          "src": null
+        },
+        {
+          "id": "s10",
+          "src": null
+        },
+        {
+          "id": "s11",
+          "src": null
+        }
+      ],
+      "notes": []
+    },
+    {
+      "date": "2026-12-09",
+      "day": 9,
+      "label": "Today, day 9",
+      "checkedIn": 12,
+      "screenshots": [
+        {
+          "id": "s0",
+          "src": null
+        },
+        {
+          "id": "s1",
+          "src": null
+        },
+        {
+          "id": "s2",
+          "src": null
+        },
+        {
+          "id": "s3",
+          "src": null
+        },
+        {
+          "id": "s4",
+          "src": null
+        },
+        {
+          "id": "s5",
+          "src": null
+        },
+        {
+          "id": "s6",
+          "src": null
+        },
+        {
+          "id": "s7",
+          "src": null
+        },
+        {
+          "id": "s8",
+          "src": null
+        },
+        {
+          "id": "s9",
+          "src": null
+        },
+        {
+          "id": "s10",
+          "src": null
+        },
+        {
+          "id": "s11",
+          "src": null
+        }
+      ],
+      "notes": [
+        {
+          "tester": "Dev",
+          "text": "The save button hides under the keyboard on small screens."
+        }
+      ]
+    },
+    {
+      "date": "2026-12-08",
+      "day": 8,
+      "label": "Yesterday, day 8",
+      "checkedIn": 12,
+      "screenshots": [
+        {
+          "id": "s0",
+          "src": null
+        },
+        {
+          "id": "s1",
+          "src": null
+        },
+        {
+          "id": "s2",
+          "src": null
+        },
+        {
+          "id": "s3",
+          "src": null
+        },
+        {
+          "id": "s4",
+          "src": null
+        },
+        {
+          "id": "s5",
+          "src": null
+        },
+        {
+          "id": "s6",
+          "src": null
+        },
+        {
+          "id": "s7",
+          "src": null
+        },
+        {
+          "id": "s8",
+          "src": null
+        },
+        {
+          "id": "s9",
+          "src": null
+        },
+        {
+          "id": "s10",
+          "src": null
+        },
+        {
+          "id": "s11",
+          "src": null
+        }
+      ],
+      "notes": [
+        {
+          "tester": "Kofi",
+          "text": "Reminders arrive on time now."
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "from": "us",
+      "type": "text",
+      "day": 8,
+      "text": "Day 8 is in: all 12 testers active. Dev flagged the save button on small screens, screenshot in Activity."
+    },
+    {
+      "from": "client",
+      "type": "text",
+      "day": 8,
+      "text": "Thanks! Fixed in build 1.0.4, uploading now."
+    },
+    {
+      "from": "client",
+      "type": "file",
+      "day": 8,
+      "fileName": "release-notes.pdf"
+    },
+    {
+      "from": "us",
+      "type": "text",
+      "day": 9,
+      "text": "Got it. Testers are on 1.0.4 since this morning, and the button sits right now."
+    },
+    {
+      "from": "us",
+      "type": "text",
+      "day": 14,
+      "text": "All 14 days are in. Thank you for testing with us."
+    }
+  ],
+  "unread": 0,
+  "prefs": {
+    "push": true,
+    "digest": true,
+    "quietFrom": "22:00",
+    "quietTo": "08:00"
+  }
+}

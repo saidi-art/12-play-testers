@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Checkpoint 1 review · Client portal</title>
+<link rel="stylesheet" href="portal.css">
+<style>
+body{background:#0B1A29;color:#fff}
+.wrap{max-width:1320px;margin:0 auto;padding:36px 20px 64px}
+h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;margin:0 0 8px}
+.sub{color:var(--muted);max-width:70ch;line-height:1.5;margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:36px 28px;margin-top:28px}
+figure{margin:0}
+.frame{width:300px;height:649px;overflow:hidden;border-radius:30px;box-shadow:0 0 0 8px #1C232B,0 18px 36px rgba(0,0,0,.45)}
+.frame iframe{width:390px;height:844px;border:0;transform:scale(.7692);transform-origin:0 0;display:block}
+figcaption{margin-top:16px;font-size:14px;line-height:1.45;max-width:300px}
+figcaption b{display:block;font-size:15.5px}
+figcaption span{color:var(--muted)}
+figcaption a{color:#fff;font-weight:700}
+@media(max-width:360px){.frame{transform:scale(.9);transform-origin:0 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Checkpoint 1: phone shell, mock data</h1>
+<p class="sub">Review copy, not linked from the site. The nine phone states at 390 × 844, each rendered live from the mock JSON in <code>portal/mock/</code>. Open any state full-size to click through tabs, settings and messages. Sample content only: Pocket Planner, Maya, invented first names.</p>
+<div class="grid" id="grid"></div>
+</div>
+<script>
+const S = [
+  ['Run overview (home), day 9', 'day9', 'run', 'Day 9 of 14, today’s status, the whole wall on one screen.'],
+  ['Activity feed', 'day9', 'activity', 'Polaroids and sticky notes, newest first.'],
+  ['Messages', 'day9', 'messages', 'One thread: ours on paper, the client’s in green. Text and files.'],
+  ['Notification settings', 'day9', 'settings', 'Two toggles, quiet hours, the iPhone home-screen note.'],
+  ['Onboarding 1: magic-link sign-in', 'day9', 'signin', 'Magic link only, no password.'],
+  ['Onboarding 2: welcome, day 0', 'day0', 'welcome', 'Start date named; seats fill as testers opt in.'],
+  ['Streak restarted', 'restart', 'run', 'Orange Restart banner; replacement wears a New tag.'],
+  ['Requirement met', 'met', 'run', 'Green ticks, full day line, the stamp. No approval promise.'],
+  ['Closed', 'closed', 'run', 'Full 12 × 14 grid, thank-you, archive readable.'],
+  ['Extra: Activity empty (day 0)', 'day0', 'activity', 'The only place the Illustrative tag appears.'],
+  ['Extra: Messages empty (day 0)', 'day0', 'messages', 'Say hello.'],
+  ['Extra: Run, seats filling (day 0)', 'day0', 'run', 'Day 0 counter with opted-in and joining cards.'],
+  ['Extra: Load error', 'error', 'run', 'Shown if the run can’t load.'],
+];
+document.getElementById('grid').innerHTML = S.map(([t, m, r, s]) => {
+  const u = `index.html?mock=${m}#${r}`;
+  return `<figure><div class="frame"><iframe src="${u}" title="${t}" loading="lazy"></iframe></div><figcaption><b>${t}</b><span>${s}</span><br><a href="${u}" target="_blank" rel="noopener">Open full-size</a></figcaption></figure>`;
+}).join('');
+</script>
+</body>
+</html>
