@@ -1,18 +1,19 @@
 # Client portal: data and auth contract
 
-Status: **v1 decided by Yacine** (hosting, data feed and magic-link sender, below). The SQL and the field list put those decisions into practice and are for Yacine to review before he applies them in Supabase. Nothing merges before his review.
+Status: **v1 decided by Yacine, backend applied on 25 Nov 2026** (Supabase project `portal-kubeai`, ref `wtejbawmpmmhkusvgfla`, EU North). The SQL below is what was actually applied. Nothing merges or deploys before Yacine's review.
 
 ## The three decisions
 
 | Call | Decision |
 |---|---|
-| Where the portal lives | Static site on Netlify at **portal.kubeai.info**. Yacine sets up the DNS and the Netlify site; deploy previews stay as they are. |
+| Where the portal lives | Static site on Netlify at **portal.kubeai.info**. Yacine sets up the DNS and the Netlify site (not done yet). The portal runs live only on that host; deploy previews and local runs use mock data. |
 | Admin data feed | **Supabase** holds the run state: **one JSON document per client, keyed by the client/app pair**, in the shape below. In v1 Yacine edits it by hand in the Supabase dashboard. No custom backend and no live endpoint: the portal reads the row read-only. A live endpoint is a later decision, only if the snapshot outgrows itself. |
-| Magic-link sender | **Supabase Auth** magic links by email, using Supabase's default sender to start and moving to a kubeai.info sender later if needed. The only email the portal ever causes is that sign-in link. |
+| Magic-link sender | **Supabase Auth** magic links by email, sent through custom SMTP: `noreply@portal.kubeai.info` ("Kubeai Portal") via Resend. The only email the portal ever causes is that sign-in link. |
+| Writes (messages, settings) | **None in v1.** The portal stays read-only, email stays the reply channel, and the live portal says so on Messages and Notifications. |
 
 ## Storage: one row per client/app pair
 
-The SQL below is for Yacine to apply in the Supabase SQL editor:
+This is the SQL as applied in the Supabase SQL editor on 25 Nov 2026. It adds the revoke/grant lines to the first draft, because the project has auto-grant and auto-RLS for new tables turned off:
 
 ```sql
 create table public.portal_runs (
@@ -30,7 +31,19 @@ alter table public.portal_runs enable row level security;
 create policy "client reads own runs" on public.portal_runs
   for select to authenticated
   using (lower(client_email) = lower(auth.jwt() ->> 'email'));
+
+-- Expose the table to the Data API for signed-in clients only.
+revoke all on public.portal_runs from anon, authenticated;
+grant select on public.portal_runs to authenticated;
 ```
+
+Yacine's check run (rolled back):
+- A signed-in client whose email differs only in case still sees their own row, and only that row.
+- An unrelated email sees no rows.
+- Inserts by signed-in users are refused.
+- Anonymous reads are refused. We confirmed this from the portal side too: an anonymous read returns `42501 permission denied`.
+
+The table is empty; rows are added by hand in the dashboard. Every new table in this project needs explicit grants and RLS.
 
 - The portal requests `select doc from portal_runs order by updated_at desc limit 1`. RLS limits that to the signed-in client's rows. If a client has more than one app, `?app=<slug>` picks one; otherwise the most recently updated row is shown.
 - Yacine sets `updated_at` when he edits a row in the dashboard. Without that, the "most recent" ordering won't change.
@@ -74,17 +87,16 @@ Privacy rules (spec 05): first names and initial avatars only. Never put real te
 ## Sign-in: Supabase Auth magic link
 
 - **Method:** `signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: <portal URL> } })` with the PKCE flow. The link signs the client in on the device that asked for it and works once.
-- **Accounts:** `shouldCreateUser: false` means only addresses Yacine has added can get a link. He adds each client under Dashboard → Authentication → Users → Add user, using the same email as `client_email`.
+- **Accounts:** sign-ups are off in the project, and the portal also passes `shouldCreateUser: false`. Only addresses Yacine adds under Dashboard → Authentication → Users can get a link, using the same email as `client_email`. No client users exist yet.
 - **Sign-in screen copy:** the screen says "check your inbox" whether or not the address has an account, so it never reveals who is a client.
-- **Supabase settings:**
-  - **Auth → URL Configuration:** Site URL `https://portal.kubeai.info`. Redirect URLs: `https://portal.kubeai.info/**`, plus the deploy-preview pattern for this Netlify site.
+- **Supabase settings (as applied):**
+  - **Auth → URL Configuration:** Site URL `https://portal.kubeai.info`. Redirect URLs: `https://portal.kubeai.info/**` only.
+  - **Previews:** Netlify preview URLs are not on the list, which is why previews stay on mock data. To test live sign-in on a preview, add its host to Redirect URLs first, then to `LIVE_HOSTS` in `config.js`.
+  - **Sign-in options:** Confirm email on, Magic link enabled, anonymous sign-ins and manual linking off.
   - **Email template:** the default "Magic Link" template works as is.
 
-> ⚠️ **The default sender only reaches the Supabase team.** Since 26 Sep 2024, Supabase's built-in email provider delivers only to members of the project's organisation, at 2 emails per hour across the whole project, on a best-effort basis. It's fine for testing with team addresses. Clients will not receive links until a custom SMTP sender is set up (for example a kubeai.info address). That change is made in Supabase settings only; the portal code stays the same. Turn off link tracking at the SMTP provider, because it can break the sign-in links.
+> **Email status:** custom SMTP is saved: `smtp.resend.com:465` as user `resend`, with the API key in Yacine's vault, never in this repo. Resend's verification of the portal.kubeai.info domain is **still pending**, so no sign-in email has been sent or tested. Until Yacine says delivery works, build against mock data, and send no email to any client or test address. Once custom SMTP is on, Supabase's email rate limit applies; the hourly figure isn't confirmed yet. Turn off link tracking in Resend, because it can break sign-in links.
 
 ## Still open (Yacine)
 
-1. **Messages and notification settings, the write path.** The spec treats sending messages and the notification toggles as live features, but v1 reads `doc` read-only. Until a write path is decided, the live portal shows the thread and the settings without saving changes, and says so plainly. Two options:
-   - a `portal_messages` table the client can only insert into, plus a `portal_prefs` row
-   - keep email as the reply channel for now
-2. **Screenshot hosting.** Where `activity[].screenshots[].src` images live, for example a private Supabase Storage bucket with signed URLs.
+1. **Screenshot hosting.** Where the `activity[].screenshots[].src` images live. A recommendation has been sent to Yacine; nothing is built until he decides.

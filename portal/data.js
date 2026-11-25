@@ -1,12 +1,13 @@
 // Data and auth layer (see CONTRACT.md).
 // Live: Supabase Auth magic link (PKCE) plus a read-only select of the signed-in client's portal_runs row.
-// Mock: the JSON files in mock/, used by the review copy and whenever config.js has no Supabase settings.
+// Mock: the JSON files in mock/, used everywhere except the live hosts in config.js (review copy, previews, local).
 import { SUPABASE_URL, SUPABASE_ANON_KEY, LIVE_HOSTS } from './config.js';
 
 export const SCENARIOS = ['day0', 'day9', 'restart', 'met', 'closed'];
 const params = new URLSearchParams(location.search);
 const configured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
-export const LIVE = configured && (LIVE_HOSTS.includes(location.hostname) || !params.has('mock'));
+// Live only on the hosts Supabase Auth redirects to; previews and local runs stay on mock data.
+export const LIVE = configured && LIVE_HOSTS.includes(location.hostname);
 // v1 reads the run document read-only. Writes (messages, prefs) wait on Yacine's write-path decision.
 export const WRITES = !LIVE;
 

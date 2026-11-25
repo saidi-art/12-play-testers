@@ -32,19 +32,20 @@ Yacine's v1 decisions are written up in `CONTRACT.md`:
 - **Sign-in:** Supabase Auth magic links.
 
 Files:
-- `config.js`: the Supabase URL and anon key. While both are empty, the portal runs on mock data, which is what the review copy does today. On portal.kubeai.info it always runs live and ignores `?mock=`. Elsewhere, such as deploy previews, `?mock=` still shows the review states.
+- `config.js`: the project URL and public anon key for `portal-kubeai`. The portal runs live only on portal.kubeai.info. Deploy previews and local runs always use mock data and never contact Supabase, and `?mock=` picks the state there.
 - `data.js`: the PKCE magic-link session and a read-only select of the client's `portal_runs` row. It checks each document before drawing it.
 - `vendor/supabase-js-2.118.0.js`: the official browser bundle, pinned and checked against the npm registry's integrity hash (MIT licence in `vendor/supabase-js-LICENSE`).
 - `fonts/`: a copy of the site font, so the folder works when served on its own as the site root.
 
-Before going live, Yacine needs to:
-1. Fill in `config.js` with the project URL and anon key.
-2. Run the SQL in `CONTRACT.md`.
-3. Add each client under Authentication → Users.
-4. Set the Site URL and Redirect URLs under Auth → URL Configuration.
-5. Set up a custom SMTP sender, because Supabase's default sender only reaches the project's own team.
-
-Still open: the write path for messages and notification settings. Until it's decided, the live portal shows both as read-only. Screenshot hosting is also undecided.
+Backend status (25 Nov, Yacine's handoff):
+- **Done:** project, table, access rules, Auth settings, and custom SMTP via Resend.
+- **Still to come:**
+  - Resend's domain check (pending), so no sign-in email has been sent yet
+  - the Netlify site and the portal.kubeai.info domain
+  - client users
+  - the first live sign-in test, with a test address Yacine will provide
+- **Decided:** v1 stays read-only, and email is the reply channel.
+- **Still open:** screenshot hosting.
 
 ## Notes for review
 

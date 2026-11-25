@@ -351,7 +351,7 @@ async function boot() {
     data = null;
   }
   // Coming back from a sign-in link (or a stale #signin): land on the run.
-  if (session && location.hash === '#signin') history.replaceState(null, '', location.pathname + location.search);
+  if (LIVE && session && location.hash === '#signin') history.replaceState(null, '', location.pathname + location.search);
   render();
 }
 
