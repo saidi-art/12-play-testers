@@ -109,6 +109,7 @@ function met(run) {
         <div class="k slate">Your next step</div>
         <h3>Apply for production in Play Console</h3>
         <p class="slate">The application is now open to you. Google reviews it, usually within 7 days. We stay in the thread until then.</p>
+        <!-- TODO: link to the production-access guide on play.kubeai.info once it is live; Messages until then (approved for checkpoint 1). -->
         <a class="btn btn-p btn-block" href="#messages" style="margin-top:14px">How to apply, step by step</a>
       </section>
     </main>
@@ -213,7 +214,7 @@ function errorScreen() {
     <main id="main" class="paper err" role="alert">
       <h1 class="sr" tabindex="-1">Something went wrong</h1>
       <h2>We couldn’t load your run</h2>
-      <p class="slate">Check your connection and try again. If it keeps happening, email us and we’ll sort it the same day.</p>
+      <p class="slate">Check your connection and try again. Still stuck? Email us and we’ll sort it.</p>
       <button type="button" class="btn btn-p btn-block" id="retry">Try again</button>
     </main>`);
 }

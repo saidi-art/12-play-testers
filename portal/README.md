@@ -28,9 +28,10 @@ python3 -m http.server 8000
 ## Notes for review
 
 - The "Next day" demo control from the prototype is not included (spec 04).
-- The design's welcome copy says "Monday 1 December", but 1 Dec 2026 is a Tuesday. The screen derives the weekday from `startDate`, so it reads "Tuesday".
-- These pieces aren't drawn in the design, so they follow the component set:
+- The weekday is worked out from `startDate`. The mock runs start Tuesday 1 Dec 2026, true to the calendar. The design's "Monday 1 December" was a copy error (confirmed).
+- Not drawn in the design, built from the component set, approved at checkpoint 1:
   - the run view while seats fill (day-0 counter with opted-in and joining cards)
   - the load-error card
   - the archived-thread footer
-- "How to apply, step by step" points to Messages until a guide exists.
+- "How to apply, step by step" points to Messages for now (approved). TODO in `app.js`: link the production-access guide on play.kubeai.info once it is live.
+- Copy for Yacine's sign-off (also on `review.html`): error card, "Check your connection and try again. Still stuck? Email us and we'll sort it."; archived footer, "This run is closed. The thread stays here to read."
