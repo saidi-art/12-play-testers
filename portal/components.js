@@ -40,18 +40,18 @@ export const stamp = (text = 'Requirement met') => `<div class="stamp">${esc(tex
 export const tick = () => `<span class="tick" aria-hidden="true">${tickSvg}</span>`;
 
 // Tester cards: active, missed day, replacement, opted in, joining.
-export function testerCard(t) {
+export function testerCard(t, { wide = false } = {}) {
   if (t.status === 'joining') return `<div class="tcard joining">Joining</div>`;
   if (t.status === 'opted_in')
     return `<div class="paper tcard optin">${avatar(t, 'lg')}<span class="tname">${esc(t.name)}</span><span class="st">Opted in</span></div>`;
   const repl = t.status === 'replacement';
   const missed = (t.streak || []).includes('miss');
   const label = `${t.name}: ${t.days} of 14 days${missed ? ', missed a day' : ''}${repl ? ', new replacement tester' : ''}`;
-  return `<div class="paper tcard${repl ? ' repl' : ''}">${repl ? `<span class="tag tag-o newtag" aria-hidden="true">New</span>` : ''}<div class="who">${avatar(t)}<span class="tname">${esc(t.name)}</span></div>${dots(t.streak, 7, label)}</div>`;
+  return `<div class="paper tcard${repl ? ' repl' : ''}">${repl ? `<span class="tag tag-o newtag" aria-hidden="true">New</span>` : ''}<div class="who">${avatar(t)}<span class="tname">${esc(t.name)}</span></div>${dots(t.streak, wide ? 14 : 7, label)}</div>`;
 }
 
-export const wall = (testers, label = 'Your 12 testers') =>
-  `<ul class="wall" aria-label="${esc(label)}">${testers.map((t) => `<li>${testerCard(t)}</li>`).join('')}</ul>`;
+export const wall = (testers, label = 'Your 12 testers', { wide = false, cls = '' } = {}) =>
+  `<ul class="wall${cls ? ' ' + cls : ''}" aria-label="${esc(label)}">${testers.map((t) => `<li>${testerCard(t, { wide })}</li>`).join('')}</ul>`;
 
 // App header: app tile + name + subtitle, optional bell.
 export function appHeader(run, sub, { bell = true } = {}) {
@@ -85,8 +85,37 @@ export function bubble(m) {
   return `<div class="bub ${side}${side === 'us' ? ' paper' : ''}">${esc(m.text)}</div>`;
 }
 
-export const polaroid = (s, rot) =>
-  `<li class="polaroid" style="transform:rotate(${rot}deg)">${s?.src ? `<img src="${esc(s.src)}" alt="${esc(s.alt || 'Daily screenshot')}" loading="lazy">` : `<div role="img" aria-label="Daily screenshot"></div>`}</li>`;
+// Polaroid: caption (tester first name) shows on the desktop Activity strip only.
+export const polaroid = (s, rot, { caption = false } = {}) => {
+  const alt = s?.tester ? `Daily screenshot from ${s.tester}` : 'Daily screenshot';
+  const pic = s?.src ? `<img src="${esc(s.src)}" alt="${esc(alt)}" loading="lazy">` : `<div role="img" aria-label="${esc(alt)}"></div>`;
+  return `<li class="polaroid${caption ? ' cap' : ''}" style="transform:rotate(${rot}deg)">${pic}${caption && s?.tester ? `<span aria-hidden="true">${esc(s.tester)}</span>` : ''}</li>`;
+};
+export const ROT = [-3, 2, -1.5, 2.5, -2, 1.5];
+
+// Dates: always computed from ISO dates in the data, so weekdays stay calendar-true.
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const asDate = (iso) => new Date(iso + 'T12:00:00Z');
+export const dayMonth = (iso) => `${asDate(iso).getUTCDate()} ${MONTHS[asDate(iso).getUTCMonth()]}`;
+export const fullDate = (iso) => `${DAYS[asDate(iso).getUTCDay()]} ${dayMonth(iso)}`;
+
+// Run status helpers shared by phone and desktop.
+export function counterVariant(run) {
+  if (run.state === 'restarted') return 'restart';
+  if (run.state === 'requirement_met' || run.state === 'closed') return 'done';
+  return 'day';
+}
+export function todayLine(run, testers) {
+  if (run.state === 'filling') {
+    const opted = testers.filter((t) => t.status !== 'joining').length;
+    return { alert: false, text: `${opted} of 12 opted in · starts ${dayMonth(run.startDate)}` };
+  }
+  if (run.state === 'requirement_met' || run.state === 'closed') return { alert: false, text: 'Requirement met' };
+  const missed = testers.filter((t) => t.status === 'missed' || t.streak?.[run.day - 1] === 'miss').length;
+  if (missed) return { alert: true, text: `${missed} ${missed === 1 ? 'tester' : 'testers'} missed today` };
+  return { alert: false, text: 'All 12 testers active today' };
+}
 
 export const stickyNote = (n, rot = -1) =>
   `<figure class="sticky" style="transform:rotate(${rot}deg);margin:0"><figcaption class="by">${esc(n.tester)} · note</figcaption><blockquote class="txt" style="margin:0">“${esc(n.text)}”</blockquote></figure>`;

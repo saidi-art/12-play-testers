@@ -3,18 +3,16 @@
 import { loadPortal, sendMessage, savePrefs } from './data.js';
 import {
   esc, icon, logoDots, dots, dayCounter, tag, stamp, tick, wall, appHeader, tabBar,
-  toggle, bubble, polaroid, stickyNote, emptyActivity, emptyMessages,
+  toggle, bubble, polaroid, stickyNote, emptyActivity, emptyMessages, ROT, dayMonth, fullDate, todayLine,
 } from './components.js';
+import * as desk from './desktop.js';
 
 const root = document.getElementById('app');
+// Phone screens are the reference; at 900px and up the same states render as the desktop twins.
+const wide = matchMedia('(min-width: 900px)');
 let data = null;
 
-const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const d = (iso) => new Date(iso + 'T12:00:00Z');
-const dayMonth = (iso) => `${d(iso).getUTCDate()} ${MONTHS[d(iso).getUTCMonth()]}`;
-const fullDate = (iso) => `${DAYS[d(iso).getUTCDay()]} ${dayMonth(iso)}`;
-const ROT = [-3, 2, -1.5, 2.5, -2, 1.5];
+
 
 function screen(inner, { scroll = false } = {}) {
   return `<div class="felt scr${scroll ? ' scroll' : ''}">${inner}</div>`;
@@ -60,7 +58,6 @@ function welcome(run, testers) {
 
 /* ---------- Run overview (home): filling, in progress, restarted ---------- */
 function home(run, testers) {
-  const filling = run.state === 'filling';
   const restart = run.state === 'restarted' && run.restart?.posted ? run.restart : null;
   let status;
   if (restart) {
@@ -72,13 +69,8 @@ function home(run, testers) {
       <a class="link link-g" href="#messages">Ask us about it</a>
     </section>`;
   } else {
-    const opted = testers.filter((t) => t.status !== 'joining').length;
-    const missed = testers.filter((t) => t.status === 'missed' || t.streak?.[run.day - 1] === 'miss').length;
-    const line = filling
-      ? `<span class="dot" aria-hidden="true"></span>${opted} of 12 opted in · starts ${esc(dayMonth(run.startDate))}`
-      : missed
-        ? `<span class="dot alert" aria-hidden="true"></span>${missed} ${missed === 1 ? 'tester' : 'testers'} missed today`
-        : `<span class="dot" aria-hidden="true"></span>All 12 testers active today`;
+    const tl = todayLine(run, testers);
+    const line = `<span class="dot${tl.alert ? ' alert' : ''}" aria-hidden="true"></span>${esc(tl.text)}`;
     status = `<section class="status">${dayCounter(run.day, 'day')}<div>
       <h1 class="bigday" tabindex="-1">Day ${run.day} of 14</h1>
       <div class="today">${line}</div>
@@ -233,7 +225,10 @@ function render() {
   let html;
   if (r === 'signin') html = signIn();
   else if (!data) html = errorScreen();
-  else {
+  else if (wide.matches) {
+    if (r === 'messages') data.unread = 0;
+    html = desk.render(r, data);
+  } else {
     const { run, testers } = data;
     if (r === 'welcome') html = welcome(run, testers);
     else if (r === 'activity') html = activity(run, data.activity);
@@ -283,8 +278,8 @@ function wire() {
       if (v) add({ from: 'client', type: 'text', text: v });
     });
     const file = f.querySelector('#file');
-    f.querySelector('#attach').addEventListener('click', () => file.click());
-    file.addEventListener('change', () => {
+    f.querySelector('#attach')?.addEventListener('click', () => file.click());
+    file?.addEventListener('change', () => {
       const fl = file.files[0];
       if (fl) add({ from: 'client', type: 'file', fileName: fl.name });
     });
@@ -303,4 +298,5 @@ async function boot() {
 }
 
 window.addEventListener('hashchange', render);
+wide.addEventListener('change', render);
 boot();

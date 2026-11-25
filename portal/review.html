@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Checkpoint 1 review · Client portal</title>
+<title>Client portal review</title>
 <link rel="stylesheet" href="portal.css">
 <style>
 body{background:#0B1A29;color:#fff}
@@ -25,13 +25,20 @@ figcaption a{color:#fff;font-weight:700}
 .signoff dl{margin:14px 0 0;display:grid;gap:12px}
 .signoff dt{font-size:13px;font-weight:800;color:var(--slate)}
 .signoff dd{margin:2px 0 0;font-size:17px;font-weight:600}
+.ck{font-size:24px;font-weight:800;margin:44px 0 6px}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(600px,1fr));gap:36px 28px;margin-top:22px}
+.dframe{width:600px;height:384px;overflow:hidden;border-radius:14px;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 18px 36px rgba(0,0,0,.45)}
+.dframe iframe{width:960px;height:615px;border:0;transform:scale(.625);transform-origin:0 0;display:block}
+.dgrid figcaption{max-width:600px}
+.dgrid>figure{min-width:0}
+@media(max-width:680px){.dgrid{grid-template-columns:1fr}.dframe{width:100%;height:auto;aspect-ratio:960/615}.dframe iframe{transform:scale(var(--k,.35))}}
 @media(max-width:360px){.frame{transform:scale(.9);transform-origin:0 0}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1>Checkpoint 1: phone shell, mock data</h1>
-<p class="sub">Review copy, not linked from the site. The nine phone states at 390 × 844, each rendered live from the mock JSON in <code>portal/mock/</code>. Open any state full-size to click through tabs, settings and messages. Sample content only: Pocket Planner, Maya, invented first names.</p>
+<h1>Client portal review copy</h1>
+<p class="sub">Not linked from the site. Every state renders live from the mock JSON in <code>portal/mock/</code>. Open any state full-size to click through it. Sample content only: Pocket Planner, Maya, invented first names.</p>
 <section class="signoff" aria-labelledby="so-h">
 <h2 id="so-h">Copy for sign-off</h2>
 <p class="sub">Two lines written for states the design doesn’t draw. Both approved in review; awaiting Yacine’s sign-off.</p>
@@ -40,6 +47,11 @@ figcaption a{color:#fff;font-weight:700}
 <div><dt>Archived-thread footer (closed run)</dt><dd>“This run is closed. The thread stays here to read.”</dd></div>
 </dl>
 </section>
+<h2 class="ck">Checkpoint 2: desktop, artboards 10–17</h2>
+<p class="sub">Shown at 960 × 615, the artboards' size. The same states render at 900px and wider; below that the phone screens apply.</p>
+<div class="dgrid" id="dgrid"></div>
+<h2 class="ck">Checkpoint 1: phone, nine states (approved)</h2>
+<p class="sub">390 × 844.</p>
 <div class="grid" id="grid"></div>
 </div>
 <script>
@@ -63,6 +75,24 @@ document.getElementById('grid').innerHTML = S.map(([t, m, r, s]) => {
   const u = `index.html?mock=${m}#${r}`;
   return `<figure><div class="frame"><iframe src="${u}" title="${t}" loading="lazy"></iframe></div><figcaption><b>${t}</b><span>${s}</span><br><a href="${u}" target="_blank" rel="noopener">Open full-size</a></figcaption></figure>`;
 }).join('');
+const D = [
+  ['10 · Run overview, day 9', 'day9', 'run', 'Wall and status lead; today’s activity and messages beside.'],
+  ['11 · Activity feed', 'day9', 'activity', 'All 12 screenshots per day, captioned by first name.'],
+  ['12 · Messages', 'day9', 'messages', 'Thread on paper; status card beside.'],
+  ['13 · Notification settings', 'day9', 'settings', 'A top-nav item on desktop; same toggles and quiet hours.'],
+  ['14 · Welcome, day 0', 'day0', 'run', 'Start date computed from the data (Tuesday 1 December).'],
+  ['15 · Streak restarted', 'restart', 'run', 'Wide orange banner; Sofia wears the New tag.'],
+  ['16 · Requirement met', 'met', 'run', 'Stamp, all-green wall, next step. No approval promise.'],
+  ['17 · Closed', 'closed', 'run', 'Full 12 × 14 grid, archive readable.'],
+  ['Extra · Activity empty (day 0)', 'day0', 'activity', 'Illustrative tag, empty state only.'],
+  ['Extra · Messages archived (closed)', 'closed', 'messages', 'Read-only thread with the archived footer.'],
+];
+document.getElementById('dgrid').innerHTML = D.map(([t, m, r, s]) => {
+  const u = `index.html?mock=${m}#${r}`;
+  return `<figure><div class="dframe"><iframe src="${u}" title="${t}" loading="lazy"></iframe></div><figcaption><b>${t}</b><span>${s}</span><br><a href="${u}" target="_blank" rel="noopener">Open full-size (use a window 900px or wider)</a></figcaption></figure>`;
+}).join('');
+const fit = () => document.querySelectorAll('.dframe').forEach((f) => f.style.setProperty('--k', f.clientWidth / 960));
+addEventListener('resize', fit); fit();
 </script>
 </body>
 </html>

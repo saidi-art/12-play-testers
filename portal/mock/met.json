@@ -284,50 +284,62 @@
       "screenshots": [
         {
           "id": "s0",
+          "tester": "Ana",
           "src": null
         },
         {
           "id": "s1",
+          "tester": "Ben",
           "src": null
         },
         {
           "id": "s2",
+          "tester": "Chloé",
           "src": null
         },
         {
           "id": "s3",
+          "tester": "Dev",
           "src": null
         },
         {
           "id": "s4",
+          "tester": "Emma",
           "src": null
         },
         {
           "id": "s5",
+          "tester": "Farid",
           "src": null
         },
         {
           "id": "s6",
+          "tester": "Grace",
           "src": null
         },
         {
           "id": "s7",
+          "tester": "Hugo",
           "src": null
         },
         {
           "id": "s8",
+          "tester": "Inès",
           "src": null
         },
         {
           "id": "s9",
+          "tester": "Jon",
           "src": null
         },
         {
           "id": "s10",
+          "tester": "Kofi",
           "src": null
         },
         {
           "id": "s11",
+          "tester": "Léa",
           "src": null
         }
       ],
@@ -341,50 +353,62 @@
       "screenshots": [
         {
           "id": "s0",
+          "tester": "Ana",
           "src": null
         },
         {
           "id": "s1",
+          "tester": "Ben",
           "src": null
         },
         {
           "id": "s2",
+          "tester": "Chloé",
           "src": null
         },
         {
           "id": "s3",
+          "tester": "Dev",
           "src": null
         },
         {
           "id": "s4",
+          "tester": "Emma",
           "src": null
         },
         {
           "id": "s5",
+          "tester": "Farid",
           "src": null
         },
         {
           "id": "s6",
+          "tester": "Grace",
           "src": null
         },
         {
           "id": "s7",
+          "tester": "Hugo",
           "src": null
         },
         {
           "id": "s8",
+          "tester": "Inès",
           "src": null
         },
         {
           "id": "s9",
+          "tester": "Jon",
           "src": null
         },
         {
           "id": "s10",
+          "tester": "Kofi",
           "src": null
         },
         {
           "id": "s11",
+          "tester": "Léa",
           "src": null
         }
       ],
@@ -403,50 +427,62 @@
       "screenshots": [
         {
           "id": "s0",
+          "tester": "Ana",
           "src": null
         },
         {
           "id": "s1",
+          "tester": "Ben",
           "src": null
         },
         {
           "id": "s2",
+          "tester": "Chloé",
           "src": null
         },
         {
           "id": "s3",
+          "tester": "Dev",
           "src": null
         },
         {
           "id": "s4",
+          "tester": "Emma",
           "src": null
         },
         {
           "id": "s5",
+          "tester": "Farid",
           "src": null
         },
         {
           "id": "s6",
+          "tester": "Grace",
           "src": null
         },
         {
           "id": "s7",
+          "tester": "Hugo",
           "src": null
         },
         {
           "id": "s8",
+          "tester": "Inès",
           "src": null
         },
         {
           "id": "s9",
+          "tester": "Jon",
           "src": null
         },
         {
           "id": "s10",
+          "tester": "Kofi",
           "src": null
         },
         {
           "id": "s11",
+          "tester": "Léa",
           "src": null
         }
       ],
