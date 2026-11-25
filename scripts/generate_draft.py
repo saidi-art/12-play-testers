@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """KubeAI SEO draft pipeline for play.kubeai.info (12-play-testers repo).
 
-One run drafts ONE queued keyword with Gemini, lints it against the brand
+One run drafts ONE queued keyword with Grok, lints it against the brand
 rules, renders guides/<slug>/index.html and opens a review PR. It never
 merges and never pushes to master. Nothing publishes until the founder
 reviews the PR and gives the merge go-ahead (gate 1), and no scheduled run
@@ -34,7 +34,7 @@ QUEUE_FILE = ROOT / "scripts" / "queue.json"
 PR_LABEL = "pipeline-draft"
 CONTACT = "quotes@kubeai.info"
 CORRECTIONS = "corrections@kubeai.info"
-BYLINE = ("Draft prepared with AI assistance (Gemini). Every guide is reviewed "
+BYLINE = ("Draft prepared with AI assistance (Grok). Every guide is reviewed "
           "by the KubeAI team before publishing.")
 PUBLISHER = "Publisher: Yacine Zairi"
 
@@ -390,7 +390,7 @@ def main():
              f"last 7 days, limit {WEEKLY_LIMIT}).")
     est = runs_this_month(token) * RUN_COST_ESTIMATE_USD
     if est >= SPEND_CAP_USD:
-        skip(f"monthly Gemini spend ceiling reached ({runs_this_month(token)} "
+        skip(f"monthly model spend ceiling reached ({runs_this_month(token)} "
              f"runs x ${RUN_COST_ESTIMATE_USD:.2f} estimate = ${est:.2f} of "
              f"${SPEND_CAP_USD:.2f} cap).")
 
