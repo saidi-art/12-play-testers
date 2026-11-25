@@ -1,16 +1,23 @@
 # Client portal: data and auth contract
 
-Status: **v1 decided by Yacine, backend applied and checked on 25 Nov 2026** (Supabase project `portal-kubeai`, ref `wtejbawmpmmhkusvgfla`, EU North). The SQL below is what was actually applied. Nothing merges or deploys before Yacine's review.
+Status: **v1 decided by Yacine.** Supabase project `portal-kubeai`, ref `wtejbawmpmmhkusvgfla`, EU North. Nothing merges before Yacine's review.
+
+Where each status claim below comes from:
+- **Verified by the dev team (read-only, 25 Nov):**
+  - Public auth settings: sign-ups off, email sign-in only, anonymous off.
+  - An anonymous read of `portal_runs` is refused.
+  - The files and headers served on portal.kubeai.info.
+- **Reported, not verified by the dev team** (marked *reported* below): Redirect URLs, SMTP, the email template, the storage bucket, email delivery and the live test. These come from status notes and need confirming in the Supabase dashboard.
 
 ## Decisions
 
 | Call | Decision |
 |---|---|
-| Where the portal lives | Static site on Netlify at **portal.kubeai.info**: the Netlify site `kubeai-portal` is set up with manual uploads (not linked to Git). The domain is added, and the DNS record and HTTPS are pending. The portal runs live only on that host; deploy previews and local runs use mock data. Upload only the runtime files listed under "Deploying" below. |
+| Where the portal lives | Static site on Netlify at **portal.kubeai.info**: the Netlify site `kubeai-portal` is set up with manual uploads (not linked to Git). portal.kubeai.info is **live over HTTPS** and currently serves commit `ddf8da62` (checked 25 Nov, file by file). The portal runs live only on that host; deploy previews and local runs use mock data. Upload only the runtime files listed under "Deploying" below. |
 | Admin data feed | **Supabase** holds the run state: **one JSON document per client, keyed by the client/app pair**, in the shape below. In v1 Yacine edits it by hand in the Supabase dashboard. No custom backend and no live endpoint: the portal reads the row read-only. A live endpoint is a later decision, only if the snapshot outgrows itself. |
 | Magic-link sender | **Supabase Auth** magic links by email, sent through custom SMTP: `noreply@portal.kubeai.info` ("Kubeai Portal") via Resend. The only email the portal ever causes is that sign-in link. |
 | Writes (messages, settings) | **None in v1.** The portal stays read-only, email stays the reply channel, and the live portal says so on Messages and Notifications. "Email us" stays without an address for now (play.kubeai.info has only a contact form); Yacine will decide on an address later. |
-| Screenshot hosting | **Private Supabase Storage bucket `run-screenshots`** in portal-kubeai, one folder per client, signed links that expire after 1 hour. Today's images load with the page; other days load only when the client scrolls to them. The portal side is built. **The bucket is applied and its isolation is checked:** own folder visible, other users and signed-out visitors see nothing, client uploads blocked. |
+| Screenshot hosting | **Private Supabase Storage bucket `run-screenshots`** in portal-kubeai, one folder per client, signed links that expire after 1 hour. Today's images load with the page; other days load only when the client scrolls to them. The portal side is built. **Bucket: *reported* applied and checked** (own folder visible, other users and signed-out visitors see nothing, client uploads blocked). This SQL was marked for Yacine's review before applying; **who applied it, and when, is still to be confirmed.** |
 | Previews | Stay on mock data. No preview host goes into Supabase's Redirect URLs or `LIVE_HOSTS` for now. |
 | Free plan | Free projects can pause after inactivity, which would take the whole portal offline. No paid upgrade and no keep-alive workaround are authorised; Yacine will decide separately. |
 
@@ -117,7 +124,7 @@ Change the link in the body to the following, keeping the subject. The wording a
 The upload at `ddf8da62` ignores `token_hash`, so a client using it would land on the sign-in screen with no error.
 
 > **Email status:**
-> - **Delivery tested:** domain verified in Resend, SMTP saved in Supabase (`smtp.resend.com:465`, user `resend`, API key in Yacine's vault, never in this repo). One test email reached a test inbox from `noreply@portal.kubeai.info`, and the Resend log confirms it.
+> - **Delivery tested (*reported*):** domain verified in Resend, SMTP saved in Supabase (`smtp.resend.com:465`, user `resend`, API key in Yacine's vault, never in this repo). One test email reached a test inbox from `noreply@portal.kubeai.info`, and the Resend log confirms it.
 > - **Not tested yet:** sign-in from the portal, which needs the live domain. The dev team sends no email to any client or test address.
 > - **Limits:** Supabase's email rate limit applies with custom SMTP; the hourly figure isn't confirmed yet. Turn off link tracking in Resend, because it can break sign-in links.
 
@@ -164,7 +171,7 @@ Leave out `CONTRACT.md`, `README.md`, `review.html` and `mock/`. They are intern
 - **Other days:** signed only when the client scrolls them into view (150 px ahead). On a phone, the second six of a day load only after "See all 12".
 - **Failures:** a missing file or a failed signing call leaves the placeholder frame and logs a warning; it never breaks the page.
 
-### Storage SQL (applied on 25 Nov 2026 and checked)
+### Storage SQL (*reported* applied; who applied it is to be confirmed)
 
 ```sql
 -- Private bucket: no public URLs, 2 MB per file, images only.
