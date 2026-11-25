@@ -3,17 +3,25 @@
 Status: **v1 decided by Yacine.** Supabase project `portal-kubeai`, ref `wtejbawmpmmhkusvgfla`, EU North. Nothing merges before Yacine's review.
 
 Where each status claim below comes from:
-- **Verified by the dev team (read-only, 25 Nov):**
-  - Public auth settings: sign-ups off, email sign-in only, anonymous off.
-  - An anonymous read of `portal_runs` is refused.
-  - The files and headers served on portal.kubeai.info.
-- **Reported, not verified by the dev team** (marked *reported* below): Redirect URLs, SMTP, the email template, the storage bucket, email delivery and the live test. These come from status notes and need confirming in the Supabase dashboard.
+- **Verified by the dev team, 25 Nov, through the Supabase connector:**
+  - **Project:** `ACTIVE_HEALTHY`.
+  - **`portal_runs`:** RLS on, and its policy and grants are exactly as below.
+  - **Storage:** bucket `run-screenshots` is private, 2 MB limit, images only, with its policy as below.
+  - **Isolation check (rolled back):**
+    - a client sees only their own run and files, even when the email's capitals differ
+    - client inserts are refused
+    - another user and anonymous visitors see nothing
+  - **Also verified:** the public auth settings (sign-ups off, email sign-in only, anonymous off) and the files and headers on portal.kubeai.info (commit `9fed2365`).
+- **Not visible through the connector, so confirm in the dashboard:**
+  - Redirect URLs
+  - SMTP sender
+  - the Magic Link template (still to be switched to the token link below)
 
 ## Decisions
 
 | Call | Decision |
 |---|---|
-| Where the portal lives | Static site on Netlify at **portal.kubeai.info**: the Netlify site `kubeai-portal` is set up with manual uploads (not linked to Git). portal.kubeai.info is **live over HTTPS** and currently serves commit `ddf8da62` (checked 25 Nov, file by file). The portal runs live only on that host; deploy previews and local runs use mock data. Upload only the runtime files listed under "Deploying" below. |
+| Where the portal lives | Static site on Netlify at **portal.kubeai.info**: the Netlify site `kubeai-portal` is set up with manual uploads (not linked to Git). portal.kubeai.info is **live over HTTPS** and currently serves commit `9fed2365` (checked 25 Nov, file by file, security headers live). The portal runs live only on that host; deploy previews and local runs use mock data. Upload only the runtime files listed under "Deploying" below. |
 | Admin data feed | **Supabase** holds the run state: **one JSON document per client, keyed by the client/app pair**, in the shape below. In v1 Yacine edits it by hand in the Supabase dashboard. No custom backend and no live endpoint: the portal reads the row read-only. A live endpoint is a later decision, only if the snapshot outgrows itself. |
 | Magic-link sender | **Supabase Auth** magic links by email, sent through custom SMTP: `noreply@portal.kubeai.info` ("Kubeai Portal") via Resend. The only email the portal ever causes is that sign-in link. |
 | Writes (messages, settings) | **None in v1.** The portal stays read-only, email stays the reply channel, and the live portal says so on Messages and Notifications. "Email us" stays without an address for now (play.kubeai.info has only a contact form); Yacine will decide on an address later. |
@@ -45,6 +53,14 @@ create policy "client reads own runs" on public.portal_runs
 -- Expose the table to the Data API for signed-in clients only.
 revoke all on public.portal_runs from anon, authenticated;
 grant select on public.portal_runs to authenticated;
+
+-- Migration rls_auth_jwt_initplan (25 Nov, dev team): same rules, with auth.jwt() evaluated once per
+-- query instead of once per row (Supabase lint 0003). Isolation re-checked afterwards.
+alter policy "client reads own runs" on public.portal_runs
+  using (lower(client_email) = lower((select auth.jwt()) ->> 'email'));
+alter policy "client reads own screenshots" on storage.objects
+  using (bucket_id = 'run-screenshots'
+         and (storage.foldername(name))[1] = lower((select auth.jwt()) ->> 'email'));
 ```
 
 Yacine's check run (rolled back):
