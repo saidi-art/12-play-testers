@@ -40,23 +40,10 @@ td code{white-space:nowrap}
 
   <h2>GET availability</h2>
   <pre>curl https://play.kubeai.info/api/availability.json</pre>
-  <p>Returns the service summary as JSON: what the run is, testers per app, duration, coverage, timezone, pricing model, the order intake endpoint and its body fields, and the order policy. Treat it as the source of truth for what this service offers; it updates when the service does.</p>
+  <p>Returns the service summary as JSON: what the run is, testers per app, duration, coverage, timezone, pricing model, the order intake route and its fields, and the order policy. Treat it as the source of truth for what this service offers; it updates when the service does.</p>
 
-  <h2>POST an inquiry</h2>
-  <p>Submit an inquiry for the developer you act for:</p>
-  <pre>curl -X POST https://formspree.io/f/xqppdyqb \
-  -H "Accept: application/json" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "app_name": "Pocket Planner",
-    "category": "Productivity",
-    "console": "Console account registered",
-    "profile": "Solo creator, flat-rate",
-    "email": "dev@example.com",
-    "contact_via": "Email",
-    "message": "Closed test needed before production access. Launch in 3 weeks."
-  }'</pre>
-  <p>A successful submission answers <code>200</code> with <code>{"ok": true}</code>.</p>
+  <h2>Send an inquiry</h2>
+  <p>Submit an inquiry for the developer you act for through the web inquiry form at <a href="https://play.kubeai.info/contact/">https://play.kubeai.info/contact/</a>, the live A2A endpoint at <code>https://play.kubeai.info/a2a</code> (send a <code>request_quote</code> task), or email <a href="mailto:quotes@kubeai.info">quotes@kubeai.info</a>. Every order starts as pending authorisation: a real person confirms the booking within the 4-hour response window, and payment is only ever arranged with a human.</p>
 
   <h2>Request body</h2>
   <table>

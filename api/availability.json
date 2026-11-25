@@ -12,19 +12,20 @@
   "coverage": "Worldwide, remote",
   "timezone": "Europe/Paris",
   "pricing": {
-    "model": "One flat one-time fee per app",
-    "public_price": null,
-    "quote": "Every inquiry gets a clear, flat-rate quote, with no obligation.",
+    "model": "starts_at",
+    "public_price": {
+      "amount": 65,
+      "currency": "USD",
+      "display": "Starting at $65 USD",
+      "basis": "starting price; final quote depends on scope"
+    },
+    "pricing_note": "Starting at $65 USD, the entry point of a managed end-to-end engagement. Final quote depends on scope. No subscriptions.",
     "subscriptions": false
   },
   "order_intake": {
-    "method": "POST",
-    "endpoint": "https://formspree.io/f/xqppdyqb",
-    "content_type": "application/json",
-    "headers": {
-      "Accept": "application/json"
-    },
-    "body": {
+    "method": "web inquiry form, the live A2A endpoint, or email quotes@kubeai.info",
+    "page": "https://play.kubeai.info/contact/",
+    "fields": {
       "app_name": "string, required",
       "category": "one of: Productivity, Games, Education, Health and fitness, Finance, Social and communication, Tools and utilities, Lifestyle, Other",
       "console": "'Console account registered' or 'Needs setup guidance'",
@@ -34,12 +35,11 @@
       "handle": "optional, only if contact is not email",
       "message": "optional",
       "_subject": "optional subject line"
-    },
-    "success_response": "200 with {\"ok\": true}"
+    }
   },
   "order_policy": {
     "initial_status": "pending authorisation",
-    "note": "Every order waits for a human approval step before anything is arranged. Payment is only ever arranged with a human, never through the intake endpoint.",
+    "note": "Every order waits for a human approval step before anything is arranged. Payment is only ever arranged with a human, never through any automated endpoint.",
     "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email quotes@kubeai.info."
   },
   "pages": {

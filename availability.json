@@ -31,12 +31,10 @@
     "sla_guarantee": false,
     "wording": "aims to reply within 4h"
   },
-  "intake_method": "web form (temporary) plus the live A2A endpoint (logs the request and notifies a human; no prices through the endpoint)",
-  "intake_endpoint": "https://formspree.io/f/xqppdyqb",
-  "intake_label": "a temporary form endpoint (Formspree)",
+  "intake_method": "the web inquiry form at https://play.kubeai.info/contact/ plus the live A2A endpoint (logs the request and notifies a human; no prices through the endpoint)",
   "api_status": "planned",
   "mcp_status": "planned",
-  "api_surface_today": "a static availability file, that temporary form, and the live A2A endpoint (logging-and-notify intake, not a pricing API)",
+  "api_surface_today": "a static availability file, the web inquiry form, and the live A2A endpoint (logging-and-notify intake, not a pricing API)",
   "human_approval_required": true,
   "client_confirms_booking": true,
   "approval_state": "pending_authorization",
@@ -51,22 +49,15 @@
   "client_approval": "The client/developer confirms the booking before anything is arranged",
   "automated_today": [
     "a2a request logging and human notification",
-    "form receive",
-    "form submit"
+    "web inquiry form receive"
   ],
   "payment_methods": "Gumroad",
   "service_area_and_language": "Worldwide, remote; timezone Europe/Paris; languages English and French",
   "contact_email": "quotes@kubeai.info",
-  "honeypot_field": "_gotcha",
-  "honeypot_rule": "leave empty",
   "order_intake": {
-    "method": "POST",
-    "endpoint": "https://formspree.io/f/xqppdyqb",
-    "content_type": "application/json",
-    "headers": {
-      "Accept": "application/json"
-    },
-    "body": {
+    "method": "web inquiry form, the live A2A endpoint, or email quotes@kubeai.info",
+    "page": "https://play.kubeai.info/contact/",
+    "fields": {
       "app_name": "string, required",
       "category": "one of: Productivity, Games, Education, Health and fitness, Finance, Social and communication, Tools and utilities, Lifestyle, Other",
       "console": "'Console account registered' or 'Needs setup guidance'",
@@ -74,14 +65,12 @@
       "email": "string, required",
       "contact_via": "Email, WhatsApp or Telegram",
       "handle": "optional, only if contact is not email",
-      "message": "optional",
-      "_subject": "optional subject line"
-    },
-    "success_response": "200 with {\"ok\": true}"
+      "message": "optional"
+    }
   },
   "order_policy": {
     "initial_status": "pending authorisation",
-    "note": "Every order waits for Yacine's authorisation and the client's booking confirmation before anything is arranged. Payment is only ever arranged with a human, never through the intake endpoint.",
+    "note": "Every order waits for Yacine's authorisation and the client's booking confirmation before anything is arranged. Payment is only ever arranged with a human, never through any automated endpoint.",
     "consent": "Software acting for a person should only submit an inquiry with that person's consent and their own contact details, or email quotes@kubeai.info."
   },
   "pages": {
@@ -99,7 +88,7 @@
     "markdown": "https://play.kubeai.info/content.md",
     "agent_card": "https://play.kubeai.info/.well-known/agent-card.json"
   },
-  "last_updated": "2026-11-12",
+  "last_updated": "2026-11-25",
   "operator": {
     "name": "kubeAI",
     "accountable_human": "Yacine Zairi",
@@ -108,5 +97,5 @@
   "agent_card": "https://play.kubeai.info/.well-known/agent-card.json",
   "a2a_status": "live",
   "a2a_endpoint": "https://play.kubeai.info/a2a",
-  "a2a_note": "A2A v1.0 JSON-RPC: Send Message (request_quote, book_cohort) plus Get Task; streaming and push not supported; the endpoint logs requests and notifies a human, it does not compute or return a price; no payments through the endpoint. The published service price is €200 flat per engagement."
+  "a2a_note": "A2A v1.0 JSON-RPC: Send Message (request_quote, book_cohort) plus Get Task; streaming and push not supported; the endpoint logs requests and notifies a human, it does not compute or return a price; no payments through the endpoint. Pricing starts at $65 USD; the final quote depends on scope."
 }
