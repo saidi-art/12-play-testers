@@ -33,7 +33,7 @@ function signIn() {
       ${linkFailed ? `<p class="paper" role="alert" style="margin-top:18px;padding:12px 14px;font-size:14px;font-weight:600;box-shadow:0 0 0 2px var(--orange)">${esc(COPY.linkFailed)}</p>` : ''}
       <form class="paper" id="signin" novalidate>
         <label for="email">Email</label>
-        <input class="field" id="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
+        <input class="field" id="email" type="email" autocomplete="email" inputmode="email" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="you@example.com" required>
         <button class="btn btn-p btn-block" type="submit">Email me a sign-in link</button>
         <p id="signin-status" role="status" class="slate" style="font-size:13px;margin:10px 2px 0" hidden></p>
       </form>

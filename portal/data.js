@@ -65,6 +65,8 @@ export async function getSession() {
 // Returns 'sent' | 'rate' | 'error' | 'mock'.
 // Unknown addresses report 'sent' too, so the screen never reveals who is a client.
 export async function requestLink(email) {
+  // Accounts are stored in lowercase; phone keyboards often capitalise the first letter.
+  email = String(email).trim().toLowerCase();
   if (!LIVE) return 'mock';
   try {
     const c = await client();
