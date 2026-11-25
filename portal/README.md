@@ -37,15 +37,27 @@ Files:
 - `vendor/supabase-js-2.118.0.js`: the official browser bundle, pinned and checked against the npm registry's integrity hash (MIT licence in `vendor/supabase-js-LICENSE`).
 - `fonts/`: a copy of the site font, so the folder works when served on its own as the site root.
 
-Backend status (25 Nov, Yacine's handoff):
-- **Done:** project, table, access rules, Auth settings, and custom SMTP via Resend.
-- **Still to come:**
-  - Resend's domain check (pending), so no sign-in email has been sent yet
-  - the Netlify site and the portal.kubeai.info domain
+Backend status:
+- **Done:**
+  - project, table, access rules and Auth settings
+  - Resend domain verified, and SMTP saved in Supabase
+- **Not yet:**
+  - no sign-in email sent, so delivery is untested
+  - the Netlify site and domain
   - client users
-  - the first live sign-in test, with a test address Yacine will provide
-- **Decided:** v1 stays read-only, and email is the reply channel.
-- **Still open:** screenshot hosting.
+  - the storage bucket: its SQL is in `CONTRACT.md`, waiting for Yacine's review
+- **Decided:**
+  - v1 stays read-only, with email as the reply channel
+  - previews stay on mock data
+  - screenshots live in a private bucket with signed links that expire after an hour
+
+Screenshots: `data.js` `signScreens()` signs storage paths in batches and caches the links. `app.js` `hydrateShots()` loads today's images with the page and the other days when they're scrolled into view. Until the bucket exists, placeholders show.
+
+Not built, by decision:
+- deletion or retention job (30 days after close is a proposal)
+- keep-alive or plan upgrade
+- writes of any kind
+- sending email from the dev side
 
 ## Notes for review
 

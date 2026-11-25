@@ -29,7 +29,7 @@ function activityCard(items) {
   const note = day.notes[0] || items.find((d) => d.notes.length)?.notes[0];
   return `<section class="paper dk-card" aria-labelledby="dka-h">
     <div class="dk-cardhead"><h2 id="dka-h">Today’s activity</h2><a class="link link-g" href="#activity">See all</a></div>
-    <ul class="shotgrid">${day.screenshots.slice(0, 6).map((s, j) => polaroid(s, ROT[j % 6])).join('')}</ul>
+    <ul class="shotgrid">${day.screenshots.slice(0, 6).map((s, j) => polaroid(s, ROT[j % 6], { eager: true })).join('')}</ul>
     ${note ? `<div style="margin-top:10px">${stickyNote(note, -1)}</div>` : ''}
   </section>`;
 }
@@ -140,7 +140,7 @@ function activity(data) {
   const body = items.length
     ? items.map((day, i) => `<section aria-labelledby="dkad-${i}" class="dk-day">
         <div class="dayhead"><h2 id="dkad-${i}">${esc(day.label || `Day ${day.day}`)}</h2><span class="muted">${day.checkedIn} of 12 checked in</span></div>
-        <div class="paper dk-strip"><ul class="shotgrid dk-shots">${day.screenshots.map((s, j) => polaroid(s, ROT[j % 6] / 2, { caption: true })).join('')}</ul></div>
+        <div class="paper dk-strip"><ul class="shotgrid dk-shots">${day.screenshots.map((s, j) => polaroid(s, ROT[j % 6] / 2, { caption: true, eager: i === 0 })).join('')}</ul></div>
         ${day.notes.map((n, j) => `<div class="dk-note">${stickyNote(n, j % 2 ? 0.4 : -0.4)}</div>`).join('')}
       </section>`).join('')
     : `<div class="dk-empty">${emptyActivity()}</div>`;

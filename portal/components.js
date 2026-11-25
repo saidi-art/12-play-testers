@@ -101,9 +101,13 @@ export function bubble(m) {
 }
 
 // Polaroid: caption (tester first name) shows on the desktop Activity strip only.
-export const polaroid = (s, rot, { caption = false } = {}) => {
+// A screenshot stored in the private bucket renders as a placeholder carrying data-path;
+// the page swaps in the image once a signed link exists (app.js hydrateShots).
+// eager = the current day, signed with the page; other days are signed when scrolled into view.
+export const polaroid = (s, rot, { caption = false, eager = false } = {}) => {
   const alt = s?.tester ? `Daily screenshot from ${s.tester}` : 'Daily screenshot';
-  const pic = s?.src ? `<img src="${esc(s.src)}" alt="${esc(alt)}" loading="lazy">` : `<div role="img" aria-label="${esc(alt)}"></div>`;
+  const hold = s?.path ? ` data-path="${esc(s.path)}"${eager ? ' data-eager' : ''}` : '';
+  const pic = s?.src ? `<img src="${esc(s.src)}" alt="${esc(alt)}" loading="lazy">` : `<div role="img" aria-label="${esc(alt)}"${hold}></div>`;
   return `<li class="polaroid${caption ? ' cap' : ''}" style="transform:rotate(${rot}deg)">${pic}${caption && s?.tester ? `<span aria-hidden="true">${esc(s.tester)}</span>` : ''}</li>`;
 };
 export const ROT = [-3, 2, -1.5, 2.5, -2, 1.5];

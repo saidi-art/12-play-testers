@@ -1,7 +1,7 @@
 // Client portal: hash router + nine phone states (desktop twins in desktop.js).
 // Live: Supabase magic-link session + read-only run document. Review copy: mock JSON (see data.js).
 // No demo controls ship (spec 04): day and tester states come only from the data.
-import { LIVE, WRITES, getSession, requestLink, signOut, loadPortal, sendMessage, savePrefs } from './data.js';
+import { LIVE, WRITES, getSession, requestLink, signOut, loadPortal, sendMessage, savePrefs, signScreens } from './data.js';
 import {
   esc, icon, logoDots, dots, dayCounter, tag, stamp, tick, wall, appHeader, tabBar,
   toggle, bubble, polaroid, stickyNote, emptyActivity, emptyMessages, ROT, dayMonth, fullDate, todayLine, COPY,
@@ -140,7 +140,7 @@ function activity(run, items) {
         <div class="dayhead"><h2 id="ad-${i}">${esc(day.label || `Day ${day.day}`)}</h2><span class="muted">${day.checkedIn} of 12 checked in</span></div>
         <div class="paper shots">
           <div class="lbl">Daily screenshots</div>
-          <ul class="shotgrid" data-shots="${i}">${day.screenshots.slice(0, 6).map((s, j) => polaroid(s, ROT[j % 6])).join('')}</ul>
+          <ul class="shotgrid" data-shots="${i}">${day.screenshots.slice(0, 6).map((s, j) => polaroid(s, ROT[j % 6], { eager: i === 0 })).join('')}</ul>
           ${day.screenshots.length > 6 ? `<button type="button" class="link link-g" style="font-size:13px;text-decoration:none" data-more="${i}">See all ${day.screenshots.length}</button>` : ''}
         </div>
         ${day.notes.map((n, j) => stickyNote(n, j % 2 ? 0.8 : -1)).join('')}
@@ -267,7 +267,38 @@ function render() {
   document.body.dataset.ready = '1';
 }
 
+/* ---------- Screenshots: today's load with the page, other days when scrolled into view ---------- */
+let shotObserver = null;
+async function fillShots(els) {
+  const urls = await signScreens(els.map((el) => el.dataset.path));
+  for (const el of els) {
+    const url = urls.get(el.dataset.path);
+    if (!url || !el.isConnected) continue;
+    const img = new Image();
+    img.alt = el.getAttribute('aria-label') || 'Daily screenshot';
+    img.decoding = 'async';
+    img.onload = () => el.isConnected && el.replaceWith(img);
+    img.src = url; // placeholder stays if the image fails to load
+  }
+}
+function hydrateShots(scope) {
+  const holds = [...scope.querySelectorAll('[data-path]')];
+  if (!holds.length) return;
+  const eager = holds.filter((el) => el.hasAttribute('data-eager'));
+  if (eager.length) fillShots(eager);
+  const later = holds.filter((el) => !el.hasAttribute('data-eager'));
+  if (!later.length) return;
+  shotObserver?.disconnect();
+  shotObserver = new IntersectionObserver((entries) => {
+    const seen = entries.filter((e) => e.isIntersecting).map((e) => e.target);
+    seen.forEach((el) => shotObserver.unobserve(el));
+    if (seen.length) fillShots(seen);
+  }, { rootMargin: '150px' });
+  later.forEach((el) => shotObserver.observe(el));
+}
+
 function wire() {
+  hydrateShots(root);
   const t = root.querySelector('#thread');
   if (t) t.scrollTop = t.scrollHeight;
 
@@ -303,8 +334,10 @@ function wire() {
 
   root.querySelectorAll('[data-more]').forEach((b) => b.addEventListener('click', () => {
     const i = +b.dataset.more;
-    root.querySelector(`[data-shots="${i}"]`).innerHTML = data.activity[i].screenshots.map((s, j) => polaroid(s, ROT[j % 6])).join('');
+    const grid = root.querySelector(`[data-shots="${i}"]`);
+    grid.innerHTML = data.activity[i].screenshots.map((s, j) => polaroid(s, ROT[j % 6], { eager: true })).join('');
     b.remove();
+    hydrateShots(grid);
   }));
 
   const f = root.querySelector('#composer');

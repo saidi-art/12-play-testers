@@ -8,3 +8,8 @@ export const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiO
 // (deploy previews, local) it runs on mock data and never contacts Supabase.
 // Add a preview host here only after it is added to Supabase Auth's Redirect URLs.
 export const LIVE_HOSTS = ['portal.kubeai.info'];
+
+// Activity screenshots: private Storage bucket, one folder per client, signed links (CONTRACT.md).
+// The bucket is created by Yacine after review; until then image requests fail and placeholders show.
+export const SCREENSHOT_BUCKET = 'run-screenshots';
+export const SIGNED_URL_SECONDS = 3600;

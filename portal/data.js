@@ -1,7 +1,7 @@
 // Data and auth layer (see CONTRACT.md).
 // Live: Supabase Auth magic link (PKCE) plus a read-only select of the signed-in client's portal_runs row.
 // Mock: the JSON files in mock/, used everywhere except the live hosts in config.js (review copy, previews, local).
-import { SUPABASE_URL, SUPABASE_ANON_KEY, LIVE_HOSTS } from './config.js';
+import { SUPABASE_URL, SUPABASE_ANON_KEY, LIVE_HOSTS, SCREENSHOT_BUCKET, SIGNED_URL_SECONDS } from './config.js';
 
 export const SCENARIOS = ['day0', 'day9', 'restart', 'met', 'closed'];
 const params = new URLSearchParams(location.search);
@@ -107,6 +107,9 @@ const STATES = ['filling', 'in_progress', 'restarted', 'requirement_met', 'close
 const TSTATUS = ['joining', 'opted_in', 'active', 'missed', 'replacement'];
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
 const safeUrl = (u) => u == null || /^https:\/\//i.test(u);
+// Storage path: <client email>/<app>/day-NN/<seat>-<name>.<ext>, plain characters only, no "..".
+const SHOT_PATH = /^[a-z0-9._@+-]+(\/[a-z0-9._@+-]+){1,4}\.(webp|jpe?g|png)$/;
+const safePath = (p) => p == null || (SHOT_PATH.test(p) && !p.includes('..'));
 
 // The document is edited by hand in the dashboard, so check it before drawing anything.
 export function validate(doc) {
@@ -128,6 +131,7 @@ export function validate(doc) {
   for (const [i, a] of (doc.activity || []).entries()) {
     if (!Array.isArray(a.screenshots) || !Array.isArray(a.notes)) p.push(`activity[${i}] screenshots/notes`);
     if ((a.screenshots || []).some((s) => !safeUrl(s.src))) p.push(`activity[${i}] screenshot src must be https`);
+    if ((a.screenshots || []).some((s) => !safePath(s.path))) p.push(`activity[${i}] screenshot path (lowercase, e.g. maya@x.app/pocket-planner/day-09/03-dev.webp)`);
   }
   for (const [i, m] of (doc.messages || []).entries()) {
     if (!['us', 'client'].includes(m.from) || !['text', 'file'].includes(m.type)) p.push(`messages[${i}] from/type`);
@@ -139,6 +143,35 @@ export function validate(doc) {
   doc.unread ||= 0;
   doc.prefs ||= { push: false, digest: false, quietFrom: '22:00', quietTo: '08:00' };
   return doc;
+}
+
+/* ---------- Screenshots: signed links from the private bucket ---------- */
+// Signs storage paths in one batched call and caches each link until shortly before it expires,
+// so scrolling back and forth never re-signs. Returns Map(path -> url); unsigned paths are left out.
+const signed = new Map(); // path -> { url, until }
+export async function signScreens(paths) {
+  const now = Date.now();
+  const out = new Map();
+  const todo = [];
+  for (const p of new Set(paths)) {
+    const c = signed.get(p);
+    if (c && c.until > now) out.set(p, c.url);
+    else todo.push(p);
+  }
+  if (!LIVE || !todo.length) return out;
+  try {
+    const c = await client();
+    const { data, error } = await c.storage.from(SCREENSHOT_BUCKET).createSignedUrls(todo, SIGNED_URL_SECONDS);
+    if (error) throw error;
+    for (const r of data || []) {
+      if (r.error || !r.signedUrl) { console.warn('Screenshot not signed', r.path, r.error); continue; }
+      signed.set(r.path, { url: r.signedUrl, until: now + (SIGNED_URL_SECONDS - 300) * 1000 });
+      out.set(r.path, r.signedUrl);
+    }
+  } catch (err) {
+    console.warn('Screenshot signing failed; showing placeholders', err);
+  }
+  return out;
 }
 
 // Mock-only: in live v1 the document is read-only and the UI doesn't offer these.

@@ -2,14 +2,17 @@
 
 Status: **v1 decided by Yacine, backend applied on 25 Nov 2026** (Supabase project `portal-kubeai`, ref `wtejbawmpmmhkusvgfla`, EU North). The SQL below is what was actually applied. Nothing merges or deploys before Yacine's review.
 
-## The three decisions
+## Decisions
 
 | Call | Decision |
 |---|---|
 | Where the portal lives | Static site on Netlify at **portal.kubeai.info**. Yacine sets up the DNS and the Netlify site (not done yet). The portal runs live only on that host; deploy previews and local runs use mock data. |
 | Admin data feed | **Supabase** holds the run state: **one JSON document per client, keyed by the client/app pair**, in the shape below. In v1 Yacine edits it by hand in the Supabase dashboard. No custom backend and no live endpoint: the portal reads the row read-only. A live endpoint is a later decision, only if the snapshot outgrows itself. |
 | Magic-link sender | **Supabase Auth** magic links by email, sent through custom SMTP: `noreply@portal.kubeai.info` ("Kubeai Portal") via Resend. The only email the portal ever causes is that sign-in link. |
-| Writes (messages, settings) | **None in v1.** The portal stays read-only, email stays the reply channel, and the live portal says so on Messages and Notifications. |
+| Writes (messages, settings) | **None in v1.** The portal stays read-only, email stays the reply channel, and the live portal says so on Messages and Notifications. "Email us" stays without an address for now (play.kubeai.info has only a contact form); Yacine will decide on an address later. |
+| Screenshot hosting | **Private Supabase Storage bucket `run-screenshots`** in portal-kubeai, one folder per client, signed links that expire after 1 hour. Today's images load with the page; other days load only when the client scrolls to them. The portal side is built. **The bucket and its SQL are not applied:** Yacine reviews and applies the SQL below, then runs the isolation check. |
+| Previews | Stay on mock data. No preview host goes into Supabase's Redirect URLs or `LIVE_HOSTS` for now. |
+| Free plan | Free projects can pause after inactivity, which would take the whole portal offline. No paid upgrade and no keep-alive workaround are authorised; Yacine will decide separately. |
 
 ## Storage: one row per client/app pair
 
@@ -73,7 +76,7 @@ This is the same shape as `portal/mock/*.json`, which serve as worked examples f
 | `activity` | array, newest first | `[]` shows the Illustrative empty state |
 | `activity[].date` / `.day` / `.label` | | e.g. `2026-12-09`, `9`, `Today, day 9` |
 | `activity[].checkedIn` | 0–12 | |
-| `activity[].screenshots[]` | `{ id, tester, src }` | `src` is an image URL, or null for a placeholder frame |
+| `activity[].screenshots[]` | `{ id, tester, path }` | `path` is the file's storage path in `run-screenshots` (see Screenshots below). Leave it out for a placeholder frame. `src` (an https URL) is still accepted for an image hosted elsewhere, but storage `path` is the v1 route. |
 | `activity[].notes[]` | `{ tester, text }` | Shown as sticky notes |
 | `messages` | array, oldest first | `[]` shows "Say hello" |
 | `messages[]` | `{ from, type, day, text \| fileName, url? }` | `from` is `us` or `client`; `type` is `text` or `file` |
@@ -95,8 +98,82 @@ Privacy rules (spec 05): first names and initial avatars only. Never put real te
   - **Sign-in options:** Confirm email on, Magic link enabled, anonymous sign-ins and manual linking off.
   - **Email template:** the default "Magic Link" template works as is.
 
-> **Email status:** custom SMTP is saved: `smtp.resend.com:465` as user `resend`, with the API key in Yacine's vault, never in this repo. Resend's verification of the portal.kubeai.info domain is **still pending**, so no sign-in email has been sent or tested. Until Yacine says delivery works, build against mock data, and send no email to any client or test address. Once custom SMTP is on, Supabase's email rate limit applies; the hourly figure isn't confirmed yet. Turn off link tracking in Resend, because it can break sign-in links.
+> **Email status:**
+> - **Set up:** the portal.kubeai.info domain is verified in Resend, and the SMTP connection is saved in Supabase (`smtp.resend.com:465`, user `resend`, API key in Yacine's vault, never in this repo).
+> - **Untested:** no sign-in email has been sent yet, so delivery hasn't been tested. The dev team sends no email to any client or test address.
+> - **Limits:** once custom SMTP is on, Supabase's email rate limit applies; the hourly figure isn't confirmed yet. Turn off link tracking in Resend, because it can break sign-in links.
+
+Test order (Yacine):
+1. **Email delivery:** Yacine sends one magic-link email from the Supabase dashboard to a test address he chooses, to check it arrives from `noreply@portal.kubeai.info`. He won't click the link, so this doesn't test sign-in.
+2. **Full sign-in:** only once the portal is live on portal.kubeai.info. That needs the Netlify site and domain, and publishing isn't approved yet.
+
+## Screenshots: private bucket, signed links
+
+**Decided:**
+- A private bucket `run-screenshots` in portal-kubeai.
+- One folder per client, named with the client's sign-in email in **lowercase**.
+- Links are signed per image and expire after 1 hour.
+
+**File layout:** `<client email, lowercase>/<app slug>/day-NN/<seat>-<first name>.webp`, for example `maya@pocketplanner.app/pocket-planner/day-09/03-dev.webp`. The portal accepts only lowercase letters, digits, `. _ @ + -` and `/`, ending in `.webp`, `.jpg`, `.jpeg` or `.png`.
+
+**Upload rules:**
+- **Hard rule:** crop the status bar and any notifications before upload, so no tester names, contacts or other apps' content appear.
+- Resize to about 1080 px wide WebP, roughly 100–200 KB each. That's about 168 images and 25 MB per 14-day run.
+
+**How the portal loads them:**
+- **Signing:** it signs storage paths with the client's own session in batched calls (`createSignedUrls`, 3600 s) and caches each link until 5 minutes before expiry, so nothing is signed twice.
+- **Today:** the newest day's thumbnails, including the desktop sidebar's first 6, are signed with the page.
+- **Other days:** signed only when the client scrolls them into view (150 px ahead). On a phone, the second six of a day load only after "See all 12".
+- **Failures:** a missing file or a failed signing call leaves the placeholder frame and logs a warning; it never breaks the page.
+
+### Storage SQL: final, for Yacine to review and apply (not yet applied)
+
+```sql
+-- Private bucket: no public URLs, 2 MB per file, images only.
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('run-screenshots', 'run-screenshots', false, 2097152,
+        array['image/webp', 'image/jpeg', 'image/png']);
+
+-- Signed-in clients can read (and so sign links for) only files in their own folder.
+-- No insert, update or delete policies: uploads and deletions happen in the dashboard (service role).
+create policy "client reads own screenshots" on storage.objects
+  for select to authenticated
+  using (
+    bucket_id = 'run-screenshots'
+    and (storage.foldername(name))[1] = lower(auth.jwt() ->> 'email')
+  );
+```
+
+Notes:
+- Supabase's storage schema comes with RLS on `storage.objects` and its own grants; the auto-grant setting for new `public` tables doesn't apply here. No `anon` policy exists, so anonymous requests are refused.
+- The policy compares the folder with the **lowercased** sign-in email, so folders must be created in lowercase.
+
+**Isolation check, after applying.** This is the same as on `portal_runs`:
+1. Upload one test image to `a@x.test/check/day-01/00-test.webp` and one to `b@y.test/check/day-01/00-test.webp`.
+2. Run this in the SQL editor:
+
+```sql
+begin;
+set local role authenticated;
+select set_config('request.jwt.claims', '{"role":"authenticated","email":"A@X.test"}', true);
+select name from storage.objects where bucket_id = 'run-screenshots';  -- expect only a@x.test/…
+select set_config('request.jwt.claims', '{"role":"authenticated","email":"nobody@z.test"}', true);
+select name from storage.objects where bucket_id = 'run-screenshots';  -- expect no rows
+reset role;
+set local role anon;
+select set_config('request.jwt.claims', '{"role":"anon"}', true);
+select name from storage.objects where bucket_id = 'run-screenshots';  -- expect no rows
+rollback;
+```
+
+3. Delete the two test images.
+
+**Retention (proposal for Yacine's review):** delete a client's folder **30 days after the run closes** (`run.closedOn` + 30). Nothing is built or scheduled: no deletion job until Yacine confirms. Until then, deletion is by hand in the dashboard.
 
 ## Still open (Yacine)
 
-1. **Screenshot hosting.** Where the `activity[].screenshots[].src` images live. A recommendation has been sent to Yacine; nothing is built until he decides.
+1. **Storage SQL:** review and apply the SQL above, then run the isolation check.
+2. **Retention:** confirm the 30-days-after-close proposal and how deletion happens. No job is built until then.
+3. **Free plan pausing:** upgrade or not. Nothing is added in the meantime.
+4. **Support email for "Email us":** later.
+5. **Publishing:** the Netlify site, the domain, and the go-ahead to publish, which comes before the full sign-in test.
