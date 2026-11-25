@@ -71,8 +71,23 @@ export function tabBar(current, unread = 0) {
     .join('')}</nav>`;
 }
 
-export const toggle = (id, title, sub, checked) =>
-  `<label class="pref" for="${id}"><span><b>${esc(title)}</b><small>${esc(sub)}</small></span><input class="sw" type="checkbox" id="${id}"${checked ? ' checked' : ''}></label>`;
+export const toggle = (id, title, sub, checked, { disabled = false } = {}) =>
+  `<label class="pref" for="${id}"><span><b>${esc(title)}</b><small>${esc(sub)}</small></span><input class="sw" type="checkbox" id="${id}"${checked ? ' checked' : ''}${disabled ? ' disabled' : ''}></label>`;
+
+// Live v1 reads the run document read-only (CONTRACT.md, "Still open"). These lines say so plainly
+// instead of pretending a message or setting was saved. Copy awaits sign-off on review.html.
+export const COPY = {
+  readonlyMessages: 'Replies from the portal aren’t switched on yet. Email us in the meantime.',
+  readonlyPrefs: 'These settings are read-only for now. Email us if you’d like them changed.',
+  signinSent: 'If that email has a run with us, a sign-in link is on its way.',
+  signinRate: 'Too many sign-in emails just now. Wait a few minutes, then try again.',
+  signinError: 'We couldn’t send the link. Check your connection and try again.',
+  signinInvalid: 'Enter the email you booked with.',
+  signinMock: 'Review copy: sign-in isn’t connected here, so no email was sent.',
+  linkFailed: 'That sign-in link has expired or was already used. Ask for a new one below.',
+  noRunTitle: 'We can’t find a run for this email yet',
+  noRunBody: 'If you’ve just booked, we’ll set it up shortly. Signed in with the wrong address? Sign out and use the one you booked with.',
+};
 
 export function bubble(m) {
   const side = m.from === 'client' ? 'me' : 'us';

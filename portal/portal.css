@@ -1,6 +1,6 @@
 /* 12 Play Testers client portal — styles ported from 12PlayTesters_client-portal_full-colour.html.
    Tokens and component classes match the design file. Do not restyle or re-theme. */
-@font-face{font-family:'Schibsted Grotesk';src:url('../fonts/schibsted-grotesk-var.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Schibsted Grotesk';src:url('fonts/schibsted-grotesk-var.woff2') format('woff2');font-weight:100 900;font-display:swap}
 :root{--n0:#0F2438;--n1:#16314C;--paper:#FBF8F0;--paper2:#F1ECDF;--ink:#17324D;--slate:#55606A;--muted:#A3B0B8;
 --green:#1A7F50;--green2:#2E9E68;--orange:#EC9430;--up:#DED8C8;--line:#E6E0D0;--red:#C0432E;--sticky:#F4D86A}
 *{box-sizing:border-box}
@@ -150,6 +150,9 @@ h1,h2,p{margin:0}
 .sw{appearance:none;-webkit-appearance:none;width:52px;height:32px;border-radius:16px;background:#C9C2B0;position:relative;flex:none;margin:0;cursor:pointer}
 .sw::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:left .15s}
 .sw:checked{background:var(--green)} .sw:checked::after{left:23px}
+.sw:disabled,select.field:disabled{opacity:.55;cursor:not-allowed}
+.field[aria-invalid="true"]{border-color:var(--orange)}
+button:disabled{opacity:.6;cursor:progress}
 .pref{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px;min-height:44px;cursor:pointer}
 .pref b{display:block;font-size:16px}
 .pref small{display:block;font-size:13px;margin-top:2px;color:var(--slate)}

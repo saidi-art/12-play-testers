@@ -1,16 +1,21 @@
-// Client portal static shell: hash router + nine phone states, rendered from mock JSON.
+// Client portal: hash router + nine phone states (desktop twins in desktop.js).
+// Live: Supabase magic-link session + read-only run document. Review copy: mock JSON (see data.js).
 // No demo controls ship (spec 04): day and tester states come only from the data.
-import { loadPortal, sendMessage, savePrefs } from './data.js';
+import { LIVE, WRITES, getSession, requestLink, signOut, loadPortal, sendMessage, savePrefs } from './data.js';
 import {
   esc, icon, logoDots, dots, dayCounter, tag, stamp, tick, wall, appHeader, tabBar,
-  toggle, bubble, polaroid, stickyNote, emptyActivity, emptyMessages, ROT, dayMonth, fullDate, todayLine,
+  toggle, bubble, polaroid, stickyNote, emptyActivity, emptyMessages, ROT, dayMonth, fullDate, todayLine, COPY,
 } from './components.js';
 import * as desk from './desktop.js';
 
 const root = document.getElementById('app');
 // Phone screens are the reference; at 900px and up the same states render as the desktop twins.
 const wide = matchMedia('(min-width: 900px)');
-let data = null;
+let data = null;        // run document
+let session = null;     // { email } when signed in (live), or { email: null } on mock data
+let noRun = false;      // signed in, but no portal_runs row for this email
+let linkFailed = false; // opened from a sign-in link that didn't work
+const signedInAs = () => session?.email || data?.run.clientEmail || '';
 
 
 
@@ -25,6 +30,7 @@ function signIn() {
     <main class="signin" id="main">
       <h1 tabindex="-1">Follow your run</h1>
       <p class="lede muted">Enter the email you booked with. We’ll send a sign-in link. No password.</p>
+      ${linkFailed ? `<p class="paper" role="alert" style="margin-top:18px;padding:12px 14px;font-size:14px;font-weight:600;box-shadow:0 0 0 2px var(--orange)">${esc(COPY.linkFailed)}</p>` : ''}
       <form class="paper" id="signin" novalidate>
         <label for="email">Email</label>
         <input class="field" id="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required>
@@ -121,7 +127,7 @@ function closed(run, testers) {
     <div class="actions" style="padding-bottom:6px">
       <a class="btn btn-s btn-block" href="#activity">Look back at the activity</a>
       <a class="btn btn-s btn-block" href="#messages">Read the thread (archived)</a>
-      <a class="btn btn-g" href="/#contact" style="align-self:center">Another app to test? Get in touch</a>
+      <a class="btn btn-g" href="https://play.kubeai.info/#contact" style="align-self:center">Another app to test? Get in touch</a>
     </div>
     <div style="height:14px"></div>`);
 }
@@ -161,6 +167,7 @@ function messages(run, msgs) {
       ${msgs.length ? `<div class="thread" id="thread" role="log" aria-label="Message thread">${thread}</div>` : `<div class="body">${emptyMessages()}</div>`}
       ${archived
         ? '<p class="archived muted">This run is closed. The thread stays here to read.</p>'
+        : !WRITES ? `<p class="archived muted">${esc(COPY.readonlyMessages)}</p>`
         : `<form class="composer" id="composer">
             <input type="file" id="file" class="sr" tabindex="-1" aria-hidden="true">
             <button type="button" class="paper ibtn" id="attach" aria-label="Attach a file">${icon('attach')}</button>
@@ -180,22 +187,35 @@ function settings(run, prefs) {
     <header class="backhdr"><a class="ibtn bare" href="#run" aria-label="Back to your run">${icon('back')}</a><h1 tabindex="-1">Notifications</h1></header>
     <main id="main" class="body scrolly" style="gap:12px;padding-top:6px">
       <div class="paper">
-        ${toggle('push', 'Push notifications', 'Milestones and messages from us', prefs.push)}
+        ${toggle('push', 'Push notifications', 'Milestones and messages from us', prefs.push, { disabled: !WRITES })}
         <div class="rule"></div>
-        ${toggle('digest', 'Daily email digest', 'One email a day with the run’s status', prefs.digest)}
+        ${toggle('digest', 'Daily email digest', 'One email a day with the run’s status', prefs.digest, { disabled: !WRITES })}
       </div>
+      ${WRITES ? '' : `<p class="muted" style="margin:0 4px;font-size:13px;line-height:1.5">${esc(COPY.readonlyPrefs)}</p>`}
       <fieldset class="paper" style="padding:16px;border:0;margin:0">
         <legend class="sr">Quiet hours</legend>
         <div style="font-weight:700;font-size:16px" aria-hidden="true">Quiet hours</div>
         <div class="slate" style="font-size:13px;margin-top:2px">No push notifications between these times</div>
         <div class="qh">
-          <label class="slate">From<select class="field" id="qfrom">${opts(prefs.quietFrom)}</select></label>
-          <label class="slate">To<select class="field" id="qto">${opts(prefs.quietTo)}</select></label>
+          <label class="slate">From<select class="field" id="qfrom"${WRITES ? '' : ' disabled'}>${opts(prefs.quietFrom)}</select></label>
+          <label class="slate">To<select class="field" id="qto"${WRITES ? '' : ' disabled'}>${opts(prefs.quietTo)}</select></label>
         </div>
       </fieldset>
       <p class="muted" style="margin:6px 4px 0;font-size:13px;line-height:1.5">On iPhone, add the portal to your home screen first: Safari only sends web notifications to apps added there.</p>
-      <p class="muted" style="margin:14px 4px 0;font-size:13px">Signed in as ${esc(run.clientEmail)}</p>
-      <a href="#signin" class="link" style="align-self:flex-start;margin-left:4px;font-size:15px;color:#fff">Sign out</a>
+      <p class="muted" style="margin:14px 4px 0;font-size:13px">Signed in as ${esc(signedInAs())}</p>
+      <button type="button" class="link" data-signout style="align-self:flex-start;margin-left:4px;font-size:15px;color:#fff">Sign out</button>
+    </main>`);
+}
+
+/* ---------- Signed in, but no run for this email ---------- */
+function noRunScreen() {
+  return screen(`
+    <div class="brandrow">${logoDots()}<span>12 Play Testers</span></div>
+    <main id="main" class="paper err">
+      <h1 tabindex="-1" style="font-size:20px;font-weight:800">${esc(COPY.noRunTitle)}</h1>
+      <p class="slate">${esc(COPY.noRunBody)}</p>
+      <p class="slate" style="margin-top:-6px;font-size:13px">Signed in as ${esc(signedInAs())}</p>
+      <button type="button" class="btn btn-s btn-block" data-signout>Sign out</button>
     </main>`);
 }
 
@@ -223,11 +243,12 @@ function route() {
 function render() {
   const r = route();
   let html;
-  if (r === 'signin') html = signIn();
+  if (r === 'signin' || (LIVE && !session)) html = signIn();
+  else if (noRun) html = noRunScreen();
   else if (!data) html = errorScreen();
   else if (wide.matches) {
     if (r === 'messages') data.unread = 0;
-    html = desk.render(r, data);
+    html = desk.render(r, data, { email: signedInAs() });
   } else {
     const { run, testers } = data;
     if (r === 'welcome') html = welcome(run, testers);
@@ -250,12 +271,33 @@ function wire() {
   const t = root.querySelector('#thread');
   if (t) t.scrollTop = t.scrollHeight;
 
-  root.querySelector('#signin')?.addEventListener('submit', (e) => {
+  const form = root.querySelector('#signin');
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const s = root.querySelector('#signin-status');
+    const s = form.querySelector('#signin-status');
+    const input = form.querySelector('#email');
+    const btn = form.querySelector('button[type=submit]');
     s.hidden = false;
-    s.textContent = 'Review copy: sign-in isn’t connected yet, so no email was sent.';
+    if (!input.value.trim() || !input.checkValidity()) {
+      s.textContent = COPY.signinInvalid;
+      input.setAttribute('aria-invalid', 'true');
+      input.focus();
+      return;
+    }
+    input.removeAttribute('aria-invalid');
+    btn.disabled = true;
+    s.textContent = '';
+    const res = await requestLink(input.value.trim());
+    btn.disabled = false;
+    s.textContent = { sent: COPY.signinSent, rate: COPY.signinRate, error: COPY.signinError, mock: COPY.signinMock }[res];
   });
+
+  root.querySelectorAll('[data-signout]').forEach((b) => b.addEventListener('click', async () => {
+    await signOut();
+    if (LIVE) { session = null; data = null; noRun = false; }
+    location.hash = 'signin';
+    render();
+  }));
 
   root.querySelector('#retry')?.addEventListener('click', boot);
 
@@ -293,7 +335,23 @@ function wire() {
 }
 
 async function boot() {
-  try { data = await loadPortal(); } catch (err) { console.error(err); data = null; }
+  noRun = false;
+  try {
+    ({ session, linkFailed } = await getSession());
+  } catch (err) {
+    console.error(err);
+    session = null;
+  }
+  if (LIVE && !session) { data = null; render(); return; }
+  try {
+    data = await loadPortal();
+    noRun = LIVE && data === null;
+  } catch (err) {
+    console.error(err);
+    data = null;
+  }
+  // Coming back from a sign-in link (or a stale #signin): land on the run.
+  if (session && location.hash === '#signin') history.replaceState(null, '', location.pathname + location.search);
   render();
 }
 

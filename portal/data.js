@@ -1,29 +1,153 @@
-// Data layer for the static shell: mock JSON only.
-// The real contract comes from the admin side and is Yacine's decision (spec 06/07).
-// No endpoints are defined here on purpose; checkpoint 3 replaces loadPortal() once the feed is confirmed.
+// Data and auth layer (see CONTRACT.md).
+// Live: Supabase Auth magic link (PKCE) plus a read-only select of the signed-in client's portal_runs row.
+// Mock: the JSON files in mock/, used by the review copy and whenever config.js has no Supabase settings.
+import { SUPABASE_URL, SUPABASE_ANON_KEY, LIVE_HOSTS } from './config.js';
 
 export const SCENARIOS = ['day0', 'day9', 'restart', 'met', 'closed'];
+const params = new URLSearchParams(location.search);
+const configured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
+export const LIVE = configured && (LIVE_HOSTS.includes(location.hostname) || !params.has('mock'));
+// v1 reads the run document read-only. Writes (messages, prefs) wait on Yacine's write-path decision.
+export const WRITES = !LIVE;
 
+/* ---------- Supabase client (vendored supabase-js 2.118.0, loaded only in live mode) ---------- */
+let sb = null;
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error(`Could not load ${src}`));
+    document.head.appendChild(s);
+  });
+}
+async function client() {
+  if (sb) return sb;
+  if (!window.supabase?.createClient) await loadScript('vendor/supabase-js-2.118.0.js');
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    auth: { flowType: 'pkce', detectSessionInUrl: true, persistSession: true, autoRefreshToken: true },
+  });
+  return sb;
+}
+
+// Strip auth parameters from the address bar once handled, keeping ?app= and the hash route.
+function cleanUrl() {
+  const keep = new URLSearchParams();
+  for (const k of ['app', 'mock']) if (params.has(k)) keep.set(k, params.get(k));
+  const q = keep.toString();
+  history.replaceState(null, '', location.pathname + (q ? `?${q}` : '') + location.hash);
+}
+
+/* ---------- Session ---------- */
+// Returns { email } or null. linkFailed is true when the page was opened from a sign-in link that didn't work.
+export async function getSession() {
+  if (!LIVE) return { session: { email: null }, linkFailed: false };
+  const fromLink = params.has('code') || params.has('error') || params.has('error_description');
+  const c = await client();
+  const { data, error } = await c.auth.getSession();
+  if (error) console.error('Session error', error);
+  if (fromLink) cleanUrl();
+  const email = data?.session?.user?.email || null;
+  return { session: email ? { email } : null, linkFailed: fromLink && !email };
+}
+
+// Returns 'sent' | 'rate' | 'error' | 'mock'.
+// Unknown addresses report 'sent' too, so the screen never reveals who is a client.
+export async function requestLink(email) {
+  if (!LIVE) return 'mock';
+  try {
+    const c = await client();
+    const { error } = await c.auth.signInWithOtp({
+      email,
+      options: { shouldCreateUser: false, emailRedirectTo: location.origin + location.pathname },
+    });
+    if (!error) return 'sent';
+    console.warn('Magic link request', error.status, error.code, error.message);
+    if (error.status === 429) return 'rate';
+    if (error.status >= 400 && error.status < 500) return 'sent';
+    return 'error';
+  } catch (err) {
+    console.error(err);
+    return 'error';
+  }
+}
+
+export async function signOut() {
+  if (!LIVE) return;
+  const c = await client();
+  await c.auth.signOut();
+}
+
+/* ---------- Run document ---------- */
 export function scenario() {
-  const m = new URLSearchParams(location.search).get('mock');
+  const m = params.get('mock');
   return m === 'error' || SCENARIOS.includes(m) ? m : 'day9';
 }
 
+// Returns the validated document, or null when the signed-in client has no run yet.
 export async function loadPortal() {
-  const s = scenario();
-  if (s === 'error') throw new Error('Mock load failure');
-  const res = await fetch(`mock/${s}.json`, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`Mock ${s} returned ${res.status}`);
-  return res.json();
+  if (!LIVE) {
+    const s = scenario();
+    if (s === 'error') throw new Error('Mock load failure');
+    const res = await fetch(`mock/${s}.json`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Mock ${s} returned ${res.status}`);
+    return validate(await res.json());
+  }
+  const c = await client();
+  let q = c.from('portal_runs').select('doc, app').order('updated_at', { ascending: false }).limit(1);
+  if (params.get('app')) q = q.eq('app', params.get('app'));
+  const { data, error } = await q;
+  if (error) throw new Error(`portal_runs: ${error.message}`);
+  if (!data?.length) return null;
+  return validate(data[0].doc);
 }
 
-// Messaging and notification toggles are live features in production.
-// In the shell they only update local state; nothing leaves the page.
+const STATES = ['filling', 'in_progress', 'restarted', 'requirement_met', 'closed'];
+const TSTATUS = ['joining', 'opted_in', 'active', 'missed', 'replacement'];
+const ISO = /^\d{4}-\d{2}-\d{2}$/;
+const safeUrl = (u) => u == null || /^https:\/\//i.test(u);
+
+// The document is edited by hand in the dashboard, so check it before drawing anything.
+export function validate(doc) {
+  const p = [];
+  const run = doc?.run;
+  if (!run) throw new Error('Run document: missing run');
+  if (!STATES.includes(run.state)) p.push(`run.state "${run.state}"`);
+  if (!Number.isInteger(run.day) || run.day < 0 || run.day > 14) p.push(`run.day ${run.day}`);
+  if (!ISO.test(run.startDate || '')) p.push('run.startDate');
+  if (!run.app) p.push('run.app');
+  if (run.state === 'closed' && !ISO.test(run.closedOn || '')) p.push('run.closedOn (needed when closed)');
+  if (run.restart && run.restart.posted && !ISO.test(run.restart.date || '')) p.push('run.restart.date');
+  if (!Array.isArray(doc.testers) || doc.testers.length !== 12) p.push('testers (need exactly 12)');
+  (doc.testers || []).forEach((t, i) => {
+    if (!TSTATUS.includes(t.status)) p.push(`testers[${i}].status "${t.status}"`);
+    if (t.status !== 'joining' && !t.name) p.push(`testers[${i}].name`);
+    if (!Array.isArray(t.streak) || t.streak.length !== 14 || t.streak.some((c) => !['on', 'miss', ''].includes(c))) p.push(`testers[${i}].streak`);
+  });
+  for (const [i, a] of (doc.activity || []).entries()) {
+    if (!Array.isArray(a.screenshots) || !Array.isArray(a.notes)) p.push(`activity[${i}] screenshots/notes`);
+    if ((a.screenshots || []).some((s) => !safeUrl(s.src))) p.push(`activity[${i}] screenshot src must be https`);
+  }
+  for (const [i, m] of (doc.messages || []).entries()) {
+    if (!['us', 'client'].includes(m.from) || !['text', 'file'].includes(m.type)) p.push(`messages[${i}] from/type`);
+    if (!safeUrl(m.url)) p.push(`messages[${i}].url must be https`);
+  }
+  if (p.length) throw new Error(`Run document failed checks: ${p.join('; ')}`);
+  doc.activity ||= [];
+  doc.messages ||= [];
+  doc.unread ||= 0;
+  doc.prefs ||= { push: false, digest: false, quietFrom: '22:00', quietTo: '08:00' };
+  return doc;
+}
+
+// Mock-only: in live v1 the document is read-only and the UI doesn't offer these.
 export async function sendMessage(data, msg) {
+  if (!WRITES) return null;
   data.messages.push(msg);
   return msg;
 }
 export async function savePrefs(data, prefs) {
+  if (!WRITES) return null;
   Object.assign(data.prefs, prefs);
   return data.prefs;
 }

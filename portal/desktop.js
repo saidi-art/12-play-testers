@@ -2,8 +2,11 @@
 // The wall and status lead; Activity and Messages sit beside them.
 import {
   esc, logoDots, dots, dayCounter, tag, stamp, tick, wall, toggle, bubble, polaroid, stickyNote,
-  emptyActivity, emptyMessages, ROT, dayMonth, fullDate, counterVariant, todayLine,
+  emptyActivity, emptyMessages, ROT, dayMonth, fullDate, counterVariant, todayLine, COPY,
 } from './components.js';
+import { WRITES } from './data.js';
+
+let email = '';
 
 const NAV = [['run', 'Run'], ['activity', 'Activity'], ['messages', 'Messages'], ['settings', 'Notifications']];
 
@@ -36,7 +39,7 @@ function messagesCard(msgs, { archived = false } = {}) {
   return `<section class="paper dk-card" aria-labelledby="dkm-h">
     <div class="dk-cardhead"><h2 id="dkm-h">Messages</h2><a class="link link-g" href="#messages">Open thread</a></div>
     ${last ? `<div class="dk-last" aria-label="Latest message">${bubble(last)}</div>` : `<p class="slate" style="margin-top:8px;font-size:14px">Say hello: questions about your run, a new build, anything.</p>`}
-    ${archived ? '' : `<form class="dk-reply" id="composer">
+    ${archived ? '' : !WRITES ? `<p class="slate" style="margin-top:10px;font-size:13px;line-height:1.5">${esc(COPY.readonlyMessages)}</p>` : `<form class="dk-reply" id="composer">
       <label for="msg" class="sr">Reply</label>
       <input id="msg" class="field" autocomplete="off" placeholder="Reply">
       <button type="submit" class="btn btn-p">Send</button>
@@ -127,7 +130,7 @@ function closed(data) {
     <h1 tabindex="-1">Thank you</h1>
     <p class="muted">Your run is closed. Everything stays here to read: the 14 days, the screenshots and our messages.</p>
     <div class="dk-closed-btns"><a class="btn btn-s" href="#activity">Look back at the activity</a><a class="btn btn-s" href="#messages">Read the thread (archived)</a></div>
-    <a class="btn btn-g" href="/#contact">Another app to test? Get in touch</a>
+    <a class="btn btn-g" href="https://play.kubeai.info/#contact">Another app to test? Get in touch</a>
   </main>`, `Run complete, ${dayMonth(run.closedOn)}`);
 }
 
@@ -163,6 +166,7 @@ function messages(data) {
         ${msgs.length ? `<div class="thread" id="thread" role="log" aria-label="Message thread">${thread}</div>` : `<div class="dk-say">${emptyMessages()}</div>`}
         ${archived
           ? '<p class="archived slate">This run is closed. The thread stays here to read.</p>'
+          : !WRITES ? `<p class="archived slate">${esc(COPY.readonlyMessages)}</p>`
           : `<form class="composer" id="composer">
               <input type="file" id="file" class="sr" tabindex="-1" aria-hidden="true">
               <button type="button" class="paper ibtn" id="attach" aria-label="Attach a file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11l-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/></svg></button>
@@ -184,24 +188,26 @@ function settings(data) {
   return page(run, 'settings', data.unread, `<main id="main" class="dk-wide dk-settings">
     <h1 class="dk-h1" tabindex="-1">Notifications</h1>
     <div class="paper">
-      ${toggle('push', 'Push notifications', 'Milestones and messages from us', prefs.push)}
+      ${toggle('push', 'Push notifications', 'Milestones and messages from us', prefs.push, { disabled: !WRITES })}
       <div class="rule"></div>
-      ${toggle('digest', 'Daily email digest', 'One email a day with the run’s status', prefs.digest)}
+      ${toggle('digest', 'Daily email digest', 'One email a day with the run’s status', prefs.digest, { disabled: !WRITES })}
     </div>
+    ${WRITES ? '' : `<p class="muted" style="font-size:14px">${esc(COPY.readonlyPrefs)}</p>`}
     <fieldset class="paper" style="padding:16px;border:0;margin:0">
       <legend class="sr">Quiet hours</legend>
       <div style="font-weight:700;font-size:16px" aria-hidden="true">Quiet hours</div>
       <div class="slate" style="font-size:13px;margin-top:2px">No push notifications between these times</div>
       <div class="qh" style="max-width:420px">
-        <label class="slate">From<select class="field" id="qfrom">${opts(prefs.quietFrom)}</select></label>
-        <label class="slate">To<select class="field" id="qto">${opts(prefs.quietTo)}</select></label>
+        <label class="slate">From<select class="field" id="qfrom"${WRITES ? '' : ' disabled'}>${opts(prefs.quietFrom)}</select></label>
+        <label class="slate">To<select class="field" id="qto"${WRITES ? '' : ' disabled'}>${opts(prefs.quietTo)}</select></label>
       </div>
     </fieldset>
-    <p class="muted" style="font-size:14px">Signed in as ${esc(run.clientEmail)} · <a href="#signin" style="color:#fff;font-weight:700">Sign out</a></p>
+    <p class="muted" style="font-size:14px">Signed in as ${esc(email)} · <button type="button" class="link" data-signout style="color:#fff;min-height:44px">Sign out</button></p>
   </main>`, run.state === 'closed' ? `Run complete, ${dayMonth(run.closedOn)}` : 'Closed test run');
 }
 
-export function render(route, data) {
+export function render(route, data, ctx = {}) {
+  email = ctx.email || data.run.clientEmail || '';
   const s = data.run.state;
   if (route === 'activity') return activity(data);
   if (route === 'messages') return messages(data);
