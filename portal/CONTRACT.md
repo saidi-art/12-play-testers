@@ -134,6 +134,22 @@ Live test (on portal.kubeai.info, once DNS and HTTPS are done):
 3. View a sample run.
 4. Check one test screenshot.
 
+## Onboarding a new client (about 2 minutes, after booking)
+
+A client can sign in only once two things exist: their **Auth user** and their **`portal_runs` row**. The play site doesn't link the portal, so a client reaches it only through the link we send. Do both steps first, then send the link.
+
+1. **Add the user:** Supabase → Authentication → Users → Add user → Create new user. Use the email the client booked with and tick "Auto Confirm User". Any password; the client never uses it, because sign-in is by magic link.
+2. **Create the run:** open `portal/ops/new-client.sql` in the SQL editor, edit the five values (email, app slug, first name, app name, planned start date) and run it. It creates the day-0 "seats filling" run: 12 joining seats, empty Activity and Messages. Running it twice for the same client/app is refused, never duplicated.
+3. **Send the portal link** (`https://portal.kubeai.info`) in the booking confirmation.
+
+The template was tested in Postgres (PGlite), and its output renders correctly in the portal on phone and desktop.
+
+**Self-serve sign-ups are not recommended.** Turning sign-ups on would let anyone create an account from the sign-in page, but it **wouldn't complete a registration**: with no `portal_runs` row, a new account only reaches "We can't find a run for this email yet". The run row is what makes the portal work, and it still has to be created. Open sign-ups would also let anyone make `noreply@portal.kubeai.info` email any address. That would:
+- use up the shared email limit, so real clients' links get held back
+- hurt the new sending domain's reputation
+
+If automatic onboarding is wanted later, the right trigger is the booking or payment itself, creating the user and the row together, not open sign-ups.
+
 ## Deploying (Netlify site `kubeai-portal`, manual upload)
 
 Upload these files from an agreed commit, with nothing else:
