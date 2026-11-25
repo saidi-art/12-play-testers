@@ -61,7 +61,7 @@
       "app_name": "string, required",
       "category": "one of: Productivity, Games, Education, Health and fitness, Finance, Social and communication, Tools and utilities, Lifestyle, Other",
       "console": "'Console account registered' or 'Needs setup guidance'",
-      "profile": "'Solo creator, flat-rate' or 'Multiple apps or studio'",
+      "profile": "'Solo creator' or 'Multiple apps or studio'",
       "email": "string, required",
       "contact_via": "Email, WhatsApp or Telegram",
       "handle": "optional, only if contact is not email",
