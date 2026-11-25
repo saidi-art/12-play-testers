@@ -1,16 +1,16 @@
 # Client portal: data and auth contract
 
-Status: **v1 decided by Yacine, backend applied on 25 Nov 2026** (Supabase project `portal-kubeai`, ref `wtejbawmpmmhkusvgfla`, EU North). The SQL below is what was actually applied. Nothing merges or deploys before Yacine's review.
+Status: **v1 decided by Yacine, backend applied and checked on 25 Nov 2026** (Supabase project `portal-kubeai`, ref `wtejbawmpmmhkusvgfla`, EU North). The SQL below is what was actually applied. Nothing merges or deploys before Yacine's review.
 
 ## Decisions
 
 | Call | Decision |
 |---|---|
-| Where the portal lives | Static site on Netlify at **portal.kubeai.info**. Yacine sets up the DNS and the Netlify site (not done yet). The portal runs live only on that host; deploy previews and local runs use mock data. |
+| Where the portal lives | Static site on Netlify at **portal.kubeai.info**: the Netlify site `kubeai-portal` is set up with manual uploads (not linked to Git). The domain is added, and the DNS record and HTTPS are pending. The portal runs live only on that host; deploy previews and local runs use mock data. Upload only the runtime files listed under "Deploying" below. |
 | Admin data feed | **Supabase** holds the run state: **one JSON document per client, keyed by the client/app pair**, in the shape below. In v1 Yacine edits it by hand in the Supabase dashboard. No custom backend and no live endpoint: the portal reads the row read-only. A live endpoint is a later decision, only if the snapshot outgrows itself. |
 | Magic-link sender | **Supabase Auth** magic links by email, sent through custom SMTP: `noreply@portal.kubeai.info` ("Kubeai Portal") via Resend. The only email the portal ever causes is that sign-in link. |
 | Writes (messages, settings) | **None in v1.** The portal stays read-only, email stays the reply channel, and the live portal says so on Messages and Notifications. "Email us" stays without an address for now (play.kubeai.info has only a contact form); Yacine will decide on an address later. |
-| Screenshot hosting | **Private Supabase Storage bucket `run-screenshots`** in portal-kubeai, one folder per client, signed links that expire after 1 hour. Today's images load with the page; other days load only when the client scrolls to them. The portal side is built. **The bucket and its SQL are not applied:** Yacine reviews and applies the SQL below, then runs the isolation check. |
+| Screenshot hosting | **Private Supabase Storage bucket `run-screenshots`** in portal-kubeai, one folder per client, signed links that expire after 1 hour. Today's images load with the page; other days load only when the client scrolls to them. The portal side is built. **The bucket is applied and its isolation is checked:** own folder visible, other users and signed-out visitors see nothing, client uploads blocked. |
 | Previews | Stay on mock data. No preview host goes into Supabase's Redirect URLs or `LIVE_HOSTS` for now. |
 | Free plan | Free projects can pause after inactivity, which would take the whole portal offline. No paid upgrade and no keep-alive workaround are authorised; Yacine will decide separately. |
 
@@ -89,23 +89,61 @@ Privacy rules (spec 05): first names and initial avatars only. Never put real te
 
 ## Sign-in: Supabase Auth magic link
 
-- **Method:** `signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: <portal URL> } })` with the PKCE flow. The link signs the client in on the device that asked for it and works once.
+- **Method:** `signInWithOtp({ email, options: { shouldCreateUser: false, emailRedirectTo: <portal URL> } })`. The portal accepts two kinds of link:
+  - **Recommended (`token_hash`):** the email links to the portal with a one-time token, which the portal checks with `verifyOtp`. It works in any browser or app, including when the client asks on a laptop and opens the email on a phone, or taps it in Gmail's or Outlook's in-app browser. An email scanner that pre-opens links can't use it up, because scanners don't run JavaScript.
+  - **Supabase default (PKCE `code`):** works only in the browser that requested the link. It still works, as a fallback.
 - **Accounts:** sign-ups are off in the project, and the portal also passes `shouldCreateUser: false`. Only addresses Yacine adds under Dashboard → Authentication → Users can get a link, using the same email as `client_email`. No client users exist yet.
 - **Sign-in screen copy:** the screen says "check your inbox" whether or not the address has an account, so it never reveals who is a client.
 - **Supabase settings (as applied):**
   - **Auth → URL Configuration:** Site URL `https://portal.kubeai.info`. Redirect URLs: `https://portal.kubeai.info/**` only.
   - **Previews:** Netlify preview URLs are not on the list, which is why previews stay on mock data. To test live sign-in on a preview, add its host to Redirect URLs first, then to `LIVE_HOSTS` in `config.js`.
   - **Sign-in options:** Confirm email on, Magic link enabled, anonymous sign-ins and manual linking off.
-  - **Email template:** the default "Magic Link" template works as is.
+  - **Email template:** change it to the token link below. Deploy the portal version that understands it first.
+
+### Magic Link email template (Supabase → Authentication → Emails → Magic Link)
+
+Change the link in the body to the following, keeping the subject. The wording around the link is a suggestion for Yacine's approval:
+
+```html
+<h2>Your sign-in link</h2>
+<p><a href="{{ .SiteURL }}/?token_hash={{ .TokenHash }}&type=email">Sign in to follow your run</a></p>
+<p>The link works once. If you didn't ask for it, you can ignore this email.</p>
+```
+
+**Order matters:**
+1. The portal version that understands token links goes live first.
+2. Then the template changes.
+
+The upload at `ddf8da62` ignores `token_hash`, so a client using it would land on the sign-in screen with no error.
 
 > **Email status:**
-> - **Set up:** the portal.kubeai.info domain is verified in Resend, and the SMTP connection is saved in Supabase (`smtp.resend.com:465`, user `resend`, API key in Yacine's vault, never in this repo).
-> - **Untested:** no sign-in email has been sent yet, so delivery hasn't been tested. The dev team sends no email to any client or test address.
-> - **Limits:** once custom SMTP is on, Supabase's email rate limit applies; the hourly figure isn't confirmed yet. Turn off link tracking in Resend, because it can break sign-in links.
+> - **Delivery tested:** domain verified in Resend, SMTP saved in Supabase (`smtp.resend.com:465`, user `resend`, API key in Yacine's vault, never in this repo). One test email reached a test inbox from `noreply@portal.kubeai.info`, and the Resend log confirms it.
+> - **Not tested yet:** sign-in from the portal, which needs the live domain. The dev team sends no email to any client or test address.
+> - **Limits:** Supabase's email rate limit applies with custom SMTP; the hourly figure isn't confirmed yet. Turn off link tracking in Resend, because it can break sign-in links.
 
-Test order (Yacine):
-1. **Email delivery:** Yacine sends one magic-link email from the Supabase dashboard to a test address he chooses, to check it arrives from `noreply@portal.kubeai.info`. He won't click the link, so this doesn't test sign-in.
-2. **Full sign-in:** only once the portal is live on portal.kubeai.info. That needs the Netlify site and domain, and publishing isn't approved yet.
+Live test (on portal.kubeai.info, once DNS and HTTPS are done):
+1. Sign in from the portal.
+2. Request in one browser and open the email in another. This needs the token template above.
+3. View a sample run.
+4. Check one test screenshot.
+
+## Deploying (Netlify site `kubeai-portal`, manual upload)
+
+Upload these files from an agreed commit, with nothing else:
+- `index.html`
+- `portal.css`
+- `app.js`, `components.js`, `config.js`, `data.js`, `desktop.js`
+- `fonts/`
+- `vendor/`
+- `_headers`
+
+Leave out `CONTRACT.md`, `README.md`, `review.html` and `mock/`. They are internal documents and the review copy; on the live host, the review page would show only sign-in screens.
+
+`_headers` sets the following for the portal site only (the play site ignores it):
+- `noindex`
+- no framing
+- no referrer, so sign-in tokens in the address bar are never passed on
+- a Content-Security-Policy that allows only the portal's own files and the Supabase project
 
 ## Screenshots: private bucket, signed links
 
@@ -126,7 +164,7 @@ Test order (Yacine):
 - **Other days:** signed only when the client scrolls them into view (150 px ahead). On a phone, the second six of a day load only after "See all 12".
 - **Failures:** a missing file or a failed signing call leaves the placeholder frame and logs a warning; it never breaks the page.
 
-### Storage SQL: final, for Yacine to review and apply (not yet applied)
+### Storage SQL (applied on 25 Nov 2026 and checked)
 
 ```sql
 -- Private bucket: no public URLs, 2 MB per file, images only.
@@ -172,8 +210,10 @@ rollback;
 
 ## Still open (Yacine)
 
-1. **Storage SQL:** review and apply the SQL above, then run the isolation check.
-2. **Retention:** confirm the 30-days-after-close proposal and how deletion happens. No job is built until then.
-3. **Free plan pausing:** upgrade or not. Nothing is added in the meantime.
-4. **Support email for "Email us":** later.
-5. **Publishing:** the Netlify site, the domain, and the go-ahead to publish, which comes before the full sign-in test.
+1. **Hosting:** the DNS record and HTTPS for portal.kubeai.info, then upload the agreed commit (runtime files only).
+2. **Email template:** switch Magic Link to the token link, after that upload.
+3. **Live test:** on the real domain, then client users and real rows.
+4. **Retention:** confirm the 30-days-after-close proposal. No deletion job is built until then.
+5. **Free plan pausing:** upgrade or not. Nothing is added in the meantime.
+6. **Support email for "Email us":** later.
+7. **Merge:** with Yacine.

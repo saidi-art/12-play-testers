@@ -1,0 +1,9 @@
+# Netlify headers for the portal site (kubeai-portal), where portal/ is the site root.
+# The play site ignores this file (Netlify reads _headers only at the publish root).
+/*
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://wtejbawmpmmhkusvgfla.supabase.co; font-src 'self'; connect-src 'self' https://wtejbawmpmmhkusvgfla.supabase.co wss://wtejbawmpmmhkusvgfla.supabase.co; frame-ancestors 'none'; base-uri 'none'; form-action 'self'; object-src 'none'

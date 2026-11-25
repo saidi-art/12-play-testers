@@ -34,17 +34,27 @@ async function client() {
 // Strip auth parameters from the address bar once handled, keeping ?app= and the hash route.
 function cleanUrl() {
   const keep = new URLSearchParams();
-  for (const k of ['app', 'mock']) if (params.has(k)) keep.set(k, params.get(k));
+  for (const k of ['app']) if (params.has(k)) keep.set(k, params.get(k));
   const q = keep.toString();
   history.replaceState(null, '', location.pathname + (q ? `?${q}` : '') + location.hash);
 }
 
 /* ---------- Session ---------- */
 // Returns { email } or null. linkFailed is true when the page was opened from a sign-in link that didn't work.
+// Two link styles are accepted:
+// - token_hash (recommended email template): verified here, so it works in any browser or in-app
+//   webview, and an email scanner that pre-fetches the link can't use it up (no JavaScript).
+// - code (PKCE, Supabase's default template): works only in the browser that requested the link.
 export async function getSession() {
   if (!LIVE) return { session: { email: null }, linkFailed: false };
-  const fromLink = params.has('code') || params.has('error') || params.has('error_description');
+  const tokenHash = params.get('token_hash');
+  const fromLink = Boolean(tokenHash) || params.has('code') || params.has('error') || params.has('error_description');
   const c = await client();
+  if (tokenHash) {
+    const type = ['email', 'magiclink'].includes(params.get('type')) ? params.get('type') : 'email';
+    const { error: vErr } = await c.auth.verifyOtp({ token_hash: tokenHash, type });
+    if (vErr) console.warn('Sign-in link not accepted', vErr.status, vErr.code, vErr.message);
+  }
   const { data, error } = await c.auth.getSession();
   if (error) console.error('Session error', error);
   if (fromLink) cleanUrl();
@@ -74,6 +84,7 @@ export async function requestLink(email) {
 }
 
 export async function signOut() {
+  signed.clear(); // drop cached screenshot links so nothing outlives the session in this tab
   if (!LIVE) return;
   const c = await client();
   await c.auth.signOut();
