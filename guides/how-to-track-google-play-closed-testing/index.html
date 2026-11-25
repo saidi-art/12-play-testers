@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Track Google Play Closed Testing for the 12-Tester Requirement — 12 Play Testers</title>
+<meta name="description" content="If you have a new personal Google Play developer account created after November 13, 2023, you must complete a closed test with at least 12 opted-in testers">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://play.kubeai.info/guides/how-to-track-google-play-closed-testing/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="12 Play Testers">
+<meta property="og:title" content="How to Track Google Play Closed Testing for the 12-Tester Requirement">
+<meta property="og:description" content="If you have a new personal Google Play developer account created after November 13, 2023, you must complete a closed test with at least 12 opted-in testers">
+<meta property="og:url" content="https://play.kubeai.info/guides/how-to-track-google-play-closed-testing/">
+<meta name="twitter:card" content="summary">
+<style>
+.prose{max-width:720px;padding-bottom:80px}
+.prose h1{font-size:clamp(32px,4.6vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:44px 0 14px}
+.prose h2{font-size:22px;letter-spacing:-.01em;margin:34px 0 8px}
+.prose p{color:var(--slate);margin:0 0 12px}
+.prose ul{margin:10px 0 16px;padding-left:20px}
+.prose li{color:var(--slate);margin:6px 0}
+.prose a{color:var(--done);text-decoration:underline}
+.prose hr{border:0;border-top:1px solid var(--line,#e5e5e5);margin:28px 0}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "How to Track Google Play Closed Testing for the 12-Tester Requirement", "url": "https://play.kubeai.info/guides/how-to-track-google-play-closed-testing/", "author": {"@type": "Organization", "name": "KubeAI", "url": "https://kubeai.info"}, "publisher": {"@type": "Person", "name": "Yacine Zairi"}}
+</script>
+</head>
+<body>
+<header class="wrap">
+  <div class="top">
+    <a class="brand" href="/">12 Play Testers</a>
+    <nav aria-label="Sections">
+      <a href="/#how">How it works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <a class="btn btn-dark btn-sm" href="/#contact">Get in touch</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="prose">
+    <h1>How to Track Google Play Closed Testing for the 12-Tester Requirement</h1>
+<p>If you have a new personal Google Play developer account created after November 13, 2023, you must complete a closed test with at least 12 opted-in testers who remain active for 14 consecutive days before you can apply for production access. This guide walks you through the exact steps in the Play Console to set up the test, track progress, and meet the requirement as a solo Android developer.</p>
+<p>The process is straightforward but requires attention to detail. Google tracks tester opt-in status and daily app usage automatically. Below are concrete actions you can take today.</p>
+<h2>Prerequisites Before Starting Closed Testing</h2>
+<ul>
+<li>Your app listing must be fully prepared (icons, screenshots, descriptions, privacy policy, and content rating completed).</li>
+<li>You must have an Android App Bundle (AAB) ready with a version code higher than any previous test versions.</li>
+<li>Testers need real Google accounts (Gmail or Google Workspace). They must install the app from the official test link or access code and use it daily on physical devices. Emulators do not count.</li>
+<li>Plan for more than 12 testers in case some drop out. The 14 days must be continuous for each tester — if someone opts out and opts back in, the counter resets for that person.</li>
+</ul>
+<h2>Step 1: Create or Select Your Closed Testing Track</h2>
+<p>1. Sign in to the <a href="https://play.google.com/console">Google Play Console</a>.</p>
+<p>2. Select your app from the list.</p>
+<p>3. In the left menu, go to <strong>Release</strong> &gt; <strong>Testing</strong> &gt; <strong>Closed testing</strong>.</p>
+<p>4. If no track exists, click <strong>Create closed testing track</strong> (or use the default one provided).</p>
+<p>5. Enter a track name for your reference (e.g., &quot;Production Readiness Test&quot;). This name is not visible to testers.</p>
+<p>6. Choose how to manage testers: select <strong>Email list</strong> (recommended for exact control) or <strong>Access codes</strong>.</p>
+<p>7. Click <strong>Create track</strong>.</p>
+<h2>Step 2: Prepare Your Tester List</h2>
+<p>1. On the Closed testing page, click <strong>Manage track</strong> for your chosen track.</p>
+<p>2. Go to the <strong>Testers</strong> tab.</p>
+<p>3. Click <strong>Create email list</strong>.</p>
+<p>4. Give the list a name (e.g., &quot;12-tester-group&quot;). You can reuse this list for future apps.</p>
+<p>5. Add at least 15–20 email addresses, separated by commas, or upload a CSV file. Avoid UTF-8 with BOM format for CSV.</p>
+<p>6. Enter a feedback channel URL or email address where testers can send reports. This appears on the tester consent page.</p>
+<p>7. Click <strong>Save changes</strong> then <strong>Create</strong>.</p>
+<p>Google will send invitation emails. Testers must click the link, accept the invitation, and opt in to the test.</p>
+<h2>Step 3: Upload and Roll Out Your App Release</h2>
+<p>1. Still in <strong>Manage track</strong>, go to the <strong>Releases</strong> or <strong>App bundles</strong> tab.</p>
+<p>2. Click <strong>Create new release</strong>.</p>
+<p>3. Upload your signed Android App Bundle (AAB).</p>
+<p>4. Add release notes for testers (optional but recommended — keep them short and clear).</p>
+<p>5. Click <strong>Review release</strong>.</p>
+<p>6. Check for any errors or warnings (e.g., missing graphics or policy issues). Fix them.</p>
+<p>7. Once validated, click <strong>Start rollout to closed testing</strong> or <strong>Roll out to testers</strong>.</p>
+<p>It may take a few hours for the test version to become available. Testers will see an update or the app in their Play Store library under &quot;My apps &amp; games&quot; &gt; &quot;Beta&quot; or via the test link.</p>
+<h2>Step 4: Share the Test with Testers and Confirm Opt-In</h2>
+<ul>
+<li>Send the test link from the Closed testing page to your testers.</li>
+<li>If using access codes: Go to the <strong>Access codes</strong> tab, generate a batch, select countries, choose quantity, and download the CSV. Share individual codes.</li>
+<li>Ask testers to:</li>
+</ul>
+<p>  - Use their personal Google account on a real Android device.</p>
+<p>  - Install the app immediately.</p>
+<p>  - Open and use the app at least once per day (interact meaningfully — scrolling, features, etc.).</p>
+<p>  - Keep the app installed for the full period.</p>
+<ul>
+<li>Confirm they have opted in by asking for a screenshot of the consent screen or the app appearing in their library.</li>
+</ul>
+<h2>Step 5: How to Track Google Play Closed Testing Progress</h2>
+<p>This is the most important part for new accounts.</p>
+<p>1. Return to the Play Console <strong>Dashboard</strong> (main overview page).</p>
+<p>2. Look for the section or card labeled <strong>Production access</strong> or <strong>App testing requirements</strong>.</p>
+<p>3. You will see a clear status such as:</p>
+<p>   - Number of opted-in testers (must reach 12+).</p>
+<p>   - Days of continuous testing completed.</p>
+<p>   - A progress indicator or message like &quot;Your app needs more testing to access production&quot; that updates in real time.</p>
+<p>4. For more detail, go back to <strong>Release</strong> &gt; <strong>Testing</strong> &gt; <strong>Closed testing</strong> &gt; <strong>Manage track</strong> &gt; <strong>Testers</strong> tab. Here you can see:</p>
+<p>   - Who has accepted the invitation.</p>
+<p>   - Active tester count.</p>
+<p>   - Any feedback submitted.</p>
+<p>5. Check the <strong>Pre-launch report</strong> (under <strong>Testing</strong> or <strong>Quality</strong>) for crash reports, ANRs, and performance data from real testers.</p>
+<p>6. Monitor daily. The counter only advances when testers actively use the app each day. Google uses usage data (not just installation) to validate.</p>
+<p>Refresh the Dashboard periodically. The status typically updates within 24–48 hours after consistent usage begins. Once you have 12 testers with 14 consecutive days of opt-in and usage, the blocking message disappears and the <strong>Apply for production</strong> button becomes available.</p>
+<h2>Step 6: Apply for Production Access</h2>
+<p>1. On the Dashboard, click <strong>Apply for production</strong>.</p>
+<p>2. Answer the questions in three sections:</p>
+<p>   - About your closed test (details on testers and duration).</p>
+<p>   - About your app/game (functionality, policies).</p>
+<p>   - Production readiness (content compliance, data safety).</p>
+<p>3. Submit the application. Google reviews your responses along with the closed test data.</p>
+<p>4. If approved, you can create a production release.</p>
+<h2>Troubleshooting Common Issues</h2>
+<ul>
+<li><strong>Progress not increasing</strong>: Testers may not be using the app daily, may be on emulators, or may have uninstalled/reinstalled (this can reset the consecutive counter). Ask them to keep the app installed and open it every day for at least a few minutes of real interaction.</li>
+<li><strong>Fewer than 12 testers showing</strong>: Some may not have accepted the invitation or used the correct Google account. Check the Testers tab and resend invites. A person using multiple devices still counts as only one tester.</li>
+<li><strong>&quot;Needs more testing&quot; message persists</strong>: The 14 days must be consecutive and recent (last 14 days when you apply). If any tester drops below the threshold, you may need to continue the test longer or add replacements.</li>
+<li><strong>No feedback or pre-launch data</strong>: This is normal if testers do not crash the app. Usage data is what primarily counts.</li>
+<li><strong>Test link not working</strong>: Wait up to 24 hours after rollout. Clear Play Store cache on tester devices or have them search for the app in the library.</li>
+<li><strong>Account-specific warnings</strong>: New personal accounts show the testing requirement prominently on the Dashboard until met. It only applies to the first app in many cases, but always check your specific status.</li>
+</ul>
+<p>If testers opt out even briefly, their 14-day streak resets. Start with extra people to buffer against dropouts.</p>
+<p>Running a successful closed test gives you real usage data, crash reports, and feedback that improves your app before it reaches millions of users.</p>
+<p><strong>12 Play Testers</strong> is a managed closed-testing service that helps solo developers meet the exact Google Play requirement with real, active users. For a quote, visit the contact page at https://play.kubeai.info/contact/ or email quotes@kubeai.info.</p>
+<hr>
+<p><em>Draft prepared with AI assistance (Grok). Every guide is reviewed by the KubeAI team before publishing.</em></p>
+<p>Publisher: Yacine Zairi</p>
+<p>Questions or a quote? <a href="mailto:quotes@kubeai.info">quotes@kubeai.info</a> or the <a href="/contact/">contact page</a>.</p>
+<p>Spotted an error? <a href="mailto:corrections@kubeai.info">corrections@kubeai.info</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">12 Play Testers, a KubeAI service &middot; <a href="mailto:quotes@kubeai.info">quotes@kubeai.info</a> &middot; <a href="https://kubeai.info">kubeai.info</a> &middot; <a href="https://www.youtube.com/@KubeAI">YouTube @KubeAI</a> &middot; <a href="/about/">About</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy</a></div>
+</footer>
+</body>
+</html>
