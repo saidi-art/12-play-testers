@@ -3,9 +3,9 @@
   "path": "/mcp/",
   "message": "MCP endpoint is planned and not live.",
   "intake": {
-    "label": "a temporary form endpoint (Formspree)",
-    "method": "POST",
-    "endpoint": "https://formspree.io/f/xqppdyqb",
+    "label": "web inquiry form",
+    "page": "https://play.kubeai.info/contact/",
+    "a2a_endpoint": "/a2a",
     "availability": "/availability.json"
   },
   "contact_email": "quotes@kubeai.info"

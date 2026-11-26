@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) - Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18594572787"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18594572787');
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Book your test, starting at $65 — 12 Play Testers</title>
@@ -101,7 +109,7 @@
     var data = new FormData(f);
     data.append('_subject', '12 Play Testers inquiry (contact page)');
     fetch(f.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
-      .then(function(r){ if (!r.ok) throw 0; f.hidden = true; done.hidden = false; })
+      .then(function(r){ if (!r.ok) throw 0; window.location.assign('/thanks.html'); })
       .catch(function(){ err.textContent = 'That did not go through. Check your connection and press Send again.'; err.hidden = false; });
   });
 })();

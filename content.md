@@ -137,8 +137,8 @@ Booking is machine-readable. Check availability at https://play.kubeai.info/avai
 - Timezone: Europe/Paris. Coverage: worldwide, remote.
 - 12 human testers per app, 14 days.
 - Pricing: Starting at $65 (USD); the final quote depends on scope. No subscriptions.
-- REST API: planned, not live. https://play.kubeai.info/api/ is a planned stub pointing at the availability file and the temporary form.
-- MCP: planned, not live. https://play.kubeai.info/mcp/ is a planned stub pointing at the availability file and the temporary form.
+- REST API: planned, not live. https://play.kubeai.info/api/ is a planned stub pointing at the availability file and the web inquiry form.
+- MCP: planned, not live. https://play.kubeai.info/mcp/ is a planned stub pointing at the availability file and the web inquiry form.
 - A2A: agent card at https://play.kubeai.info/.well-known/agent-card.json ; declared interface at https://play.kubeai.info/a2a (live intake: send a request_quote task; pricing starts at $65 (USD) and the final quote depends on scope, a submission is a booking request, and a human confirms before any payment is taken; orders stay pending authorisation)
 
 Every order starts as pending authorisation: a real person confirms the booking before anything is arranged, and payment is only ever arranged with a human, never through an endpoint.

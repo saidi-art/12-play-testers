@@ -113,7 +113,7 @@ function missingFields(fl) {
   if (!fl.app_name) missing.push("app_name");
   if (!fl.category) missing.push("category (one of: " + CATEGORIES.join(", ") + ")");
   if (!fl.console) missing.push("console ('Console account registered' or 'Needs setup guidance')");
-  if (!fl.profile) missing.push("profile ('Solo creator, flat-rate' or 'Multiple apps or studio')");
+  if (!fl.profile) missing.push("profile ('Solo creator' or 'Multiple apps or studio')");
   if (!fl.email) missing.push("email");
   else if (fl.contact_via && !/email/i.test(fl.contact_via) && !fl.handle) missing.push("handle (your " + fl.contact_via + " contact, since contact_via is not Email)");
   return missing;

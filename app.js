@@ -27,13 +27,6 @@
   f.addEventListener('keydown', function(e){
     if (e.key === 'Enter' && e.target.tagName === 'INPUT' && i < 2) { e.preventDefault(); if (valid(steps[i])) show(i + 1, true); }
   });
-  function finish(text){
-    steps.forEach(function(s){ s.classList.remove('cur'); });
-    f.querySelector('.progress').hidden = true;
-    var d = document.getElementById('done');
-    if (text) document.getElementById('doneText').textContent = text;
-    d.hidden = false; d.focus();
-  }
   f.addEventListener('submit', function(e){
     e.preventDefault();
     err.hidden = true;
@@ -41,7 +34,7 @@
     var data = new FormData(f);
     data.append('_subject', 'Testing run inquiry: ' + data.get('app_name'));
     fetch(f.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
-      .then(function(r){ if (!r.ok) throw 0; finish(); })
+      .then(function(r){ if (!r.ok) throw 0; window.location.assign('/thanks.html'); })
       .catch(function(){ err.textContent = 'That didn’t go through. Check your connection and press Send again.'; err.hidden = false; });
   });
   show(0, false);

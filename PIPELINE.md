@@ -1,6 +1,6 @@
 # SEO draft pipeline for play.kubeai.info
 
-Drafts one queued keyword per run with Gemini, lints it against the brand
+Drafts one queued keyword per run with Grok, lints it against the brand
 rules, renders `guides/<slug>/index.html` in the site's own page template,
 and opens a review PR. Netlify attaches a deploy preview to every PR.
 
@@ -27,7 +27,7 @@ and opens a review PR. Netlify attaches a deploy preview to every PR.
   script additionally counts open draft PRs labelled `pipeline-draft`
   created in the last 7 days; at 3 it skips. Manual re-runs cannot exceed
   the cap.
-- **Gemini spend ceiling: $10/month.** Enforced by charging a conservative
+- **Model spend ceiling: $10/month.** Enforced by charging a conservative
   `RUN_COST_ESTIMATE_USD` (currently $0.05, deliberately generous; a flash
   draft is far cheaper) against `SPEND_CAP_USD` ($10) using the month's
   workflow-run count. True the estimate up after the first real bill. The
@@ -74,7 +74,7 @@ both hosts and opens ONE issue when something is off baseline:
 ## Review flow
 
 Every draft PR is a review copy for Yacine: keyword, Distribb ID, word
-count, lint result and Gemini usage in the body, Netlify preview on the
+count, lint result and model usage in the body, Netlify preview on the
 PR. On his go-ahead the PR is merged, which publishes. Nothing else on
 this repo publishes anything.
 guides: drafts open pull requests against `master` (the site default branch); merging one publishes.
