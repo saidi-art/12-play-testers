@@ -1,0 +1,287 @@
+{
+  "_note": "Placeholder data for the static shell. Not a data contract: the admin feed is pending Yacine.",
+  "run": {
+    "client": "Maya",
+    "clientEmail": "maya@pocketplanner.app",
+    "app": "Pocket Planner",
+    "startDate": "2026-12-01",
+    "day": 0,
+    "state": "filling",
+    "lastUpdate": "today, 09:10"
+  },
+  "testers": [
+    {
+      "seat": 0,
+      "name": "Ana",
+      "status": "opted_in",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 1,
+      "name": "Ben",
+      "status": "opted_in",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 2,
+      "name": "Chloé",
+      "status": "opted_in",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 3,
+      "name": "Dev",
+      "status": "opted_in",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 4,
+      "name": "Emma",
+      "status": "opted_in",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 5,
+      "name": "Farid",
+      "status": "opted_in",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 6,
+      "name": "Grace",
+      "status": "opted_in",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 7,
+      "name": null,
+      "status": "joining",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 8,
+      "name": null,
+      "status": "joining",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 9,
+      "name": null,
+      "status": "joining",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 10,
+      "name": null,
+      "status": "joining",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "seat": 11,
+      "name": null,
+      "status": "joining",
+      "days": 0,
+      "streak": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    }
+  ],
+  "activity": [],
+  "messages": [],
+  "unread": 0,
+  "prefs": {
+    "push": true,
+    "digest": true,
+    "quietFrom": "22:00",
+    "quietTo": "08:00"
+  }
+}

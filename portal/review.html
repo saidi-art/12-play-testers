@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Client portal review</title>
+<link rel="stylesheet" href="portal.css">
+<style>
+body{background:#0B1A29;color:#fff}
+.wrap{max-width:1320px;margin:0 auto;padding:36px 20px 64px}
+h1{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;margin:0 0 8px}
+.sub{color:var(--muted);max-width:70ch;line-height:1.5;margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:36px 28px;margin-top:28px}
+figure{margin:0}
+.frame{width:300px;height:649px;overflow:hidden;border-radius:30px;box-shadow:0 0 0 8px #1C232B,0 18px 36px rgba(0,0,0,.45)}
+.frame iframe{width:390px;height:844px;border:0;transform:scale(.7692);transform-origin:0 0;display:block}
+figcaption{margin-top:16px;font-size:14px;line-height:1.45;max-width:300px}
+figcaption b{display:block;font-size:15.5px}
+figcaption span{color:var(--muted)}
+figcaption a{color:#fff;font-weight:700}
+.signoff{margin-top:28px;padding:18px 20px;border-radius:16px;background:var(--paper);color:var(--ink);max-width:760px}
+.signoff h2{font-size:20px;font-weight:800;margin:0 0 4px}
+.signoff .sub{color:var(--slate)}
+.signoff dl{margin:14px 0 0;display:grid;gap:12px}
+.signoff dt{font-size:13px;font-weight:800;color:var(--slate)}
+.signoff dd{margin:2px 0 0;font-size:17px;font-weight:600}
+.ck{font-size:24px;font-weight:800;margin:44px 0 6px}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(600px,1fr));gap:36px 28px;margin-top:22px}
+.dframe{width:600px;height:384px;overflow:hidden;border-radius:14px;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 18px 36px rgba(0,0,0,.45)}
+.dframe iframe{width:960px;height:615px;border:0;transform:scale(.625);transform-origin:0 0;display:block}
+.dgrid figcaption{max-width:600px}
+.dgrid>figure{min-width:0}
+@media(max-width:680px){.dgrid{grid-template-columns:1fr}.dframe{width:100%;height:auto;aspect-ratio:960/615}.dframe iframe{transform:scale(var(--k,.35))}}
+@media(max-width:360px){.frame{transform:scale(.9);transform-origin:0 0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Client portal review copy</h1>
+<p class="sub">Not linked from the site. Every state renders live from the mock JSON in <code>portal/mock/</code>. Open any state full-size to click through it. Sample content only: Pocket Planner, Maya, invented first names.</p>
+<section class="signoff" aria-labelledby="so-h">
+<h2 id="so-h">Copy for sign-off</h2>
+<p class="sub">Lines written for states the design doesn’t draw. The first two are approved. The rest are new with the live wiring (checkpoint 3) and await sign-off; they only appear on the live site, so they’re listed here.</p>
+<dl>
+<div><dt>Load-error card · approved</dt><dd>“Check your connection and try again. Still stuck? Email us and we’ll sort it.”</dd></div>
+<div><dt>Archived-thread footer (closed run) · approved</dt><dd>“This run is closed. The thread stays here to read.”</dd></div>
+<div><dt>Sign-in, link requested (also shown for unknown addresses, so the page never reveals who is a client)</dt><dd>“If that email has a run with us, a sign-in link is on its way.”</dd></div>
+<div><dt>Sign-in, too many requests</dt><dd>“Too many sign-in emails just now. Wait a few minutes, then try again.”</dd></div>
+<div><dt>Sign-in, send failed</dt><dd>“We couldn’t send the link. Check your connection and try again.”</dd></div>
+<div><dt>Sign-in, empty or invalid email</dt><dd>“Enter the email you booked with.”</dd></div>
+<div><dt>Opened an expired or reused link</dt><dd>“That sign-in link has expired or was already used. Ask for a new one below.”</dd></div>
+<div><dt>Signed in, no run for this email</dt><dd>“We can’t find a run for this email yet” / “If you’ve just booked, we’ll set it up shortly. Signed in with the wrong address? Sign out and use the one you booked with.”</dd></div>
+<div><dt>Messages while the data is read-only (live v1)</dt><dd>“Replies from the portal aren’t switched on yet. Email us in the meantime.”</dd></div>
+<div><dt>Notification settings while the data is read-only (live v1)</dt><dd>“These settings are read-only for now. Email us if you’d like them changed.”</dd></div>
+</dl>
+</section>
+<h2 class="ck">Checkpoint 2: desktop, artboards 10–17</h2>
+<p class="sub">Shown at 960 × 615, the artboards' size. The same states render at 900px and wider; below that the phone screens apply.</p>
+<div class="dgrid" id="dgrid"></div>
+<h2 class="ck">Checkpoint 1: phone, nine states (approved)</h2>
+<p class="sub">390 × 844.</p>
+<div class="grid" id="grid"></div>
+</div>
+<script>
+const S = [
+  ['Run overview (home), day 9', 'day9', 'run', 'Day 9 of 14, today’s status, the whole wall on one screen.'],
+  ['Activity feed', 'day9', 'activity', 'Polaroids and sticky notes, newest first.'],
+  ['Messages', 'day9', 'messages', 'One thread: ours on paper, the client’s in green. Text and files.'],
+  ['Notification settings', 'day9', 'settings', 'Two toggles, quiet hours, the iPhone home-screen note.'],
+  ['Onboarding 1: magic-link sign-in', 'day9', 'signin', 'Magic link only, no password.'],
+  ['Onboarding 2: welcome, day 0', 'day0', 'welcome', 'Start date named; seats fill as testers opt in.'],
+  ['Streak restarted', 'restart', 'run', 'Orange Restart banner; replacement wears a New tag.'],
+  ['Requirement met', 'met', 'run', 'Green ticks, full day line, the stamp. No approval promise.'],
+  ['Closed', 'closed', 'run', 'Full 12 × 14 grid, thank-you, archive readable.'],
+  ['Extra: Activity empty (day 0)', 'day0', 'activity', 'The only place the Illustrative tag appears.'],
+  ['Extra: Messages empty (day 0)', 'day0', 'messages', 'Say hello.'],
+  ['Extra: Run, seats filling (day 0)', 'day0', 'run', 'Day 0 counter with opted-in and joining cards.'],
+  ['Extra: Load error', 'error', 'run', 'Shown if the run can’t load.'],
+  ['Extra: Messages archived (closed)', 'closed', 'messages', 'Read-only thread with the archived footer.'],
+];
+document.getElementById('grid').innerHTML = S.map(([t, m, r, s]) => {
+  const u = `index.html?mock=${m}#${r}`;
+  return `<figure><div class="frame"><iframe src="${u}" title="${t}" loading="lazy"></iframe></div><figcaption><b>${t}</b><span>${s}</span><br><a href="${u}" target="_blank" rel="noopener">Open full-size</a></figcaption></figure>`;
+}).join('');
+const D = [
+  ['10 · Run overview, day 9', 'day9', 'run', 'Wall and status lead; today’s activity and messages beside.'],
+  ['11 · Activity feed', 'day9', 'activity', 'All 12 screenshots per day, captioned by first name.'],
+  ['12 · Messages', 'day9', 'messages', 'Thread on paper; status card beside.'],
+  ['13 · Notification settings', 'day9', 'settings', 'A top-nav item on desktop; same toggles and quiet hours.'],
+  ['14 · Welcome, day 0', 'day0', 'run', 'Start date computed from the data (Tuesday 1 December).'],
+  ['15 · Streak restarted', 'restart', 'run', 'Wide orange banner; Sofia wears the New tag.'],
+  ['16 · Requirement met', 'met', 'run', 'Stamp, all-green wall, next step. No approval promise.'],
+  ['17 · Closed', 'closed', 'run', 'Full 12 × 14 grid, archive readable.'],
+  ['Extra · Activity empty (day 0)', 'day0', 'activity', 'Illustrative tag, empty state only.'],
+  ['Extra · Messages archived (closed)', 'closed', 'messages', 'Read-only thread with the archived footer.'],
+];
+document.getElementById('dgrid').innerHTML = D.map(([t, m, r, s]) => {
+  const u = `index.html?mock=${m}#${r}`;
+  return `<figure><div class="dframe"><iframe src="${u}" title="${t}" loading="lazy"></iframe></div><figcaption><b>${t}</b><span>${s}</span><br><a href="${u}" target="_blank" rel="noopener">Open full-size (use a window 900px or wider)</a></figcaption></figure>`;
+}).join('');
+const fit = () => document.querySelectorAll('.dframe').forEach((f) => f.style.setProperty('--k', f.clientWidth / 960));
+addEventListener('resize', fit); fit();
+</script>
+</body>
+</html>
