@@ -44,13 +44,13 @@
   <div class="prose">
     <h1>How to Track Google Play Closed Testing for the 12-Tester Requirement</h1>
 <p>If you have a new personal Google Play developer account created after November 13, 2023, you must complete a closed test with at least 12 opted-in testers who remain active for 14 consecutive days before you can apply for production access. This guide walks you through the exact steps in the Play Console to set up the test, track progress, and meet the requirement as a solo Android developer.</p>
-<p>The process is straightforward but requires attention to detail. Google tracks tester opt-in status and daily app usage automatically. Below are concrete actions you can take today.</p>
+<p>The process is straightforward but requires attention to detail. Google tracks tester opt-in status automatically. Below are concrete actions you can take today.</p>
 <h2>Prerequisites Before Starting Closed Testing</h2>
 <ul>
 <li>Your app listing must be fully prepared (icons, screenshots, descriptions, privacy policy, and content rating completed).</li>
 <li>You must have an Android App Bundle (AAB) ready with a version code higher than any previous test versions.</li>
-<li>Testers need real Google accounts (Gmail or Google Workspace). They must install the app from the official test link or access code and use it daily on physical devices. Emulators do not count.</li>
-<li>Plan for more than 12 testers in case some drop out. The 14 days must be continuous for each tester — if someone opts out and opts back in, the counter resets for that person.</li>
+<li>Testers need real Google accounts (Gmail or Google Workspace). They must opt in through the official test link or access code and keep the app installed on a physical device. Uninstalling the app does not cancel an opt-in: testers opt out through the testing web link.</li>
+<li>Plan for more than 12 testers in case some drop out. The 14 days must be continuous for each tester: someone who opts out through the testing web link stops counting toward your 12 until they opt back in. Uninstalling the app alone does not opt a tester out.</li>
 </ul>
 <h2>Step 1: Create or Select Your Closed Testing Track</h2>
 <p>1. Sign in to the <a href="https://play.google.com/console">Google Play Console</a>.</p>
@@ -104,8 +104,8 @@
 <p>   - Active tester count.</p>
 <p>   - Any feedback submitted.</p>
 <p>5. Check the <strong>Pre-launch report</strong> (under <strong>Testing</strong> or <strong>Quality</strong>) for crash reports, ANRs, and performance data from real testers.</p>
-<p>6. Monitor daily. The counter only advances when testers actively use the app each day. Google uses usage data (not just installation) to validate.</p>
-<p>Refresh the Dashboard periodically. The status typically updates within 24–48 hours after consistent usage begins. Once you have 12 testers with 14 consecutive days of opt-in and usage, the blocking message disappears and the <strong>Apply for production</strong> button becomes available.</p>
+<p>6. Monitor daily. What moves the counter is opt-in status: testers who stay opted in for 14 consecutive days. Daily use keeps testers engaged, and engaged testers are the ones who stay opted in.</p>
+<p>Refresh the Dashboard periodically. The status typically updates within 24–48 hours. Once you have 12 testers with 14 consecutive days of opt-in, the blocking message disappears and the <strong>Apply for production</strong> button becomes available.</p>
 <h2>Step 6: Apply for Production Access</h2>
 <p>1. On the Dashboard, click <strong>Apply for production</strong>.</p>
 <p>2. Answer the questions in three sections:</p>
@@ -116,14 +116,14 @@
 <p>4. If approved, you can create a production release.</p>
 <h2>Troubleshooting Common Issues</h2>
 <ul>
-<li><strong>Progress not increasing</strong>: Testers may not be using the app daily, may be on emulators, or may have uninstalled/reinstalled (this can reset the consecutive counter). Ask them to keep the app installed and open it every day for at least a few minutes of real interaction.</li>
+<li><strong>Progress not increasing</strong>: Uninstalling the app does not remove a tester's opt-in; only opting out through the testing web link does, and that breaks their 14-day continuity. If the counter stalls, check the Testers tab and ask testers to keep the app installed and use it regularly.</li>
 <li><strong>Fewer than 12 testers showing</strong>: Some may not have accepted the invitation or used the correct Google account. Check the Testers tab and resend invites. A person using multiple devices still counts as only one tester.</li>
 <li><strong>&quot;Needs more testing&quot; message persists</strong>: The 14 days must be consecutive and recent (last 14 days when you apply). If any tester drops below the threshold, you may need to continue the test longer or add replacements.</li>
 <li><strong>No feedback or pre-launch data</strong>: This is normal if testers do not crash the app. Usage data is what primarily counts.</li>
 <li><strong>Test link not working</strong>: Wait up to 24 hours after rollout. Clear Play Store cache on tester devices or have them search for the app in the library.</li>
 <li><strong>Account-specific warnings</strong>: New personal accounts show the testing requirement prominently on the Dashboard until met. It only applies to the first app in many cases, but always check your specific status.</li>
 </ul>
-<p>If testers opt out even briefly, their 14-day streak resets. Start with extra people to buffer against dropouts.</p>
+<p>If a tester opts out through the web link, even briefly, they stop counting toward your 12 until they opt back in. Start with extra people to buffer against dropouts.</p>
 <p>Running a successful closed test gives you real usage data, crash reports, and feedback that improves your app before it reaches millions of users.</p>
 <p><strong>12 Play Testers</strong> is a managed closed-testing service that helps solo developers meet the exact Google Play requirement with real, active users. For a quote, visit the contact page at https://play.kubeai.info/contact/ or email quotes@kubeai.info.</p>
 <hr>
