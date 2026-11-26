@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Play Production Access Questions: Official Resources Roundup for the 12-Tester Closed Test — 12 Play Testers</title>
+<meta name="description" content="If you created a new personal Google Play developer account after November 13, 2023, you must complete a specific closed test before you can apply for prod">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://play.kubeai.info/guides/google-play-production-access-questions/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="12 Play Testers">
+<meta property="og:title" content="Google Play Production Access Questions: Official Resources Roundup for the 12-Tester Closed Test">
+<meta property="og:description" content="If you created a new personal Google Play developer account after November 13, 2023, you must complete a specific closed test before you can apply for prod">
+<meta property="og:url" content="https://play.kubeai.info/guides/google-play-production-access-questions/">
+<meta name="twitter:card" content="summary">
+<style>
+.prose{max-width:720px;padding-bottom:80px}
+.prose h1{font-size:clamp(32px,4.6vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:44px 0 14px}
+.prose h2{font-size:22px;letter-spacing:-.01em;margin:34px 0 8px}
+.prose p{color:var(--slate);margin:0 0 12px}
+.prose ul{margin:10px 0 16px;padding-left:20px}
+.prose li{color:var(--slate);margin:6px 0}
+.prose a{color:var(--done);text-decoration:underline}
+.prose hr{border:0;border-top:1px solid var(--line,#e5e5e5);margin:28px 0}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Google Play Production Access Questions: Official Resources Roundup for the 12-Tester Closed Test", "url": "https://play.kubeai.info/guides/google-play-production-access-questions/", "author": {"@type": "Organization", "name": "KubeAI", "url": "https://kubeai.info"}, "publisher": {"@type": "Person", "name": "Yacine Zairi"}}
+</script>
+</head>
+<body>
+<header class="wrap">
+  <div class="top">
+    <a class="brand" href="/">12 Play Testers</a>
+    <nav aria-label="Sections">
+      <a href="/#how">How it works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <a class="btn btn-dark btn-sm" href="/#contact">Get in touch</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="prose">
+    <h1>Google Play Production Access Questions: Official Resources Roundup for the 12-Tester Closed Test</h1>
+<p>If you created a new personal Google Play developer account after November 13, 2023, you must complete a specific closed test before you can apply for production access. The rule requires at least 12 opted-in testers who have remained in your closed test continuously for the last 14 days.</p>
+<p>This resources roundup collects the exact official Google documentation and tools that matter. Each section groups related resources with concrete explanations of when they help solo Android developers meet the requirement and answer the production access questions in the Play Console.</p>
+<h2>Core Policy and Requirements</h2>
+<p>Start here to understand exactly what Google expects.</p>
+<ul>
+<li><strong>App testing requirements for new personal developer accounts</strong> (https://support.google.com/googleplay/android-developer/answer/14151465)</li>
+</ul>
+<p>  This is the primary official page. It explains the 12-tester, 14-consecutive-day closed test rule, which testing tracks count, how the 14 days are measured (testers must stay opted in continuously), and the exact process to apply for production access on the Dashboard. Use it first to confirm your account type is affected and to prepare the answers Google will ask about your closed test, app value, and production readiness.</p>
+<ul>
+<li><strong>Everything about the 12 testers requirement</strong> (https://support.google.com/googleplay/android-developer/community-guide/255621488/everything-about-the-12-testers-requirement)</li>
+</ul>
+<p>  This community guide from Google Play experts answers frequent questions: why the rule exists, that it applies only to personal accounts created after November 13, 2023, how to keep testers opted in for the full period, and that using a managed closed-testing service does not violate policy. Refer to it when you need plain-language clarification on what “continuous” and “opted-in” really mean in practice.</p>
+<h2>Setting Up and Running Your Closed Test</h2>
+<p>These pages walk through the exact steps in Play Console.</p>
+<ul>
+<li><strong>Set up an open, closed, or internal test</strong> (https://support.google.com/googleplay/android-developer/answer/9845334)</li>
+</ul>
+<p>  The complete guide for creating a closed testing track, adding testers via email lists or Google Groups, uploading your app bundle or APK, and publishing the release. It includes version code rules (testers always get the highest compatible version on their track) and notes that you can start a closed test once your app setup is finished. Open this when you are ready to create your first closed testing release and manage up to 2,000 testers per list.</p>
+<ul>
+<li><strong>Generate access codes to share with testers</strong> (https://support.google.com/googleplay/android-developer/answer/11525282)</li>
+</ul>
+<p>  Useful if you prefer not to collect email addresses. This tool lets you create batches of unique codes that testers redeem directly on Google Play. It helps when you want to keep tester information private or distribute access easily while still meeting the opted-in requirement.</p>
+<h2>Applying for Production Access and Answering the Questions</h2>
+<p>When your 12 testers have been active for 14 days, you will see the option to apply.</p>
+<ul>
+<li><strong>Apply for production section in the testing requirements page</strong> (same link as above: https://support.google.com/googleplay/android-developer/answer/14151465)</li>
+</ul>
+<p>  This part details the three sections of questions Google asks:</p>
+<p>  - About your closed test (who your testers are, how you recruited them, what feedback you received and acted on).</p>
+<p>  - About your app or game (intended audience, how it provides value, what makes it stand out).</p>
+<p>  - Production readiness (how you addressed pre-launch report issues, policy compliance, and testing best practices).</p>
+<p>  Read the guidance for each question before you click <strong>Apply for production</strong> on the Dashboard. Honest, specific answers based on real tester activity help the review process.</p>
+<h2>Tools That Help You Monitor and Improve Testing</h2>
+<p>Use these to make sure your test meets Google’s expectations for real engagement.</p>
+<ul>
+<li><strong>Pre-launch report</strong> (available in Play Console under Testing &gt; Pre-launch report)</li>
+</ul>
+<p>  Runs automated tests on real devices and shows crashes, warnings, performance issues, and accessibility problems. Check it regularly during your 14-day period. Fix issues and release updated versions to closed testing. Google specifically looks for whether you addressed findings here when reviewing your production application.</p>
+<ul>
+<li><strong>User feedback and statistics in closed testing</strong> (Play Console &gt; Testing &gt; Closed testing &gt; User feedback and Statistics tabs)</li>
+</ul>
+<p>  Shows opt-in rates, daily active testers, session length, and private feedback from testers. Use these numbers to confirm you have at least 12 unique, engaged users who are actually opening and using the app. Screenshots and crash reports from real devices also strengthen your application answers.</p>
+<ul>
+<li><strong>Prepare and roll out a release</strong> (https://support.google.com/googleplay/android-developer/answer/9859348)</li>
+</ul>
+<p>  Explains how to promote a tested build from closed testing toward production, manage rollout percentages (though not needed for the first production access), and handle managed publishing settings. Open it when you are ready to move your final tested version forward.</p>
+<h2>Best Practices That Help Pass Review</h2>
+<p>Google documentation repeatedly emphasizes these points for the 12-tester closed test:</p>
+<ul>
+<li>Recruit real people (friends, family, colleagues, or a managed closed-testing service) who will install the app from the official closed testing link on their physical devices.</li>
+<li>Ensure testers remain opted in without interruption for the full 14 days. Opting out through the testing web link is what removes a tester from your count; uninstalling the app alone does not, though an uninstalled tester is more likely to opt out later.</li>
+<li>Encourage daily use that matches how real users would interact with the app; engaged testers are less likely to opt out mid-run.</li>
+<li>Gather feedback, make updates based on it, and release new versions to the closed track during the test period. Mention these iterations in your production access answers.</li>
+<li>Keep more than 12 testers (15–20 is safer) in case a few drop off.</li>
+<li>Answer every production access question with concrete details instead of generic statements.</li>
+</ul>
+<p>Following the steps in the official pages above gives you the highest chance of a smooth review.</p>
+<p><strong>12 Play Testers</strong> is a managed closed-testing service built specifically for solo developers who need to meet this Google Play requirement reliably. Visit the contact page at https://play.kubeai.info/contact/ or email quotes@kubeai.info for a quote.</p>
+<hr>
+<p><em>Draft prepared with AI assistance (Grok). Every guide is reviewed by the KubeAI team before publishing.</em></p>
+<p>Publisher: Yacine Zairi</p>
+<p>Questions or a quote? <a href="mailto:quotes@kubeai.info">quotes@kubeai.info</a> or the <a href="/contact/">contact page</a>.</p>
+<p>Spotted an error? <a href="mailto:corrections@kubeai.info">corrections@kubeai.info</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">12 Play Testers, a KubeAI service &middot; <a href="mailto:quotes@kubeai.info">quotes@kubeai.info</a> &middot; <a href="https://kubeai.info">kubeai.info</a> &middot; <a href="https://www.youtube.com/@KubeAI">YouTube @KubeAI</a> &middot; <a href="/about/">About</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy</a></div>
+</footer>
+</body>
+</html>
