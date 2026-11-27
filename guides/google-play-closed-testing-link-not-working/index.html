@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Play Closed Testing Link Not Working: Step-by-Step Fix for New Personal Developer Accounts — 12 Play Testers</title>
+<meta name="description" content="If you are a solo Android developer with a new Google Play personal developer account created after November 13, 2023, you must complete a closed test with">
+<link rel="stylesheet" href="/styles.css">
+<link rel="canonical" href="https://play.kubeai.info/guides/google-play-closed-testing-link-not-working/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="12 Play Testers">
+<meta property="og:title" content="Google Play Closed Testing Link Not Working: Step-by-Step Fix for New Personal Developer Accounts">
+<meta property="og:description" content="If you are a solo Android developer with a new Google Play personal developer account created after November 13, 2023, you must complete a closed test with">
+<meta property="og:url" content="https://play.kubeai.info/guides/google-play-closed-testing-link-not-working/">
+<meta name="twitter:card" content="summary">
+<style>
+.prose{max-width:720px;padding-bottom:80px}
+.prose h1{font-size:clamp(32px,4.6vw,46px);font-weight:800;letter-spacing:-.025em;line-height:1.08;margin:44px 0 14px}
+.prose h2{font-size:22px;letter-spacing:-.01em;margin:34px 0 8px}
+.prose p{color:var(--slate);margin:0 0 12px}
+.prose ul{margin:10px 0 16px;padding-left:20px}
+.prose li{color:var(--slate);margin:6px 0}
+.prose a{color:var(--done);text-decoration:underline}
+.prose hr{border:0;border-top:1px solid var(--line,#e5e5e5);margin:28px 0}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "Google Play Closed Testing Link Not Working: Step-by-Step Fix for New Personal Developer Accounts", "url": "https://play.kubeai.info/guides/google-play-closed-testing-link-not-working/", "author": {"@type": "Organization", "name": "KubeAI", "url": "https://kubeai.info"}, "publisher": {"@type": "Person", "name": "Yacine Zairi"}}
+</script>
+</head>
+<body>
+<header class="wrap">
+  <div class="top">
+    <a class="brand" href="/">12 Play Testers</a>
+    <nav aria-label="Sections">
+      <a href="/#how">How it works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <a class="btn btn-dark btn-sm" href="/#contact">Get in touch</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="prose">
+    <h1>Google Play Closed Testing Link Not Working: Step-by-Step Fix for New Personal Developer Accounts</h1>
+<p>If you are a solo Android developer with a new Google Play personal developer account created after November 13, 2023, you must complete a closed test with at least 12 opted-in testers for 14 consecutive days before you can apply for production access. Many developers hit the exact problem described in the title: the closed testing link returns “URL not found”, “Something went wrong”, “App not available”, “Item not found”, or simply does nothing.</p>
+<p>This guide walks you through the exact steps in the Play Console to set up the test correctly and fix the most common reasons the link fails. Follow each step in order.</p>
+<h2>Why the Closed Testing Link Usually Stops Working</h2>
+<p>The link fails for one of these reasons in almost every case for new accounts:</p>
+<ul>
+<li>The release has not finished review and is not yet “Available” on the closed testing track.</li>
+<li>Testers are signed in with the wrong Google account on their device or browser.</li>
+<li>The app is not available in the tester’s country.</li>
+<li>The tester has not completed the opt-in process.</li>
+<li>Propagation delay after the first publish (can take up to 24–48 hours for brand-new apps).</li>
+<li>The track is paused, in draft, or the bundle version code is not higher than previous tracks.</li>
+<li>Testers are listed on multiple tracks (internal + closed) at the same time.</li>
+</ul>
+<p>You will solve most of these by following the numbered steps below.</p>
+<h2>Step 1: Create or Select Your Closed Testing Track</h2>
+<p>1. Open the Google Play Console and select your app.</p>
+<p>2. In the left menu, go to <strong>Release</strong> &gt; <strong>Testing</strong> &gt; <strong>Closed testing</strong>.</p>
+<p>3. If you do not have a track yet, click <strong>Create closed testing track</strong>.</p>
+<p>4. Give the track a clear name such as “Production Readiness Test”. This name is only visible to you.</p>
+<p>5. Click <strong>Create</strong>.</p>
+<h2>Step 2: Add at Least 12–15 Tester Email Addresses</h2>
+<p>1. On the closed testing page, scroll to the <strong>Testers</strong> section.</p>
+<p>2. Click <strong>Create email list</strong> (or edit an existing one).</p>
+<p>3. Enter 12 to 15 valid Google Account email addresses (Gmail or Google Workspace). Use real accounts your testers actually use on their phones.</p>
+<p>4. Save the list.</p>
+<p>5. In the <strong>Manage testers</strong> or <strong>Select testers</strong> area for your track, choose the email list you just created.</p>
+<p>6. Save changes.</p>
+<p><strong>Tip:</strong> Add a few extra testers above 12. Some people may drop out. Keep the same list active for the full period.</p>
+<h2>Step 3: Prepare and Upload Your App Bundle or APK</h2>
+<p>1. Go to <strong>Release</strong> &gt; <strong>Closed testing</strong> &gt; your track name &gt; <strong>Create new release</strong>.</p>
+<p>2. Upload your Android App Bundle (preferred) or APK.</p>
+<p>3. Make sure the version code is higher than any previous version you have uploaded anywhere in the console.</p>
+<p>4. Fill in the release notes (even a short “Closed test build” is fine).</p>
+<p>5. Click <strong>Save</strong> then <strong>Review release</strong>.</p>
+<h2>Step 4: Set Countries/Regions and Roll Out the Release</h2>
+<p>1. In the same release screen, click <strong>Edit</strong> next to <strong>Countries/regions</strong>.</p>
+<p>2. Select all countries where your testers live. For most solo developers, select <strong>All countries</strong> to avoid “App not available” errors.</p>
+<p>3. Save.</p>
+<p>4. At the bottom of the release page, click <strong>Start rollout to closed testing</strong> (or <strong>Review and roll out</strong>).</p>
+<p>5. Confirm the rollout.</p>
+<p>The status will change to <strong>In review</strong> or <strong>Pending publication</strong>. This is normal.</p>
+<h2>Step 5: Wait for Review and Activation</h2>
+<p>For a new app on a new account, the first closed testing release usually takes a few hours to several days to be reviewed and marked <strong>Available to selected testers</strong>.</p>
+<p>Check the status here:</p>
+<ul>
+<li>Go to <strong>Release</strong> &gt; <strong>Overview</strong>.</li>
+<li>Look at the <strong>Closed testing</strong> card. It must say <strong>Active</strong> or <strong>Available</strong>.</li>
+</ul>
+<p>Until this status appears, the opt-in link will not work. This is the #1 reason new developers see “URL not found” or “Something went wrong”.</p>
+<h2>Step 6: Get and Share the Correct Opt-In Link</h2>
+<p>Once the release is <strong>Active</strong>:</p>
+<p>1. Return to <strong>Release</strong> &gt; <strong>Testing</strong> &gt; <strong>Closed testing</strong>.</p>
+<p>2. Scroll to the section <strong>How testers join your test</strong>.</p>
+<p>3. Copy the <strong>Opt-in link</strong>. It looks like: `https://play.google.com/apps/testing/com.yourpackage.name`</p>
+<p>4. Send this exact link to every tester. Do <strong>not</strong> send the normal Play Store link until they have opted in.</p>
+<p>Instruct each tester to:</p>
+<ul>
+<li>Open the link while signed in to the exact Google account you added to your list.</li>
+<li>Click <strong>Become a tester</strong> or <strong>Accept invitation</strong>.</li>
+<li>Then click the <strong>Download on Google Play</strong> or <strong>Install</strong> button that appears.</li>
+<li>Open the Play Store app on their phone, go to <strong>My apps &amp; games</strong> &gt; <strong>Library</strong>, and install your app from there.</li>
+</ul>
+<p>The tester must stay opted in and open the app at least once per day for 14 consecutive days.</p>
+<h2>Step 7: Verify Opted-In Testers in the Console</h2>
+<p>1. After testers accept the invitation, go back to the closed testing page.</p>
+<p>2. Check the <strong>Testers</strong> tab or the main dashboard summary.</p>
+<p>3. You should see the number of opted-in testers increase.</p>
+<p>4. The dashboard will eventually show progress toward the “12 testers for 14 days” requirement.</p>
+<p>The 14 days is measured per tester from the day they opt in. All 12 must remain opted in for 14 consecutive days while actively using the app.</p>
+<h2>Step 8: Monitor and Maintain the Test</h2>
+<ul>
+<li>Do not pause the track.</li>
+<li>Do not remove testers during the 14-day period.</li>
+<li>If you need to upload a new build, create a new release on the same closed testing track with a higher version code.</li>
+<li>Keep the testers list exactly the same.</li>
+</ul>
+<h2>Troubleshooting: Google Play Closed Testing Link Still Not Working</h2>
+<p>Use this checklist when testers report errors:</p>
+<ul>
+<li><strong>“URL not found” or 404</strong>: The release is not yet active, or the tester is not signed in with the exact email you listed. Ask them to log out of all Google accounts in the browser, sign in only with the test account, and try the opt-in link again.</li>
+<li><strong>“Something went wrong”</strong>: Usually means the review is still pending. Wait and refresh the Releases overview page.</li>
+<li><strong>“App not available” or “Item not found”</strong>:</li>
+</ul>
+<p>  - Tester’s country is not selected in the release countries.</p>
+<p>  - Wrong Google account on the device (check Play Store profile icon).</p>
+<p>  - Multiple Google accounts logged in on the phone — ask them to switch to the correct one in Play Store settings.</p>
+<p>  - Cache issue: Instruct them to go to phone Settings &gt; Apps &gt; Google Play Store &gt; Storage &gt; Clear cache (and Clear data if needed).</p>
+<ul>
+<li><strong>Opt-in button appears but download fails</strong>: The first publish on a new app can take up to 48 hours to fully propagate. Ask testers to try again the next day.</li>
+<li><strong>Dashboard shows 0 testers opted-in</strong>: Testers must click the opt-in link and accept. Simply installing from a shared store link does not count as opting in.</li>
+<li><strong>Only some testers can access it</strong>: Confirm they are not listed on an internal testing track at the same time. Remove them from other tracks if necessary.</li>
+<li><strong>Link worked yesterday but stopped today</strong>: The track may have been paused accidentally. Go to the closed testing page and make sure the status is still live.</li>
+</ul>
+<p>If everything looks correct in the console and more than 48 hours have passed, contact Google Play support through the Help section in the console.</p>
+<h2>Meeting the Exact Requirement for Production Access</h2>
+<p>Once you have at least 12 testers who have remained opted in for 14 consecutive days and have opened the app regularly, the dashboard will update. You can then apply for production access from the main Dashboard page.</p>
+<p>Remember that the testers must be real people using real devices from different locations. Emulators and repeated use from the same network may not count as separate testers.</p>
+<p>Running this closed test properly is a required step for new personal accounts. Many solo developers find it time-consuming to recruit and manage 12 reliable testers who will keep the app installed and use it daily for two weeks.</p>
+<p><strong>12 Play Testers</strong> is a managed closed-testing service built specifically to help solo Android developers complete this exact requirement.</p>
+<p>Visit the contact page at https://play.kubeai.info/contact/ or email quotes@kubeai.info for a quote.</p>
+<hr>
+<p><em>Draft prepared with AI assistance (Grok). Every guide is reviewed by the KubeAI team before publishing.</em></p>
+<p>Publisher: Yacine Zairi</p>
+<p>Questions or a quote? <a href="mailto:quotes@kubeai.info">quotes@kubeai.info</a> or the <a href="/contact/">contact page</a>.</p>
+<p>Spotted an error? <a href="mailto:corrections@kubeai.info">corrections@kubeai.info</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">12 Play Testers, a KubeAI service &middot; <a href="mailto:quotes@kubeai.info">quotes@kubeai.info</a> &middot; <a href="https://kubeai.info">kubeai.info</a> &middot; <a href="https://www.youtube.com/@KubeAI">YouTube @KubeAI</a> &middot; <a href="/about/">About</a> &middot; <a href="/contact/">Contact</a> &middot; <a href="/privacy/">Privacy</a></div>
+</footer>
+</body>
+</html>
